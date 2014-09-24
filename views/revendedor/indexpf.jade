@@ -19,37 +19,39 @@ block content
 					tr
 						td &nbsp;
 	div
-		table
-			tr
-				td
-					label#textoFormulario CPF
-				td
-					label#textoFormulario Nº Celular
-			tr
-				td
-					input(type="text" maxlength="14" size="1" style="background-color:  #e2e9ee; width: 85px;")
-				td
-					input(type="text" maxlength="14" size="1" style=" background-color:  #e2e9ee; width: 80px;")
-			tr
-				td(colspan="2")
-					label#textoFormulario Nome Completo
-			tr
-				td(colspan="2")
-					input(type="text" maxlength="14" size="1" style="background-color:  #e2e9ee; width: 99.5%;")
-			tr
-				td(colspan="2")
-					label#textoFormulario E-mail
-			tr
-				td(colspan="2")
-					input(type="text" maxlength="14" size="1" style="background-color:  #e2e9ee; width: 99.5%;")
-			tr
-				td(colspan="2")
-					input(type="checkbox")
-					label#textoFormulario  Aceito os 
-					a(href="#" id="textoFormulario" title="Termos de Serviço" target="_blank") Termos de Serviço
+		form(action="/revendedor/cadastrar_revendedor" method="post" align="center")
+			fieldset(id="first")
+				table
+					tr
+						td
+							label#textoFormulario CPF
+						td
+							label#textoFormulario Nº Celular
+					tr
+						td
+							input(type="text" id="cpf" name="cpf" maxlength="11" size="1" style="background-color:  #e2e9ee; width: 85px;")
+						td
+							input(type="text"  id="telefone" name="telefone" maxlength="11" size="1" style=" background-color:  #e2e9ee; width: 80px;")
+					tr
+						td(colspan="2")
+							label#textoFormulario Nome Completo
+					tr
+						td(colspan="2")
+							input(type="text"  id="nome" name="nome" maxlength="50" size="1" style="background-color:  #e2e9ee; width: 99.5%;")
+					tr
+						td(colspan="2")
+							label#textoFormulario E-mail
+					tr
+						td(colspan="2")
+							input(type="text"  id="email" name="email" maxlength="50" size="1" style="background-color:  #e2e9ee; width: 99.5%;")
+					tr
+						td(colspan="2")
+							input(type="checkbox")
+							label#textoFormulario  Aceito os 
+							a(href="#" id="textoFormulario" title="Termos de Serviço" target="_blank") Termos de Serviço
 
-			tr
-				td &nbsp;
-			tr
-				td
-					button(id="buttonSave" name="buttonSave") Salvar
+					tr
+						td &nbsp;
+					tr
+						td
+							button(id="buttonSave" name="buttonSave") Salvar

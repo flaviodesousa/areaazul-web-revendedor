@@ -17,6 +17,6 @@
         "pg": "*",
         "bookshelf": "*",
         "knex": "0.6.x",
-        "areaazul-api-web": "git@bitbucket.org:solutions-inf-br/areaazul-api-web.git"
+        "areaazul": "git+ssh://git@bitbucket.org:solutions-inf-br/areaazul.git"
     }
 }

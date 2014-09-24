@@ -3,4 +3,5 @@ module.exports = function(app) {
     app.get("/revendedor", revendedor.index);
     app.get("/revendedor/pf", revendedor.pessoafisica);
     app.get("/revendedor/pj", revendedor.pessoajuridica);
+    app.post("/revendedor/cadastrar_revendedor", revendedor.inserir);
 }
