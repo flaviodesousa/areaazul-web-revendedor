@@ -1,6 +1,3 @@
-
-
-
 module.exports = function(app) {
      var AreaAzul = require('areaazul'),
         Revendedor = AreaAzul.models.revendedor;
@@ -29,12 +26,13 @@ module.exports = function(app) {
                     contato : req.body.contato
                 },
                 function(result) {
-                    console.log("Cadastrado com sucesso!!!");
-                    res.redirect('/revendedor');
+                    console.log(result);
+                    req.flash('info', 'Salvo com sucesso!');
+                    res.render('revendedor', {message: req.flash('info')});
                 },
                 function(result) {
-                    console.log("Erro ao salvar!!!");
-                    res.redirect('/revendedor');
+                    req.flash('info', 'Erro ao salvar!');
+                    res.render('revendedor', {message: req.flash('info')});
                 })
 
           }

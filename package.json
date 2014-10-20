@@ -17,6 +17,8 @@
         "pg": "*",
         "bookshelf": "*",
         "knex": "0.6.x",
+        "connect-flash":"*",
+        "express-session":"*",
         "areaazul": "git+ssh://git@bitbucket.org:solutions-inf-br/areaazul.git"
     }
 }
