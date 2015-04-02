@@ -17,8 +17,13 @@
         "pg": "*",
         "bookshelf": "*",
         "knex": "0.6.x",
+        "moment": "*",
+        "bcrypt": "*",
         "connect-flash":"*",
-        "express-session":"*",
+        "express-session":"*"                                                                                  ,
+        "passport": "latest",
+        "passport-local": "latest",
+        "express-flash":"*",
         "areaazul": "git+ssh://git@bitbucket.org:solutions-inf-br/areaazul.git"
     }
 }

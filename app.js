@@ -7,7 +7,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var app = express();
 var flash = require('connect-flash');
-var session = require('express-session')
+var session = require('express-session');
+var passport = require('passport');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -22,8 +23,10 @@ app.use(session({ secret: 'keyboard cat' }));
 app.use(cookieParser('keyboard cat'));
 app.use(session({ cookie: { maxAge: 60000 }}));
 app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
 
-
+require('./node_modules/areaazul/configuration/autenticacaoLocal')(passport);
 // Modulos - Modelo - Controler - Rotas
 load('controllers').then('routes').into(app);
 

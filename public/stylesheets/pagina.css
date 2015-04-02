@@ -36,9 +36,18 @@ body{
 #mesagem{
 	color:red;
 	font-family:'Tahoma', 'MS Trebuchet', 'Arial', 'Verdana';
-	font-size:14px;
+	
 }
 
+#messages {
+	font-size:11px;
+    color: red;
+}
+#obrigatorios{
+  color: red;
+  font-size:10px;
+}
+   
 #espacotop{
 	height:20px;
 }
@@ -70,12 +79,11 @@ body{
 	font-size: 12px;
 }
 
-#buttonSave{
+#buttonForm{
 	width: 70px;
 	height: 30px;
 }
 
-/*
 #corpologin{
 	width:320px; font-size: 20px;
 	margin: 0 auto;
@@ -85,7 +93,7 @@ body{
 	border-style: solid;
 	padding: 1px;
 	color: rgb(192, 192, 192);
-}Página de Login */
+}
 
 #titulologin{
 	background-color: rgb(74, 117, 181);

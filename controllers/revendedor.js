@@ -1,6 +1,8 @@
 module.exports = function(app) {
      var AreaAzul = require('areaazul'),
         Revendedor = AreaAzul.models.revendedor;
+        Ativacao = AreaAzul.models.ativacao;
+        Veiculo = AreaAzul.models.veiculo;
     
     var revendedorController = {
         index: function(req, res) {
@@ -35,7 +37,58 @@ module.exports = function(app) {
                     res.render('revendedor', {message: req.flash('info')});
                 })
 
-          }
+          },
+        ativacao: function(req, res) {
+
+            //console.log("tipoVeiculo"+tipoVeiculo);
+            res.render("revendedor/ativacao_revendedor");
+
+        },
+        ativar: function(req, res) {
+            var vehicle = {
+                placa: req.body.placa+req.body.number_placa,
+                usuario_id: req.session.user_id
+            };
+
+
+            Veiculo.procurarVeiculoPorPlaca(vehicle,
+                function(result){
+                    console.log("model"+result.id);
+                    var ativacao = {
+                        tipoVeiculo: req.body.tipoVeiculo,
+                        credito: req.body.credito,
+                        usuario_id: req.session.user_id,
+                        veiculo_id: result.id
+                    };
+
+                    Ativacao.ativarPelaRevenda(ativacao, 
+                        function(results){
+                            res.render("revendedor/ativacao_revendedor"); 
+                    }, function(results){
+                            res.render("revendedor/ativacao_revendedor");
+                    });
+                }, function(result){
+                    Veiculo.cadastrar(vehicle, 
+                        function(results){
+                            var ativacao = {
+                                tipoVeiculo: req.body.tipoVeiculo,
+                                credito: req.body.credito,
+                                usuario_id: req.session.user_id,
+                                veiculo_id: results.id
+                            };
+                            Ativacao.ativarPelaRevenda(ativacao, 
+                                function(results){
+                                    res.render("revendedor/ativacao_revendedor");
+                                }, function(results){
+                                    res.render("revendedor/ativacao_revendedor");
+                                });
+
+                    }, function(results){
+                            console.log("err"+results);
+                    });
+                });
+            console.log("req---" + req.body);
+        },
 
     }
     return revendedorController;
