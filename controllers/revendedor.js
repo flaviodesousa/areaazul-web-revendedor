@@ -39,10 +39,25 @@ module.exports = function(app) {
 
           },
         ativacao: function(req, res) {
+            var usuario = {
+                id_usuario: req.session.user_id
+            };
 
-            //console.log("tipoVeiculo"+tipoVeiculo);
-            res.render("revendedor/ativacao_revendedor");
-
+            console.log("req.session.user_id"+req.session.user_id);
+           
+            Revendedor.mostrarSaldo(usuario, 
+            function(result){
+                var saldo = result.attributes.saldo;
+                console.log("saldo"+saldo);
+                if(saldo > 10){
+                    req.flash('info', 'Saldo insuficente!');
+                    res.render("revendedor/ativacao_revendedor", {value:result.attributes}, {message: req.flash('info')});
+                }else{
+                    res.render("revendedor/ativacao_revendedor", {value:result.attributes});
+                }
+            }, function(result){
+                res.render("revendedor/ativacao_revendedor");
+            });
         },
         ativar: function(req, res) {
             var vehicle = {

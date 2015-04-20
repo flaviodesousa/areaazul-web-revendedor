@@ -23,7 +23,7 @@ block content
 
 	div
 
-	form(method="POST" action="/usuario/alteracao_senha/#{value.id_usuario}"  class="regform"  align="center")
+	form(method="POST" action="/usuario/alteracao_senha/#{value.id_usuario_revendedor}"  class="regform"  align="center")
 
 		fieldset(id="first")
 			label#tituloPagina Alteração de senha
@@ -40,7 +40,7 @@ block content
 						label#textoFormulario Usuario 
 						label#obrigatorios *
 					td
-						input(id="id_usuario" name="id_usuario" type="hidden" maxlength="11" size="1"  value="#{value.id_usuario}" style="background-color:  #e2e9ee; width: 84px;")
+						input(id="id_usuario_revendedor" name="id_usuario_revendedor" type="hidden" maxlength="11" size="1"  value="#{value.id_usuario_revendedor}" style="background-color:  #e2e9ee; width: 84px;")
 						input(id="login" name="login" type="text" maxlength="11" size="1"  value="#{value.login}" style="background-color:  #e2e9ee; width: 84px;")
 				tr
 					td

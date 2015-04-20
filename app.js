@@ -26,7 +26,7 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
-require('./node_modules/areaazul/configuration/autenticacaoLocal')(passport);
+require('./helpers/auth')(passport);
 // Modulos - Modelo - Controler - Rotas
 load('controllers').then('routes').into(app);
 
