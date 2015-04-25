@@ -23,17 +23,7 @@ input, select, textarea, button, keygen, isindex {
 	border-color: #C0C0C0;
 	color: #000000;
 }
-button, input[type="reset"], input[type="submit"], input[type="button"] {
-	border-width: 1px;
-	border-color: #C0C0C0;
-	font-size: 11px;
-	font-family: Arial, Verdana, sans-serif ;
-	color: #FFFFFF;
-	background-repeat: repeat-x;
-	background-position: top left;
-	background-color: #4A75B5;
-	background-image: url(../images/buttonBackgroundImage.png);
-}
+
 button:hover, input[type="reset"]:hover, input[type="submit"]:hover, input[type="button"]:hover {
 	background-position: bottom left;
 	background-repeat: repeat-x;

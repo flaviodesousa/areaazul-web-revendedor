@@ -24,6 +24,7 @@
         "passport": "latest",
         "passport-local": "latest",
         "express-flash":"*",
+        "bootstrap":"latest",
         "areaazul": "git+ssh://git@bitbucket.org:solutions-inf-br/areaazul.git"
     }
 }
