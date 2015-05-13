@@ -27,6 +27,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 require('./helpers/auth')(passport);
+
 // Modulos - Modelo - Controler - Rotas
 load('controllers').then('routes').into(app);
 

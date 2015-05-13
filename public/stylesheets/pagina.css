@@ -93,6 +93,8 @@ body{
 	border-style: solid;
 	padding: 1px;
 	color: rgb(192, 192, 192);
+	position: relative;
+	top: 110px;
 }
 
 #titulologin{

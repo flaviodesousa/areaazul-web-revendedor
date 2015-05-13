@@ -1,6 +1,8 @@
 var bcrypt = require('bcrypt');
 var passport = require('passport');
 var areaazul = require('areaazul');
+var Pessoa = areaazul.models.pessoa;
+
 
 module.exports = function(app) {
     var loginController = {
@@ -10,41 +12,43 @@ module.exports = function(app) {
         home: function(req, res){
             res.render('login/home', {value:user.attributes});
         },
+        novaSenha: function(req, res){
+            res.render('login/novaSenha');
+        }, 
+        verificaEmail: function(req, res){
+            var person = {
+                email : req.body.email,
+            }
+            console.log("req.body.email" + req.body.email);
+            Pessoa.verificaEmail(person, 
+                function(result){
+                    req.flash('info', 'Foi enviado um email com a senha provisória!!!');
+                    res.render('login/novaSenha', {message: req.flash('info')});
+                }, 
+                function(result){
+                    req.flash('info', 'Email não existe!!!');
+                    res.render('login/novaSenha',{message: req.flash('info')});
+                });
+        }, 
         autenticar: function(req, res, next) {
-            // console.log("Cheguei até aqui!");
           passport.authenticate('local', function(err, user, info) {
-                //console.log('Req session:'+req.session);
                if (err || !user) {
-                  //  console.log("Login1");
-                  //  console.log("Err"+err);
-                   // console.log("Err"+user);
-                   return res.render('login', {
-                        error: 'true'
-                    });
+                    req.flash('info', 'Erro ao logar!!!');
+                    res.render('login', {message: req.flash('info')});
                 }
                 req.logIn(user, function(err) {
                     if (err) {
-                    //    console.log("Login2");
-                       // console.log(err);
                     return res.render('login', {
                             error: 'true'
                         });
                     }
-                    if(user.primeiro_acesso == true){
-          
-                       // console.log("user.id_usuario: "+user.id_usuario);
-                       // req.session.user_id = user.id_usuario;
-                      //  console.log("req.session.user_id: "+req.session.user_id);
-                   // console.log("user"+user);
+                    if(user.primeiro_acesso === true){
                       return res.render('usuario/home', {value:user});
                       } 
-                      //  console.log("user.id_usuario: "+user.id_usuario);
-                       // req.session.user_id = user.id_usuario;
-                       // console.log("req.session.user_id: "+req.session.user_id);
-                        return res.redirect('/');
+                      return res.redirect('/');
                 });
             })(req, res, next);
         }
-    } 
+    } ;
     return loginController;
-}
+};

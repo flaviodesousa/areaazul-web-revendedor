@@ -17,25 +17,18 @@ block content
         div#titulologin
             label Sistema - Área Azul
         div#textologin
-            form(name="login", action="/logar", method="post")
+            form(name="login", action="/verificaEmail", method="post")
                 table
                     tr
-                        td
-                            img(src= "../images/icons/lock.png" id="lock")
                         td
                             table
                                 tr
                                     td
-                                        label Usuário
+                                        label Email
                                     td
-                                        input(type="text", name="login", maxlength="19")
+                                        input(type="text", name="email", maxlength="50", placeholder="example@example.com.br")
                                 tr
                                     td
-                                        label Senha
+                                        input(type="submit", value="Enviar mensagem")
                                     td
-                                        input(type="password", name="senha")
-                                tr
-                                    td
-                                        input(type="submit", value="Entrar")
-                                    td
-                                        a(id="esqueceusenha" href="/novaSenha" title="Esqueci minha senha") &nbsp;Esqueci minha Senha
+                                        input(type="submit", value="cancelar")
