@@ -7,12 +7,12 @@ module.exports = function(passport) {
 
     passport.serializeUser(function(user, done) {
         console.log(user)
-        done(null, user.id_usuario_revendedor);
+        done(null, user.pessoa_fisica_pessoa_id);
     });
 
     passport.deserializeUser(function(user_id, done) {
        var user = Usuario_Revendedor.search(new Usuario_Revendedor.Usuario_Revendedor({
-                'id_usuario_revendedor': user_id,
+                'pessoa_fisica_pessoa_id': user_id,
             }), function(user, error) {
             if(user != null){
                 return done(null, user);

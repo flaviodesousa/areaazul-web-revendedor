@@ -40,24 +40,47 @@ module.exports = function(app) {
             }
     },
     alterarSenhas: function(req, res){
-        console.log("params"+req.params.id_recuperacao_senha);
+    
         var password_recovery = {
             id_recuperacao_senha : req.params.id_recuperacao_senha
         }
+
         Recuperacao_Senha.procurar(password_recovery, 
-        function(result){
+            function(result){
+                req.flash('info', 'Encontrado!');
+                res.render('usuario/alterarSenha', {value:result.attributes, message: req.flash('info')});
+              
+            }, function(result){
 
-             req.flash('info', 'Encontrado!');
-            res.render('usuario/alterarSenha', {value:result.attributes, message: req.flash('info')});
-   
-        }, function(result){
-
-             req.flash('info', 'Erro não encontrado!');
-            res.render('usuario/alterarSenha', {message: req.flash('info')});
-        })
+                 req.flash('info', 'Erro não encontrado!');
+                res.render('usuario/alterarSenha', {message: req.flash('info')});
+            });
     },
     recuperar_senha: function(req, res){
-        res.render('usuario/alterarSenha');
+         var usuario = {
+                pessoa_fisica_pessoa_id: req.params.pessoa_fisica_pessoa_id,
+                senha: req.body.senha,
+                conf_senha : req.body.conf_senha
+            }
+
+            var arr = Usuario_Revendedor.validarSenhaAlteracao(usuario);
+            if(arr.length == 0){
+                Usuario_Revendedor.alterarSenhaRecuperacao(usuario,
+                function(result) {
+                    req.flash('info','Alterado com sucesso!!!');
+                    console.log("Alterado com sucesso!!!");
+                     res.render('usuario/alterarSenha', {value:usuario.pessoa_fisica_pessoa_id, message: req.flash('info')});
+                },
+                function(result) {
+                    req.flash('info','Erro ao alterar!!!');
+                    console.log("Erro ao alterar!!!"+result);
+                    res.render('usuario/alterarSenha', {value:usuario.pessoa_fisica_pessoa_id, message: req.flash('info')});
+                });
+             }else{
+                for(var i = 0; i<arr.length;i++)
+                req.flash('info',arr[i].problem);
+                res.render('usuario/alterarSenha', {value:usuario.pessoa_fisica_pessoa_id, message: req.flash('info')});
+            }
     }
 
 }
