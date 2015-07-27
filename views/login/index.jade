@@ -21,21 +21,22 @@ block content
                 table
                     tr
                         td
-                            img(src= "../images/icons/lock.png" id="lock")
-                        td
                             table
                                 tr
                                     td
                                         label Usuário
                                     td
-                                        input(type="text", name="login", maxlength="19")
+                                        input.form-control(type="text", name="login", maxlength="19")
                                 tr
                                     td
                                         label Senha
                                     td
-                                        input(type="password", name="senha")
+                                        input.form-control(type="password", name="senha")
                                 tr
                                     td
-                                        input(type="submit", value="Entrar")
+                                        button.btn.btn-default(type='submit') Entrar
+                                tr
                                     td
-                                        a(id="esqueceusenha" href="/novaSenha" title="Esqueci minha senha") &nbsp;Esqueci minha Senha
+                                        a(id="contaNova" href="/revendedor/" title="Criar uma conta") &nbsp;Criar uma conta
+                                    td
+                                        a(id="esqueceusenha" href="/novaSenha" title="Esqueci a senha") &nbsp;Esqueci a Senha

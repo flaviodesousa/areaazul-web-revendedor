@@ -1,8 +1,8 @@
-var bcrypt = require('bcrypt');
-var passport = require('passport');
-var areaazul = require('areaazul');
-var Pessoa = areaazul.models.pessoa;
-
+//var bcrypt = require('bcrypt');
+//var passport = require('passport');
+var AreaAzul = require('areaazul');
+//var Pessoa = areaazul.models.pessoa;
+var UsuarioRevendedor = AreaAzul.models.UsuarioRevendedor;
 
 module.exports = function(app) {
     var loginController = {
@@ -10,7 +10,7 @@ module.exports = function(app) {
             res.render('login/index');
         },
         home: function(req, res){
-            res.render('login/home', {value:user.attributes});
+            res.render('login/home');
         },
         novaSenha: function(req, res){
             res.render('login/novaSenha');
@@ -30,8 +30,27 @@ module.exports = function(app) {
                     res.render('login/novaSenha',{message: req.flash('info')});
                 });
         }, 
-        autenticar: function(req, res, next) {
-          passport.authenticate('local', function(err, user, info) {
+        autenticar: function(req, res) {
+
+            console.log("req"+req.body.senha);
+            console.log("req"+req.body.login);
+
+            UsuarioRevendedor.autorizado(
+                req.body.login,
+                req.body.senha)
+            .then(function(usuarioRevendedor){
+                console.log("revenda -- "+usuarioRevendedor);
+                res.render('login/home');
+            })
+            .catch(function(err){
+                console.log("Err: "+err.message);
+                req.flash('info', err.message);
+                res.render('login', {message: req.flash('info')});
+            });
+        },
+
+
+        /*  passport.authenticate('local', function(err, user, info) {
                if (err || !user) {
                     req.flash('info', 'Erro ao logar!!!');
                     res.render('login', {message: req.flash('info')});
@@ -43,13 +62,17 @@ module.exports = function(app) {
                         });
                     }
                     if(user.primeiro_acesso === true){
-                      return res.render('usuario/home', {value:user});
+                        console.log("req 1: "+user.pessoa_fisica_pessoa_id);
+                        req.session.user_id = user.pessoa_fisica_pessoa_id;
+                        return res.render('usuario/home', {value:user});
                       } 
+                        console.log("req 2: "+user.pessoa_fisica_pessoa_id);
+                        req.session.user_id = user.pessoa_fisica_pessoa_id;
                       return res.redirect('/');
                 });
                 console.log("err"+err);
             })(req, res, next);
-        }
-    } ;
+        }*/
+    };
     return loginController;
 };

@@ -5,7 +5,7 @@ module.exports = function(app) {
     var login = app.controllers.login,
     	usuario = app.controllers.usuario;
    
-    app.get("/login", login.index);
+    app.get("/", login.index);
     app.post('/logar', login.autenticar);
     app.get("/novaSenha", login.novaSenha);
     app.post("/verificaEmail", login.verificaEmail);
