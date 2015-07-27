@@ -1,8 +1,9 @@
 module.exports = function(app) {
-     var AreaAzul = require('areaazul'),
-        Revendedor = AreaAzul.models.revendedor;
-        Ativacao = AreaAzul.models.ativacao;
-        Veiculo = AreaAzul.models.veiculo;
+     var AreaAzul = require('areaazul');
+     var Revendedor = AreaAzul.models.Revendedor;
+     var Ativacao = AreaAzul.models.Ativacao;
+     var Veiculo = AreaAzul.models.Veiculo;
+
     
     var revendedorController = {
         index: function(req, res) {
@@ -16,28 +17,51 @@ module.exports = function(app) {
         pessoajuridica: function(req, res) {
             res.render("revendedor/indexpj");
         },
-        inserir: function(req, res) {
-            Revendedor.cadastrar({
-                    nome: req.body.nome,
-                    email: req.body.email,
-                    telefone: req.body.telefone,
-                    cpf: req.body.cpf,
-                    cnpj : req.body.cnpj,
-                   // nome_fantasia : req.body.nome,
-                    razao_social : req.body.razao_social,
-                    contato : req.body.contato
-                },
-                function(result) {
-                    console.log(result);
-                    req.flash('info', 'Salvo com sucesso!');
-                    res.render('revendedor', {message: req.flash('info')});
-                },
-                function(result) {
-                    req.flash('info', 'Erro ao salvar!');
-                    res.render('revendedor', {message: req.flash('info')});
-                })
+        cadastrar: function(req, res) {
+            var parametros = null;
+            if(req.body.radio1 === null){
+            var parametros = {
+                cnpj : req.body.cnpj,
+                login: req.body.nome_usuario_pj,
+                email: req.body.email_responsavel_pj,
+                senha: req.body.senha_pj,
+                confirmar_senha: req.body.confirmar_senha_pj,
+                celular: req.body.celular_pj,
+                nome_fantasia : req.body.nome_fantasia_pj,
+                razao_social : req.body.razao_social_pj,
+                telefone: req.body.telefone_pj,
+                cpf: req.body.cpf_responsavel_pj
+            }
+            }else{
+            var parametros = {
+                cpf: req.body.cpf,
+                login: req.body.nome_usuario_pf,
+                email: req.body.email_pf,
+                senha: req.body.senha_pf,
+                confirmar_senha: req.body.confirmar_senha_pf,
+                celular: req.body.celular_pf,
+                nome: req.body.nome_pf,
+            }
+            }
 
-          },
+         Revendedor.cadastrar(
+            parametros)
+          .then(function(revenda) {
+            console.log("Revenda"+revenda);
+            req.flash('info', 'Salvo com sucesso!');
+            res.render("revendedor/", {message: req.flash('info')});
+
+          })
+          .catch(function(err) {
+            console.log("err"+err);
+            req.flash('info', err);
+            res.render("revendedor/", {message: req.flash('info')});
+          });
+        },
+
+
+
+
         ativacao: function(req, res) {
             var usuario = {
                 id_usuario: req.session.user_id
