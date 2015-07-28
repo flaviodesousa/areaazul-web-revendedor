@@ -3,7 +3,7 @@ module.exports = function(app) {
 	var routesUtil = require('../routes/utils');
 
     app.get("/revendedor", revendedor.index);
-    app.get("/revendedor/cadastrar_revendedor", revendedor.cadastrar);
+    app.post("/revendedor/cadastrar_revendedor", revendedor.cadastrar);
    /* app.get("/revendedor/pj", routesUtil.ensureAuthenticated, revendedor.pessoajuridica);
     app.post("/revendedor/cadastrar_revendedor", revendedor.inserir);
     app.get('/revendedor/ativacao_revendedor', revendedor.ativacao);

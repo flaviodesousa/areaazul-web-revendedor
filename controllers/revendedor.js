@@ -19,7 +19,7 @@ module.exports = function(app) {
         },
         cadastrar: function(req, res) {
             var parametros = null;
-            if(req.body.radio1 === null){
+            if(req.body.hiddenFormPJ != undefined){
             var parametros = {
                 cnpj : req.body.cnpj,
                 login: req.body.nome_usuario_pj,
@@ -30,7 +30,9 @@ module.exports = function(app) {
                 nome_fantasia : req.body.nome_fantasia_pj,
                 razao_social : req.body.razao_social_pj,
                 telefone: req.body.telefone_pj,
-                cpf: req.body.cpf_responsavel_pj
+                cpf: req.body.cpf_responsavel_pj,
+                nome: req.body.responsavel_nome_pj,
+                autorizacao: 'administrador',
             }
             }else{
             var parametros = {
@@ -41,26 +43,22 @@ module.exports = function(app) {
                 confirmar_senha: req.body.confirmar_senha_pf,
                 celular: req.body.celular_pf,
                 nome: req.body.nome_pf,
+                autorizacao: 'administrador',
             }
             }
 
          Revendedor.cadastrar(
             parametros)
           .then(function(revenda) {
-            console.log("Revenda"+revenda);
             req.flash('info', 'Salvo com sucesso!');
             res.render("revendedor/", {message: req.flash('info')});
 
           })
           .catch(function(err) {
-            console.log("err"+err);
             req.flash('info', err);
             res.render("revendedor/", {message: req.flash('info')});
           });
         },
-
-
-
 
         ativacao: function(req, res) {
             var usuario = {
