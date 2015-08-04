@@ -20,6 +20,8 @@ module.exports = function(app) {
         cadastrar: function(req, res) {
             var parametros = null;
             if(req.body.hiddenFormPJ != undefined){
+
+                console.log("controller pj");
             var parametros = {
                 cnpj : req.body.cnpj,
                 login: req.body.nome_usuario_pj,
@@ -29,7 +31,7 @@ module.exports = function(app) {
                 celular: req.body.celular_pj,
                 nome_fantasia : req.body.nome_fantasia_pj,
                 razao_social : req.body.razao_social_pj,
-                telefone: req.body.telefone_pj,
+                contato: req.body.telefone_pj,
                 cpf: req.body.cpf_responsavel_pj,
                 nome: req.body.responsavel_nome_pj,
                 autorizacao: 'administrador',
@@ -55,6 +57,7 @@ module.exports = function(app) {
 
           })
           .catch(function(err) {
+            console.log("Err -- "+err.details);
             req.flash('info', err);
             res.render("revendedor/", {message: req.flash('info')});
           });
