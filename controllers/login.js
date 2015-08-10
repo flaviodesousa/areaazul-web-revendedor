@@ -1,7 +1,4 @@
-//var bcrypt = require('bcrypt');
-//var passport = require('passport');
 var AreaAzul = require('areaazul');
-//var Pessoa = areaazul.models.pessoa;
 var UsuarioRevendedor = AreaAzul.models.UsuarioRevendedor;
 
 module.exports = function(app) {
@@ -10,7 +7,7 @@ module.exports = function(app) {
             res.render('login/index');
         },
         home: function(req, res){
-            res.render('login/home');
+            res.render('home');
         },
         novaSenha: function(req, res){
             res.render('login/novaSenha');
@@ -40,7 +37,7 @@ module.exports = function(app) {
                 req.body.senha)
             .then(function(usuarioRevendedor){
                 console.log("revenda -- "+usuarioRevendedor);
-                res.render('login/home');
+                res.render('home');
             })
             .catch(function(err){
                 console.log("Err: "+err.message);

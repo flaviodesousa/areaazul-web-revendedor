@@ -2,7 +2,7 @@ module.exports = function(app) {
     var revendedor = app.controllers.revendedor;
 	var routesUtil = require('../routes/utils');
 
-    app.get("/revendedor", revendedor.index);
+    app.get("/revendedor/cadastro", revendedor.index);
     app.post("/revendedor/cadastrar_revendedor", revendedor.cadastrar);
    /* app.get("/revendedor/pj", routesUtil.ensureAuthenticated, revendedor.pessoajuridica);
     app.post("/revendedor/cadastrar_revendedor", revendedor.inserir);

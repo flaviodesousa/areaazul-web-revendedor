@@ -7,7 +7,7 @@ module.exports = function(app) {
     
     var revendedorController = {
         index: function(req, res) {
-            res.render("revendedor/index");
+            res.render("revendedor/cadastro");
         },
 
         pessoafisica: function(req, res) {
@@ -19,47 +19,56 @@ module.exports = function(app) {
         },
         cadastrar: function(req, res) {
             var parametros = null;
-            if(req.body.hiddenFormPJ != undefined){
+            console.dir("object"+req.body);
+            if(req.body.hiddenFormPJ === '1'){
 
                 console.log("controller pj");
-            var parametros = {
-                cnpj : req.body.cnpj,
-                login: req.body.nome_usuario_pj,
-                email: req.body.email_responsavel_pj,
-                senha: req.body.senha_pj,
-                confirmar_senha: req.body.confirmar_senha_pj,
-                celular: req.body.celular_pj,
-                nome_fantasia : req.body.nome_fantasia_pj,
-                razao_social : req.body.razao_social_pj,
-                contato: req.body.telefone_pj,
-                cpf: req.body.cpf_responsavel_pj,
-                nome: req.body.responsavel_nome_pj,
-                autorizacao: 'administrador',
-            }
+                var parametros = {
+                    cnpj : req.body.cnpj,
+                    login: req.body.nome_usuario_pj,
+                    email: req.body.email_responsavel_pj,
+                    senha: req.body.senha_pj,
+                    confirmar_senha: req.body.confirmar_senha_pj,
+                    celular: req.body.celular_pj,
+                    nome_fantasia : req.body.nome_fantasia_pj,
+                    razao_social : req.body.razao_social_pj,
+                    contato: req.body.telefone_pj,
+                    cpf: req.body.cpf_responsavel_pj,
+                    nome: req.body.responsavel_nome_pj,
+                    autorizacao: 'administrador',
+                }
             }else{
-            var parametros = {
-                cpf: req.body.cpf,
-                login: req.body.nome_usuario_pf,
-                email: req.body.email_pf,
-                senha: req.body.senha_pf,
-                confirmar_senha: req.body.confirmar_senha_pf,
-                celular: req.body.celular_pf,
-                nome: req.body.nome_pf,
-                autorizacao: 'administrador',
+
+                console.log("controller pf");
+                var parametros = {
+                    cpf: req.body.cpf,
+                    login: req.body.nome_usuario_pf,
+                    email: req.body.email_pf,
+                    senha: req.body.senha_pf,
+                    confirmar_senha: req.body.confirmar_senha_pf,
+                    celular: req.body.celular_pf,
+                    nome: req.body.nome_pf,
+                    autorizacao: 'administrador',
+                }
             }
-            }
+
+        console.dir('message'+parametros.cpf);
 
          Revendedor.cadastrar(
             parametros)
           .then(function(revenda) {
             req.flash('info', 'Salvo com sucesso!');
-            res.render("revendedor/", {message: req.flash('info')});
+            res.render("revendedor/cadastro", {message: req.flash('info')});
 
           })
           .catch(function(err) {
-            console.log("Err -- "+err.details);
-            req.flash('info', err);
-            res.render("revendedor/", {message: req.flash('info')});
+            console.dir("err: "+err);
+            var tamanho = err.details.length;
+            console.dir("tamanho"+tamanho);
+            for(var i = 0; i < tamanho; i++)
+            req.flash('info', err.details[i].problem);
+
+            res.render("revendedor/cadastro", {message: req.flash('info')});
           });
         },
 

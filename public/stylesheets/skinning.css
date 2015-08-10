@@ -24,18 +24,8 @@ input, select, textarea, button, keygen, isindex {
 	color: #000000;
 }
 
-button:hover, input[type="reset"]:hover, input[type="submit"]:hover, input[type="button"]:hover {
-	background-position: bottom left;
-	background-repeat: repeat-x;
-	background-image: url(../images/buttonHoverBackgroundImage.png);
-}
-button[disabled], input[type="reset"][disabled], input[type="submit"][disabled], input[type="button"][disabled] {
-	color: #6A92CF;
-	border-color: #cccccc;
-	background-color: #cccccc;
-	background-image: url(../images/buttonBackgroundDisabledl.png);
-	background-position: top left;
-}
+
+
 textarea, input[type="text"], input[type="password"], select {
 	border-width: 1px;
 	border-style: solid;
