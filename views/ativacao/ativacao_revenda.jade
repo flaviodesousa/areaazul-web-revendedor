@@ -1,0 +1,112 @@
+extends ../layout
+
+block optionuser
+    div#corpooptionuser
+        div#filhooptionuser
+
+block content
+
+   body(onload='escondeCampos()')
+    .container.center
+      header.row
+        .col-md-4  
+        .col-md-4
+        .col-md-4  
+      .row
+        .col-md-3
+        .row.myform
+          .col-md-5
+            h1.text-center Ativação
+            br
+            form(name='myform', role='form', action="/ativacao/salvar_ativacao", method='POST')
+              .form-group
+                .row
+                  .form-group
+                    .form-inline
+                      .form-group.col-lg-5
+                        label * Placa
+                        input#placa.form-control(type='text', placeholder='Placa', name='login', onblur='verificaPlaca();')
+                      #campos1
+                        .form-group.col-lg-2
+                          .form-group
+                            label * UF
+                            select#sel1.form-control
+                              option GO
+                              option TO
+                              option SP
+                              option RJ
+                        .form-group.col-lg-3
+                          .form-group
+                            label * Cidade
+                            select#sel1.form-control
+                              option Anápolis
+                              option Crixás
+                              option Goiânia
+                              option São Paulo
+                br
+                #campos2
+                  .row
+                    .form-group
+                      .form-inline
+                        .form-group.col-lg-5
+                          label * Marca
+                          input.form-control(type='text', placeholder='Marca', name='login')
+                        .form-group.col-lg-4
+                          label * Modelo
+                          input.form-control(type='text', placeholder='Modelo', name='login')
+                  br
+                  .row
+                    .form-group
+                      .form-group.col-lg-5
+                        label * Cor
+                        input.form-control(type='text', placeholder='Cor', name='login')
+                .row
+                  .form-group
+                    h4.text-center Tipo do veículo
+                .row
+                  .form-group
+                    .form-inline(align='center')
+                      .input-group
+                        label.radio-inline
+                          input#radio1(type='radio', checked='true', value='1', onclick='verPorRadio(this.value)')
+                          |  Carro
+                        label.radio-inline
+                          input#radio2(type='radio', value='2', onclick='verPorRadio(this.value)')
+                          |  Moto
+                        label.radio-inline
+                          input#radio2(type='radio', value='3', onclick='verPorRadio(this.value)')
+                          |  Camionete
+                .form-group
+                  .form-inline
+                    .form-group
+                      label Tempo  
+                    .form-group
+                      .form-group.col-lg-5
+                        select#sel1.form-control
+                          option 1 Hora
+                          option 2 Horas
+                          option 3 Horas
+                          option 4 Horas
+                  br
+                  .form-inline
+                    label * Celular
+                    .form-group
+                      .form-group.col-lg-5
+                        input.form-control(type='text', placeholder='Celular', name='login')
+              .form-group
+                .form-inline
+                  .form-group.pull-right
+                    label * Campos Obrigátorios
+              br
+              br
+              .form-group
+                .controls
+                  button#button1id.btn.btn-small.btn-primary(name='button1id') Ativar
+          .col-md-4
+        footer.row
+          .col-md-4  
+          .col-md-4
+          .col-md-4  
+        div
+        block append scripts
+          script(src='/js/formAtivacao.js')
