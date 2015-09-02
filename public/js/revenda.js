@@ -14,10 +14,8 @@
      }
  };
 
- function verPorRadio(elemento) 
- {
-     switch (elemento) 
-     {
+ function verPorRadio(elemento) {
+     switch (elemento) {
          case "1":
              document.getElementById("formulario1").style.display = "";
              document.getElementById("formulario2").style.display = "none";

@@ -5,7 +5,6 @@ block optionuser
         div#filhooptionuser
 
 block content
-
    body(onload='escondeCampos()')
     .container.center
       header.row
@@ -16,7 +15,7 @@ block content
         .col-md-3
         .row.myform
           .col-md-5
-            h1.text-center Ativação
+            h4.text-center Ativação
             br
             form(name='myform', role='form', action="/ativacao/salvar_ativacao", method='POST')
               .form-group
@@ -30,19 +29,16 @@ block content
                         .form-group.col-lg-2
                           .form-group
                             label * UF
-                            select#sel1.form-control
-                              option GO
-                              option TO
-                              option SP
-                              option RJ
+                              select.form-control(id="id_estado", name="id_estado", onchange='atualizarCidades();')
+                                each valor, i in lista
+                                    option(value="#{valor.attributes.id_estado}" selected="true") #{valor.attributes.uf}
+
                         .form-group.col-lg-3
                           .form-group
                             label * Cidade
-                            select#sel1.form-control
-                              option Anápolis
-                              option Crixás
-                              option Goiânia
-                              option São Paulo
+                              select.form-control(id="id_cidade", name="id_cidade", onchange='atualizarCidades();')
+                                each valor, i in lista
+                                    option(value="#{valor.attributes.id_cidade}" selected="true") #{valor.attributes.nome}
                 br
                 #campos2
                   .row
@@ -50,23 +46,24 @@ block content
                       .form-inline
                         .form-group.col-lg-5
                           label * Marca
-                          input.form-control(type='text', placeholder='Marca', name='login')
+                          input.form-control(type='text', placeholder='Marca', name='marca')
                         .form-group.col-lg-4
                           label * Modelo
-                          input.form-control(type='text', placeholder='Modelo', name='login')
+                          input.form-control(type='text', placeholder='Modelo', name='modelo')
                   br
                   .row
                     .form-group
                       .form-group.col-lg-5
                         label * Cor
-                        input.form-control(type='text', placeholder='Cor', name='login')
+                        input.form-control(type='text', placeholder='Cor', name='cor')
                 .row
                   .form-group
-                    h4.text-center Tipo do veículo
+                    .form-inline
+                      label * Tipo do veículo
                 .row
                   .form-group
                     .form-inline(align='center')
-                      .input-group
+                      .input-group(name='tipo_veiculo')
                         label.radio-inline
                           input#radio1(type='radio', checked='true', value='1', onclick='verPorRadio(this.value)')
                           |  Carro
@@ -75,24 +72,24 @@ block content
                           |  Moto
                         label.radio-inline
                           input#radio2(type='radio', value='3', onclick='verPorRadio(this.value)')
-                          |  Camionete
+                          |  Caminhonete
                 .form-group
                   .form-inline
                     .form-group
-                      label Tempo  
+                      label * Tempo  
                     .form-group
                       .form-group.col-lg-5
-                        select#sel1.form-control
-                          option 1 Hora
-                          option 2 Horas
-                          option 3 Horas
-                          option 4 Horas
+                        select.form-control(id="tempo" name="tempo")
+                          option( value='') 1 Hora
+                          option() 2 Horas
+                          option() 3 Horas
+                          option() 4 Horas
                   br
                   .form-inline
                     label * Celular
                     .form-group
                       .form-group.col-lg-5
-                        input.form-control(type='text', placeholder='Celular', name='login')
+                        input.form-control(type='text', placeholder='Celular', name='celular')
               .form-group
                 .form-inline
                   .form-group.pull-right

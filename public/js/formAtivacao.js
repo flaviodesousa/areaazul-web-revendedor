@@ -13,3 +13,9 @@ function escondeCampos() {
     document.getElementById("campos1").style.display = "none";
     document.getElementById("campos2").style.display = "none";
 }
+
+function atualizarCidades(){
+
+
+
+}
