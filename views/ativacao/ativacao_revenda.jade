@@ -5,7 +5,6 @@ block optionuser
         div#filhooptionuser
 
 block content
-
    body(onload='escondeCampos()')
     .container.center
       header.row
@@ -16,7 +15,7 @@ block content
         .col-md-3
         .row.myform
           .col-md-5
-            h1.text-center Ativação
+            h4.text-center Ativação
             br
             form(name='myform', role='form', action="/ativacao/salvar_ativacao", method='POST')
               .form-group
@@ -30,19 +29,17 @@ block content
                         .form-group.col-lg-2
                           .form-group
                             label * UF
-                            select#sel1.form-control
-                              option GO
-                              option TO
-                              option SP
-                              option RJ
+                              select.form-control(id="estado" name="estado")
+                                each valor, i in lista
+                                    option(value="#{valor.attributes.id_estado}" selected="true") #{valor.attributes.uf}
+
                         .form-group.col-lg-3
                           .form-group
                             label * Cidade
-                            select#sel1.form-control
-                              option Anápolis
-                              option Crixás
-                              option Goiânia
-                              option São Paulo
+                              select.form-control(id="id_cidade" name="id_cidade")
+                                each valor, i in lista
+                                    option(value="#{valor.attributes.id_cidade}" selected="true") #{valor.attributes.nome}
+
                 br
                 #campos2
                   .row
@@ -62,7 +59,8 @@ block content
                         input.form-control(type='text', placeholder='Cor', name='login')
                 .row
                   .form-group
-                    h4.text-center Tipo do veículo
+                    .form-inline
+                      label * Tipo do veículo
                 .row
                   .form-group
                     .form-inline(align='center')
@@ -75,18 +73,18 @@ block content
                           |  Moto
                         label.radio-inline
                           input#radio2(type='radio', value='3', onclick='verPorRadio(this.value)')
-                          |  Camionete
+                          |  Caminhonete
                 .form-group
                   .form-inline
                     .form-group
-                      label Tempo  
+                      label * Tempo  
                     .form-group
                       .form-group.col-lg-5
-                        select#sel1.form-control
-                          option 1 Hora
-                          option 2 Horas
-                          option 3 Horas
-                          option 4 Horas
+                        select.form-control(id="tempo" name="tempo")
+                          option( value='') 1 Hora
+                          option() 2 Horas
+                          option() 3 Horas
+                          option() 4 Horas
                   br
                   .form-inline
                     label * Celular
@@ -109,4 +107,4 @@ block content
           .col-md-4  
         div
         block append scripts
-          script(src='/js/formAtivacao.js')
+          script(src='/js/ativacao/ativacao_revenda.js')
