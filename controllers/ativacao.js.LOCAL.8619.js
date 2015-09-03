@@ -33,7 +33,7 @@ module.exports = function(app) {
                 });
         },
         salvarAtivacao: function(req, res) {
-            console.dir("session" + req.session);
+            console.dir("Usuario da sessão: " + req.session.pessoa_fisica_pessoa_id);
             var dadosAtivacao = {
                 celular: req.body.telefone,
                 cidade: req.body.cidade,

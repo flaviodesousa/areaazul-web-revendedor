@@ -5,7 +5,6 @@ block optionuser
         div#filhooptionuser
 
 block content
-
    body(onload='escondeCampos()')
     .container.center
       header.row
@@ -30,17 +29,27 @@ block content
                         .form-group.col-lg-2
                           .form-group
                             label * UF
+<<<<<<< HEAD
                               select.form-control(id="estado" name="estado")
+=======
+                              select.form-control(id="id_estado", name="id_estado", onchange='atualizarCidades();')
+>>>>>>> 69fb26c8bd8dd684f0729bb92cef2f2e20bce121
                                 each valor, i in lista
                                     option(value="#{valor.attributes.id_estado}" selected="true") #{valor.attributes.uf}
 
                         .form-group.col-lg-3
                           .form-group
                             label * Cidade
+<<<<<<< HEAD
                               select.form-control(id="id_cidade" name="id_cidade")
                                 each valor, i in lista
                                     option(value="#{valor.attributes.id_cidade}" selected="true") #{valor.attributes.nome}
 
+=======
+                              select.form-control(id="id_cidade", name="id_cidade", onchange='atualizarCidades();')
+                                each valor, i in lista
+                                    option(value="#{valor.attributes.id_cidade}" selected="true") #{valor.attributes.nome}
+>>>>>>> 69fb26c8bd8dd684f0729bb92cef2f2e20bce121
                 br
                 #campos2
                   .row
@@ -48,16 +57,16 @@ block content
                       .form-inline
                         .form-group.col-lg-5
                           label * Marca
-                          input.form-control(type='text', placeholder='Marca', name='login')
+                          input.form-control(type='text', placeholder='Marca', name='marca')
                         .form-group.col-lg-4
                           label * Modelo
-                          input.form-control(type='text', placeholder='Modelo', name='login')
+                          input.form-control(type='text', placeholder='Modelo', name='modelo')
                   br
                   .row
                     .form-group
                       .form-group.col-lg-5
                         label * Cor
-                        input.form-control(type='text', placeholder='Cor', name='login')
+                        input.form-control(type='text', placeholder='Cor', name='cor')
                 .row
                   .form-group
                     .form-inline
@@ -65,7 +74,7 @@ block content
                 .row
                   .form-group
                     .form-inline(align='center')
-                      .input-group
+                      .input-group(name='tipo_veiculo')
                         label.radio-inline
                           input#radio1(type='radio', checked='true', value='1', onclick='verPorRadio(this.value)')
                           |  Carro
@@ -91,7 +100,7 @@ block content
                     label * Celular
                     .form-group
                       .form-group.col-lg-5
-                        input.form-control(type='text', placeholder='Celular', name='login')
+                        input.form-control(type='text', placeholder='Celular', name='celular')
               .form-group
                 .form-inline
                   .form-group.pull-right
@@ -108,4 +117,8 @@ block content
           .col-md-4  
         div
         block append scripts
+<<<<<<< HEAD
           script(src='/js/ativacao/ativacao_revenda.js')
+=======
+          script(src='/js/formAtivacao.js')
+>>>>>>> 69fb26c8bd8dd684f0729bb92cef2f2e20bce121

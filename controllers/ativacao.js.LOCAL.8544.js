@@ -52,9 +52,7 @@ module.exports = function(app) {
                     console.log("revenda" + revenda);
                     //  res.render("revendedor/cadastro", {message: req.flash('info')});
                     req.flash('info', 'Salvo com sucesso!');
-                    res.render("revendedor/cadastro", {
-                        message: req.flash('info')
-                    });
+                    res.render("revendedor/cadastro", {message: req.flash('info')});
                 })
                 .catch(function(err) {
                     req.flash('info', err);

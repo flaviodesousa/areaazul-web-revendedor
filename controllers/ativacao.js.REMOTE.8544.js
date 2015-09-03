@@ -14,9 +14,7 @@ module.exports = function(app) {
         },
         ativar: function(req, res) {
             EstadoCollection.listar(function(result) {
-                res.render('ativacao/ativacao_revenda', {
-                    lista: result.models
-                });
+                res.render('ativacao/ativacao_revenda', {lista: result.models});
                 console.log(result);
                 return result;
             });
@@ -33,7 +31,7 @@ module.exports = function(app) {
                 });
         },
         salvarAtivacao: function(req, res) {
-            console.dir("session" + req.session);
+            console.dir("Usuario da sessão: " + req.session.pessoa_fisica_pessoa_id);
             var dadosAtivacao = {
                 celular: req.body.telefone,
                 cidade: req.body.cidade,
@@ -52,16 +50,12 @@ module.exports = function(app) {
                     console.log("revenda" + revenda);
                     //  res.render("revendedor/cadastro", {message: req.flash('info')});
                     req.flash('info', 'Salvo com sucesso!');
-                    res.render("revendedor/cadastro", {
-                        message: req.flash('info')
-                    });
+                    res.render("revendedor/cadastro", {message: req.flash('info')});
                 })
                 .catch(function(err) {
                     req.flash('info', err);
                     EstadoCollection.listar(function(result) {
-                        res.render("ativacao/ativacao_revenda", {
-                            message: req.flash('info')
-                        });
+                        res.render("ativacao/ativacao_revenda", {message: req.flash('info')});
                         console.log(result);
                         return result;
                     });

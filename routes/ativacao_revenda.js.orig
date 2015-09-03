@@ -1,0 +1,10 @@
+module.exports = function(app){
+	var ativacao = app.controllers.ativacao;
+
+	app.get("/ativacao/ativacao_revenda", ativacao.ativar);
+	app.post("/ativacao/salvar_ativacao", ativacao.salvarAtivacao);
+<<<<<<< HEAD:routes/ativacao_revenda.js
+	app.get("/ativacao/cidades/:id", ativacao.listarCidades);
+=======
+>>>>>>> 69fb26c8bd8dd684f0729bb92cef2f2e20bce121:routes/ativacao.js
+}
