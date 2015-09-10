@@ -23,13 +23,13 @@ module.exports = function(app) {
             });
         },
         listarCidades: function(req, res) {
-            CidadesCollection.listar({
-                    estado_id: req.params.id
-                },
+            CidadeCollection.listar(
+                     req.params.id
+                ,
                 function(result) {
-                    console.dir(result);
-                    res.render(result.toJSON());
-                });
+                   res.send(result.toJSON());
+                })
+            ;
         },
         salvarAtivacao: function(req, res) {
             console.dir("session" + req.session.user_id);
