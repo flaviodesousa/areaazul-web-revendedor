@@ -19,20 +19,16 @@ module.exports = function(app) {
                 res.render('ativacao/ativacaoRevenda', {
                     lista: result.models
                 });
-                console.log(result);
                 return result;
             });
         },
         listarCidades: function(req, res) {
             CidadesCollection.listar({
-                    estado_id: req.params.id_estado
+                    estado_id: req.params.id
                 },
                 function(result) {
-                    res.render('ativacao/ativacaoRevenda', {
-                        lista: result.models
-                    });
-                    console.log("passei aq listarCidades:" + result);
-                    return result;
+                    console.dir(result);
+                    res.render(result.toJSON());
                 });
         },
         salvarAtivacao: function(req, res) {

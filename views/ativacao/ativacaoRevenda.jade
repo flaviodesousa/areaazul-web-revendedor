@@ -36,9 +36,8 @@ block content
                         .form-group.col-lg-3
                           .form-group
                             label * Cidade
-                               select#cod_cidades(name='cod_cidades', onchange='selectEstados();')
-                                each valor, i in lista
-                                    option(value='') -- Escolha uma cidade--
+                               select#cod_cidades(name='cod_cidades')
+                          
                 br
                 #campos2
                   .row
@@ -104,7 +103,7 @@ block content
           .col-md-4  
           .col-md-4
           .col-md-4  
-        div
-        block append scripts
-          script(src='/js/ativacao/ativacaoRevenda.js')
-          script(src='/js/ativacao/cidades.js')
+
+block append scripts
+  script(src='/js/ativacao/ativacaoRevenda.js')
+  script(src='/js/ativacao/cidades.js')
