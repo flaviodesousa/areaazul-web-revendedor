@@ -25,22 +25,20 @@ block content
                     .form-inline
                       .form-group.col-lg-5
                         label * Placa
-                        input#placa.form-control(type='text', placeholder='Placa', name='login', onblur='verificaPlaca();')
+                        input#placa.form-control(type='text', placeholder='Placa', name='placa', onblur='verificaPlaca();')
                       #campos1
                         .form-group.col-lg-2
                           .form-group
                             label * UF
-                              select.form-control(id="estado" name="estado")
+                              select#cod_estados(name='cod_estados')
                                 each valor, i in lista
                                     option(value="#{valor.attributes.id_estado}" selected="true") #{valor.attributes.uf}
-
                         .form-group.col-lg-3
                           .form-group
                             label * Cidade
-                              select.form-control(id="id_cidade" name="id_cidade")
+                               select#cod_cidades(name='cod_cidades', onchange='selectEstados();')
                                 each valor, i in lista
-                                    option(value="#{valor.attributes.id_cidade}" selected="true") #{valor.attributes.nome}
-
+                                    option(value='') -- Escolha uma cidade--
                 br
                 #campos2
                   .row
@@ -48,16 +46,16 @@ block content
                       .form-inline
                         .form-group.col-lg-5
                           label * Marca
-                          input.form-control(type='text', placeholder='Marca', name='login')
+                          input.form-control(type='text', placeholder='Marca', name='marca')
                         .form-group.col-lg-4
                           label * Modelo
-                          input.form-control(type='text', placeholder='Modelo', name='login')
+                          input.form-control(type='text', placeholder='Modelo', name='modelo')
                   br
                   .row
                     .form-group
                       .form-group.col-lg-5
                         label * Cor
-                        input.form-control(type='text', placeholder='Cor', name='login')
+                        input.form-control(type='text', placeholder='Cor', name='cor')
                 .row
                   .form-group
                     .form-inline
@@ -82,10 +80,10 @@ block content
                     .form-group
                       .form-group.col-lg-5
                         select.form-control(id="tempo" name="tempo")
-                          option( value='') 1 Hora
-                          option() 2 Horas
-                          option() 3 Horas
-                          option() 4 Horas
+                          option( value='1') 1 Hora
+                          option( value='2') 2 Horas
+                          option( value='3') 3 Horas
+                          option( value='4') 4 Horas
                   br
                   .form-inline
                     label * Celular
@@ -108,4 +106,5 @@ block content
           .col-md-4  
         div
         block append scripts
-          script(src='/js/ativacao/ativacao_revenda.js')
+          script(src='/js/ativacao/ativacaoRevenda.js')
+          script(src='/js/ativacao/cidades.js')

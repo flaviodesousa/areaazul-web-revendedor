@@ -15,7 +15,8 @@ function escondeCampos() {
 }
 
 
-jquery().ready(function(){
+    /*
+$.ready(function(){
     $.areaazul = {};
     $.areaazul.estado = $('select[name=estado]'); 
 
@@ -39,3 +40,4 @@ jquery().ready(function(){
       },
     });
   };
+}*/

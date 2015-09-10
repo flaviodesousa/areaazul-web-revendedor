@@ -5,16 +5,18 @@ module.exports = function(app) {
     var CidadeCollection = AreaAzul.collections.Cidades;
 
     var ativacaoController = {
-        atualizarCidades: function(){
+        atualizarCidades: function() {
             CidadeCollection.listar(function(result) {
-                res.render('ativacao/ativacao_revenda', {lista: result.models});
-                console.log(result);
+                res.render('ativacao/ativacao_revenda', {
+                    lista: result.models
+                });
+                console.log("passei aq atualizarCidades:" + result);
                 return result;
             });
         },
         ativar: function(req, res) {
             EstadoCollection.listar(function(result) {
-                res.render('ativacao/ativacao_revenda', {
+                res.render('ativacao/ativacaoRevenda', {
                     lista: result.models
                 });
                 console.log(result);
@@ -26,14 +28,15 @@ module.exports = function(app) {
                     estado_id: req.params.id_estado
                 },
                 function(result) {
-                    res.render('ativacao/ativacao_revenda', {
+                    res.render('ativacao/ativacaoRevenda', {
                         lista: result.models
                     });
+                    console.log("passei aq listarCidades:" + result);
                     return result;
                 });
         },
         salvarAtivacao: function(req, res) {
-            console.dir("session" + req.session);
+            console.dir("session" + req.session.user_id);
             var dadosAtivacao = {
                 celular: req.body.telefone,
                 cidade: req.body.cidade,
@@ -43,23 +46,24 @@ module.exports = function(app) {
                 cor: req.body.cor,
                 cpf: req.body.cpf,
                 placa: req.body.placa,
-                tipo_veiculo: req.body.tipo_veiculo
+                tipo_veiculo: req.body.tipo_veiculo,
+                usuario_pessoa_id: req.session.user_id,
             }
-
-
             Ativacao.ativarPelaRevenda(dadosAtivacao)
                 .then(function(revenda) {
-                    console.log("revenda" + revenda);
-                    //  res.render("revendedor/cadastro", {message: req.flash('info')});
                     req.flash('info', 'Salvo com sucesso!');
                     res.render("revendedor/cadastro", {
                         message: req.flash('info')
                     });
                 })
                 .catch(function(err) {
-                    req.flash('info', err);
+                    console.dir("err: " + err);
+                    var tamanho = err.details.length;
+                    console.dir("tamanho" + tamanho);
+                    for (var i = 0; i < tamanho; i++)
+                        req.flash('info', err.details[i].problem);
                     EstadoCollection.listar(function(result) {
-                        res.render("ativacao/ativacao_revenda", {
+                        res.render("ativacao/ativacaoRevenda", {
                             message: req.flash('info')
                         });
                         console.log(result);

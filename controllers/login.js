@@ -28,15 +28,11 @@ module.exports = function(app) {
                 });
         }, 
         autenticar: function(req, res) {
-
-            console.log("req"+req.body.senha);
-            console.log("req"+req.body.login);
-
             UsuarioRevendedor.autorizado(
                 req.body.login,
                 req.body.senha)
             .then(function(usuarioRevendedor){
-                console.log("revenda -- "+usuarioRevendedor);
+                req.session.user_id = usuarioRevendedor.id;
                 res.render('home');
             })
             .catch(function(err){
