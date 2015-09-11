@@ -1,4 +1,3 @@
-alert('Teste Cidades');
 $(document).ready(function() {
     $('#cod_estados').change(function() {
         if ($(this).val()) {

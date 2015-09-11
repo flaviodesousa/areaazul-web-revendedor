@@ -24,12 +24,10 @@ module.exports = function(app) {
         },
         listarCidades: function(req, res) {
             CidadeCollection.listar(
-                     req.params.id
-                ,
+                req.params.id,
                 function(result) {
-                   res.send(result.toJSON());
-                })
-            ;
+                    res.send(result.toJSON());
+                });
         },
         salvarAtivacao: function(req, res) {
             console.dir("session" + req.session.user_id);
@@ -47,25 +45,22 @@ module.exports = function(app) {
             }
             Ativacao.ativarPelaRevenda(dadosAtivacao)
                 .then(function(revenda) {
-                    req.flash('info', 'Salvo com sucesso!');
-                    res.render("revendedor/cadastro", {
-                        message: req.flash('info')
-                    });
+    
+                        res.render("ativacao/ativacaoRevenda");
+      
                 })
                 .catch(function(err) {
                     console.dir("err: " + err);
-                    var tamanho = err.details.length;
-                    console.dir("tamanho" + tamanho);
-                    for (var i = 0; i < tamanho; i++)
-                        req.flash('info', err.details[i].problem);
+                    //var tamanho = err.details.length;
+                    //console.dir("tamanho" + tamanho);
+                    //  for (var i = 0; i < tamanho; i++)
+                    req.flash('info', err.problem);
                     EstadoCollection.listar(function(result) {
                         res.render("ativacao/ativacaoRevenda", {
                             message: req.flash('info')
                         });
-                        console.log(result);
-                        return result;
                     });
-
+                    return err;
                 });
         }
     }
