@@ -45,18 +45,18 @@ module.exports = function(app) {
             }
             Ativacao.ativarPelaRevenda(dadosAtivacao)
                 .then(function(revenda) {
-    
-                        res.render("ativacao/ativacaoRevenda");
-      
+                    req.flash('info', 'Veiculo com a placa' + req.body.placa +'foi ativado.');
+                    EstadoCollection.listar(function(result) {
+                        res.render("ativacao/ativacaoRevenda", {lista: result.models,
+                            message: req.flash('info')
+                        });
+                    });
+                    return revenda;
                 })
                 .catch(function(err) {
-                    console.dir("err: " + err);
-                    //var tamanho = err.details.length;
-                    //console.dir("tamanho" + tamanho);
-                    //  for (var i = 0; i < tamanho; i++)
                     req.flash('info', err.problem);
                     EstadoCollection.listar(function(result) {
-                        res.render("ativacao/ativacaoRevenda", {
+                        res.render("ativacao/ativacaoRevenda", {lista: result.models,
                             message: req.flash('info')
                         });
                     });
@@ -66,3 +66,7 @@ module.exports = function(app) {
     }
     return ativacaoController;
 }
+
+
+
+
