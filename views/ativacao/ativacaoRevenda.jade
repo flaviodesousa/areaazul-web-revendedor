@@ -7,6 +7,10 @@ block optionuser
 block content
 
    body(onload='escondeCampos()')
+    -if(message)
+     .alert.alert-danger
+      button.close(type='button', data-dismiss='alert') x
+      strong #{message}
     .container.center
       header.row
         .col-md-4  

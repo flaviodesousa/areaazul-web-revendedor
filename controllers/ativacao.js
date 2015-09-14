@@ -45,21 +45,13 @@ module.exports = function(app) {
             }
             Ativacao.ativarPelaRevenda(dadosAtivacao)
                 .then(function(revenda) {
-                    req.flash('info', 'Veiculo com a placa' + req.body.placa +'foi ativado.');
-                    EstadoCollection.listar(function(result) {
-                        res.render("ativacao/ativacaoRevenda", {lista: result.models,
-                            message: req.flash('info')
-                        });
-                    });
+                    req.flash('info', 'Veiculo com a placa');
+                    res.redirect("/ativacao/ativacaoRevenda");
                     return revenda;
                 })
                 .catch(function(err) {
-                    req.flash('info', err.problem);
-                    EstadoCollection.listar(function(result) {
-                        res.render("ativacao/ativacaoRevenda", {lista: result.models,
-                            message: req.flash('info')
-                        });
-                    });
+                    req.flash('info', "Req ");
+                    res.redirect("/ativacao/ativacaoRevenda");
                     return err;
                 });
         }
