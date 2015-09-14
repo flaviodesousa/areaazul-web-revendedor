@@ -17,7 +17,8 @@ module.exports = function(app) {
         ativar: function(req, res) {
             EstadoCollection.listar(function(result) {
                 res.render('ativacao/ativacaoRevenda', {
-                    lista: result.models
+                    lista: result.models,
+                    message: req.flash('info')
                 });
                 return result;
             });
@@ -42,7 +43,7 @@ module.exports = function(app) {
                 placa: req.body.placa,
                 tipo_veiculo: req.body.tipo_veiculo,
                 usuario_pessoa_id: req.session.user_id,
-            }
+            };
             Ativacao.ativarPelaRevenda(dadosAtivacao)
                 .then(function(revenda) {
                     req.flash('info', 'Veiculo com a placa');
@@ -50,15 +51,11 @@ module.exports = function(app) {
                     return revenda;
                 })
                 .catch(function(err) {
-                    req.flash('info', "Req ");
+                    req.flash('info', "Req " + err);
                     res.redirect("/ativacao/ativacaoRevenda");
                     return err;
                 });
         }
-    }
+    };
     return ativacaoController;
-}
-
-
-
-
+};

@@ -1,16 +1,16 @@
 extends ../layout
 
 block optionuser
-    div#corpooptionuser
-        div#filhooptionuser
+  div#corpooptionuser
+    div#filhooptionuser
 
 block content
 
-   body(onload='escondeCampos()')
-    -if(message)
-     .alert.alert-danger
-      button.close(type='button', data-dismiss='alert') x
-      strong #{message}
+  div(onload='escondeCampos()')
+    if(message)
+      .alert.alert-danger
+        button.close(type='button', data-dismiss='alert') x
+        strong #{message}
     .container.center
       header.row
         .col-md-4  
@@ -41,7 +41,7 @@ block content
                           .form-group
                             label * Cidade
                                select#cod_cidades(name='cod_cidades')
-                          
+
                 br
                 #campos2
                   .row
