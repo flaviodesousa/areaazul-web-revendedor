@@ -1,8 +1,7 @@
 $(document).ready(function() {
     $('#cod_estados').change(function() {
         if ($(this).val()) {
-            $('#cod_cidades').hide();
-            $('.carregando').show();
+
             $.getJSON('http://localhost:18360/ativacao/cidades/' + $(this).val(), null, function(j) {
                 var options = '<option value=""></option>';
                 for (var i = 0; i < j.length; i++) {
@@ -12,7 +11,7 @@ $(document).ready(function() {
                 $('.carregando').hide();
             });
         } else {
-            $('#cod_cidades').html('<option value="">-- Escolha um estado --</option>');
+          //  $('#cod_cidades').html('<option value="">-- Escolha um estado --</option>');
         }
     })
 })

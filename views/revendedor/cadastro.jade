@@ -11,7 +11,7 @@ block content
      .alert.alert-danger
       button.close(type='button', data-dismiss='alert') x
       strong #{message}
-    .container-center
+    div#containerCorpo
       header.row
         .col-md-4  
         .col-md-4
@@ -19,32 +19,32 @@ block content
       .row
         .col-md-3
         .row.form
-          .col-md-7
+          .col-md-6
             h4.text-center Cadastro de revendedor
             .row
-              .col-md-3
-              .col-md-6
+              .col-md-2
+              .col-md-8
                 .input-group
                   label.radio-inline
-                    input#radio1(type='radio',name='selectedRadio1',checked='true', value='1', onclick='verPorRadio(this.value)')
+                    input#radioButtonPessoaFisica(type='radio',name='selectedRadio1',checked='true', value='1', onclick='verPorRadio(this.value)')
                     |  Pessoa Física
                   label.radio-inline
-                    input#radio2(type='radio',name='selectedRadio2',value='2', onclick='verPorRadio(this.value)')
+                    input#radioButtonPessoaJuridica(type='radio',name='selectedRadio2',value='2', onclick='verPorRadio(this.value)')
                     |  Pessoa Jurídica
-              .col-md-3
-            br
-            br
-            #formulario1
+              .col-md-2
+            
+            #formularioPessoaFisica
              form(name='form', role='form', action="/revendedor/cadastrar_revendedor", method="POST")
               .form-group
                 input.form-control(type='hidden', value='0', name='hiddenFormPF')
-                .form-inline
-                  .form-group
-                    label * CPF:
-                    input#cpf.form-control(required='', type='text', name='cpf')
-                  .form-group.pull-right
-                    label Celular: 
-                    input#celularpf.form-control(required='',type='text', name='celular_pf')
+              .form-group
+                  .form-inline
+                    .form-group
+                      label * CPF:
+                      input#cpf_PessoaFisica.form-control(required='', type='text', name='cpf')
+                    .form-group.pull-right
+                      label Celular: 
+                      input#celular_PessoaFisica.form-control(required='',type='text', name='celular_pf')
               .form-group
                 label.control-label(for='fullName') * Nome: 
                 input#nomepf.form-control(required='', type='text', name='nome_pf')
@@ -57,37 +57,39 @@ block content
                 label.control-label(for='country') * Nome de usuário: 
                 input#usuariopf.form-control(required='', type='text', name='nome_usuario_pf')
               .form-group
-                .form-inline
-                  .form-group
-                    label * Senha: 
-                    input#senhapf.form-control(required='', type='password', name='senha_pf')
-                  .form-group.pull-right
-                    label * Confirmar senha: 
-                    input#confirmar_senhapf.form-control(required='', type='password', name='confirmar_senha_pf')
+                .row
+                  .control-group
+                    .form-group.col-lg-6
+                      label * Senha: 
+                      input#senhapf.form-control(required='', type='password', name='senha_pf')
+                    .form-group.col-lg-6
+                      label * Confirmar senha: 
+                      input#confirmar_senhapf.form-control(required='', type='password', name='confirmar_senha_pf')
               .form-group
-                .form-inline
-                    .form-group
-                      label.checkbox
-                        input#optionsRadios1(type='checkbox', name='optionsRadios', value='option1')
-                        |  Li e concordo com os termos de serviços
-                    .form-group.pull-right
-                      label * Campos Obrigátorios
+                  .row
+                    .form-inline
+                      .form-group.col-lg-6
+                        label.checkbox
+                          input#optionsRadios1(type='checkbox', name='optionsRadios', value='option1')
+                          |  Li e concordo com os termos de serviços
+                      .form-group.col-lg-3.pull-right
+                        label * Campos Obrigátorios
                 .form-group
                   .controls
                     button#button1id.btn.btn-small.btn-primary(name='button1id') Salvar
                     button#button2id.btn.btn-danger.pull-right(name='button2id') Cancelar      
-            #formulario2
-               form(name='form', role='form', action="/revendedor/cadastrar_revendedor", method="POST")
+            #formularioPessoaJuridica
+              form(name='form', role='form', action="/revendedor/cadastrar_revendedor", method="POST")
                 .form-group
                    input.form-control(type='hidden', value='1', name='hiddenFormPJ')
                 .form-group
                   .form-inline
                     .form-group
                       label * CNPJ: 
-                      input.form-control(required='', type='text', placeholder='CNPJ', name='cnpj')
+                      input#cnpj_PessoaJuridica.form-control(required='', type='text', placeholder='CNPJ', name='cnpj')
                     .form-group.pull-right
                       label * Telefone: 
-                      input.form-control(required='', type='text', placeholder='Telefone', name='telefone_pj')
+                      input#telefone_PessoaJuridica.form-control(required='', type='text', placeholder='Telefone', name='telefone_pj')
                 .form-group
                   label * Razão Social: 
                   input.form-control(required='', type='text', placeholder='Razão Social', name='razao_social_pj')
@@ -100,39 +102,44 @@ block content
                   label * Nome:
                   input.form-control(required='', type='text', placeholder='Nome', name='responsavel_nome_pj')
                 .form-group
-                  label * E-mail:
-                   .input-group
-                      span#basic-addon1.input-group-addon @
-                      input#emailpf.form-control(required='', type='text', , name='email_responsavel_pj', placeholder="email@example.com", aria-describedby='basic-addon2')
+                  label.control-label(for='country') * E-mail:
+                  .input-group
+                    span#basic-addon1.input-group-addon @
+                    input#emailpj.form-control(required='', type='text', , name='email_pf', placeholder="email@example.com", aria-describedby='basic-addon2')
                 .form-group
-                  .form-inline
                     .form-group
                       label * CPF: 
-                      input.form-control(required='', type='text', placeholder='CPF', name='cpf_responsavel_pj')
-                    .form-group.pull-right
+                      input#cpf_PessoaJuridica.form-control(required='', type='text', placeholder='CPF', name='cpf_responsavel_pj', onKeyUp="maskIt(this,event,'###.###.###-##')")
+                .form-group
+                    .form-group
                       label * Nome de usuário: 
                       input.form-control(required='', type='text', placeholder='Nome de usuário', name='nome_usuario_pj')
                 .form-group
-                  .form-inline
-                    .form-group
-                      label * Senha: 
-                      input.form-control(required='', type='password', placeholder='Senha', name='senha_pj')
-                    .form-group.pull-right
-                      label * Confirmar Senha: 
-                      input.form-control(required='', type='password', placeholder='Confirmar Senha', name='confirmar_senha_pj')
+                  .row
+                    .col-md-6
+                      .form-inline
+                        .form-group
+                          label * Senha: 
+                          input.form-control(required='', type='password', placeholder='Senha', name='senha_pj')
+                  
+                    .col-md-6 
+                        .form-group
+                          label * Confirmar Senha: 
+                          input.form-control(required='', type='password', placeholder='Confirmar Senha', name='confirmar_senha_pj')
                 .form-group
-                  .form-inline
-                    .form-group
-                      label.checkbox
-                        input#optionsRadios1(type='checkbox', name='optionsRadios', value='option1')
-                        |  Li e concordo com os termos de serviços
-                    .form-group.pull-right
-                      label * Campos Obrigátorios
+                  .row
+                    .form-inline
+                      .form-group.col-lg-6
+                        label.checkbox
+                          input#optionsRadios1(type='checkbox', name='optionsRadios', value='option1')
+                          |  Li e concordo com os termos de serviços
+                      .form-group.col-lg-3.pull-right
+                        label * Campos Obrigátorios
                 .form-group
                   .controls
                     button#button1id.btn.btn-small.btn-primary(name='button1id') Salvar
                     button#button2id.btn.btn-danger.pull-right(name='button2id') Cancelar
-        .col-md-2
+        .col-md-3
       footer.row
         .col-md-4  
         .col-md-4

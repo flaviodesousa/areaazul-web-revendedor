@@ -13,7 +13,13 @@ body{
 	border: solid thick #E6E8FA;
 	border-width: 0.15;
 }
-
+#containerCorpo{
+	width:auto;
+	height:auto;
+}
+#middle{
+	height:auto;
+}
 #topo{
 	background-image: url('../images/Banner_solutions.jpg');
 	background-repeat: no-repeat;
@@ -23,7 +29,7 @@ body{
 
 #corpo{
 	width: auto;
-	min-height: 450px;
+	min-height: 500px;
 }
 
 #rodape{
@@ -49,7 +55,6 @@ body{
 }
    
 #espacotop{
-	height:20px;
 }
 
 #espacofooter{

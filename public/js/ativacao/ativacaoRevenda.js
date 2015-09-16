@@ -1,43 +1,41 @@
 function verificaPlaca() {
-    var pf = document.getElementById("placa").value.length;
-    if (document.getElementById("placa").value.length < 1) {
-        document.getElementById("campos1").style.display = "none";
-        document.getElementById("campos2").style.display = "none";
+    var pf = document.getElementById("campoPlaca").value.length;
+    if (document.getElementById("campoPlaca").value == "___-____"){
+        document.getElementById("camposVisiveis").style.display = "none";
+        document.getElementById("camposInvisiveis").style.display = "none";
+
     } else {
-        document.getElementById("campos1").style.display = "block";
-        document.getElementById("campos2").style.display = "block";
+        document.getElementById("camposVisiveis").style.display = "block";
+        document.getElementById("camposInvisiveis").style.display = "block";
     }
 }
 
 function escondeCampos() {
-    document.getElementById("campos1").style.display = "none";
-    document.getElementById("campos2").style.display = "none";
+    document.getElementById("camposVisiveis").style.display = "none";
+    document.getElementById("camposInvisiveis").style.display = "none";
+}
+
+function verPorRadio(elemento) {
+    switch (elemento) {
+        case "1":
+            document.getElementById('radioButtonCarro').checked = true;
+            document.getElementById('radioButtonMoto').checked = false;
+            document.getElementById('radioButtonCamionete').checked = false;
+            break;
+        case "2":
+            document.getElementById('radioButtonCarro').checked = false;
+            document.getElementById('radioButtonMoto').checked = true;
+            document.getElementById('radioButtonCamionete').checked = false;
+            break;
+        case "3":
+            document.getElementById('radioButtonCarro').checked = false;
+            document.getElementById('radioButtonMoto').checked = false;
+            document.getElementById('radioButtonCamionete').checked = true;
+            break;
+    }
 }
 
 
-    /*
-$.ready(function(){
-    $.areaazul = {};
-    $.areaazul.estado = $('select[name=estado]'); 
-
-    $.areaazul.updateForm = function(){
-        var id_estado = Number($.areaazul.estado.val());
-        if(id_estado){return;}
-
-        $.ajax({
-         url:'http://http://localhost:18360/ativacao/cidades='+id_estado,
-         type: 'GET',
-         success: function(cidades){
-            if(cidades.length > 0){
-                console.log(cidades);
-            }
-
-         },
-        error: function(xhr, status, errorThrown) {
-            console.log('Error: ' + errorThrown);
-            console.log('Status: ' + status);
-            console.dir(xhr);
-      },
-    });
-  };
-}*/
+$(document).ready(function(){
+    $("#campoPlaca").mask("aaa-9999");
+});
