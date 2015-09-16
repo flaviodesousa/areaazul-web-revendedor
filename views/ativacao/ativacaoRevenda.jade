@@ -11,7 +11,7 @@ block content
      .alert.alert-danger
       button.close(type='button', data-dismiss='alert') x
       strong #{message}
-    .container.center
+    div#containerCorpo
       header.row
         .col-md-4  
         .col-md-4
@@ -19,40 +19,39 @@ block content
       .row
         .col-md-3
         .row.myform
-          .col-md-5
+          .col-md-6
             h4.text-center Ativação
             br
             form(name='myform', role='form', action="/ativacao/salvar_ativacao", method='POST')
               .form-group
                 .row
                   .form-group
-                    .form-inline
-                      .form-group.col-lg-5
+                    
+                      .form-group.col-lg-3
                         label * Placa
-                        input#placa.form-control(type='text', placeholder='Placa', name='placa', onblur='verificaPlaca();')
-                      #campos1
-                        .form-group.col-lg-2
-                          .form-group
-                            label * UF
-                              select#cod_estados(name='cod_estados')
-                                each valor, i in lista
-                                    option(value="#{valor.attributes.id_estado}" selected="true") #{valor.attributes.uf}
+                        input#campoPlaca.form-control(type='text', placeholder='Placa', name='placa', onblur='verificaPlaca();')
+                      #camposVisiveis
                         .form-group.col-lg-3
                           .form-group
+                            label * UF
+                              select#cod_estados.form-control(name='cod_estados')
+                                each valor, i in lista
+                                    option(value="#{valor.attributes.id_estado}" selected="true") #{valor.attributes.uf}
+                        .form-group.col-lg-6
+                          .form-group
                             label * Cidade
-                               select#cod_cidades(name='cod_cidades')
+                               select#cod_cidades.form-control(name='cod_cidades')
                           
                 br
-                #campos2
+                #camposInvisiveis
                   .row
                     .form-group
-                      .form-inline
-                        .form-group.col-lg-5
-                          label * Marca
-                          input.form-control(type='text', placeholder='Marca', name='marca')
-                        .form-group.col-lg-4
-                          label * Modelo
-                          input.form-control(type='text', placeholder='Modelo', name='modelo')
+                      .form-group.col-lg-6
+                        label * Marca
+                        input.form-control(type='text', placeholder='Marca', name='marca')
+                      .form-group.col-lg-6
+                        label * Modelo
+                        input.form-control(type='text', placeholder='Modelo', name='modelo')
                   br
                   .row
                     .form-group
@@ -61,21 +60,21 @@ block content
                         input.form-control(type='text', placeholder='Cor', name='cor')
                 .row
                   .form-group
-                    .form-inline
-                      label * Tipo do veículo
+                    
+                      h5.text-center * Tipo do veículo
                 .row
                   .form-group
                     .form-inline(align='center')
                       .input-group
                         label.radio-inline
-                          input#radio1(type='radio', checked='true', value='1', onclick='verPorRadio(this.value)')
+                          input#radioButtonCarro(type='radio', checked='true', value='1', onclick='verPorRadio(this.value)')
                           |  Carro
                         label.radio-inline
-                          input#radio2(type='radio', value='2', onclick='verPorRadio(this.value)')
+                          input#radioButtonMoto(type='radio', value='2', onclick='verPorRadio(this.value)')
                           |  Moto
                         label.radio-inline
-                          input#radio2(type='radio', value='3', onclick='verPorRadio(this.value)')
-                          |  Caminhonete
+                          input#radioButtonCamionete(type='radio', value='3', onclick='verPorRadio(this.value)')
+                          |  Camionete
                 .form-group
                   .form-inline
                     .form-group
@@ -83,13 +82,13 @@ block content
                     .form-group
                       .form-group.col-lg-5
                         select.form-control(id="tempo" name="tempo")
-                          option( value='1') 1 Hora
-                          option( value='2') 2 Horas
-                          option( value='3') 3 Horas
-                          option( value='4') 4 Horas
+                          option( value='60') 1 Hora
+                          option( value='120') 2 Horas
+                          option( value='180') 3 Horas
+                          option( value='240') 4 Horas
                   br
                   .form-inline
-                    label * Celular
+                    label  Celular
                     .form-group
                       .form-group.col-lg-5
                         input.form-control(type='text', placeholder='Celular', name='login')
@@ -102,11 +101,12 @@ block content
               .form-group
                 .controls
                   button#button1id.btn.btn-small.btn-primary(name='button1id') Ativar
-          .col-md-4
+          .col-md-3
         footer.row
           .col-md-4  
           .col-md-4
           .col-md-4  
+
 
 block append scripts
   script(src='/js/ativacao/ativacaoRevenda.js')
