@@ -3,6 +3,7 @@ module.exports = function(app) {
     var Ativacao = AreaAzul.models.Ativacao;
     var EstadoCollection = AreaAzul.collections.Estados;
     var CidadeCollection = AreaAzul.collections.Cidades;
+    var Configuracao = AreaAzul.models.Configuracao;
 
     var ativacaoController = {
         atualizarCidades: function() {
@@ -17,7 +18,8 @@ module.exports = function(app) {
         ativar: function(req, res) {
             EstadoCollection.listar(function(result) {
                 res.render('ativacao/ativacaoRevenda', {
-                    lista: result.models
+                    lista: result.models,
+                    message: req.flash('info')
                 });
                 return result;
             });
@@ -30,8 +32,22 @@ module.exports = function(app) {
                 });
         },
         salvarAtivacao: function(req, res) {
-            console.dir("session" + req.session.user_id);
+            var valor = 0;
+            
+            if(req.body.tempo !== null){
+               var tamanhoArray = Configuracao.getConfiguracaoTempo().length;
+                var configuracoes = Configuracao.getConfiguracaoTempo();
+                console.dir(configuracoes);
+                for(var i = 0; i < tamanhoArray; i++){
+                    if(req.body.tempo === configuracoes[i].atribute){
+                        valor = configuracoes[i].valor;
+                    }
+                }
+            }
+
+
             var dadosAtivacao = {
+                valor: valor,
                 celular: req.body.telefone,
                 cidade: req.body.cidade,
                 tempo: req.body.tempo,
@@ -42,23 +58,20 @@ module.exports = function(app) {
                 placa: req.body.placa,
                 tipo_veiculo: req.body.tipo_veiculo,
                 usuario_pessoa_id: req.session.user_id,
-            }
+            };
             Ativacao.ativarPelaRevenda(dadosAtivacao)
                 .then(function(revenda) {
-                    req.flash('info', 'Veiculo com a placa');
+                    console.dir(revenda);
+                    req.flash('info', 'Veiculo com a placa '+req.body.placa+'foi ativado');
                     res.redirect("/ativacao/ativacaoRevenda");
                     return revenda;
                 })
                 .catch(function(err) {
-                    req.flash('info', "Req ");
+                    req.flash('info', "Req " + err);
                     res.redirect("/ativacao/ativacaoRevenda");
                     return err;
                 });
         }
-    }
+    };
     return ativacaoController;
-}
-
-
-
-
+};
