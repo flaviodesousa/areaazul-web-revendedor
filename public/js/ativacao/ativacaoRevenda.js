@@ -38,4 +38,19 @@ function verPorRadio(elemento) {
 
 $(document).ready(function(){
     $("#campoPlaca").mask("aaa-9999");
+       $('#campoPlaca').change(function() {
+        if ($(this).val()) {
+            $.getJSON('http://localhost:18360/veiculo/' + $(this).val(), null, function(veiculo) {
+               $("#placa").val(veiculo.placa)
+               $("#marca").val(veiculo.marca)
+               $("#modelo").val(veiculo.modelo)
+               $("#cor").val(veiculo.cor)
+            });
+        } else {
+          
+        }
+    })
 });
+
+
+
