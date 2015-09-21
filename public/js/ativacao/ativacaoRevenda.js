@@ -36,9 +36,7 @@ function verPorRadio(elemento) {
 }
 
 
-function atualizaPlaca(){
 $(document).ready(function(){
-    $("#campoPlaca").mask("aaa-9999");
        $('#campoPlaca').change(function() {
         if ($(this).val()) {
             $.getJSON('http://localhost:18360/veiculo?placa=' + $(this).val(), null, function(veiculo) {
@@ -53,5 +51,4 @@ $(document).ready(function(){
     })
 });
 
-}
 
