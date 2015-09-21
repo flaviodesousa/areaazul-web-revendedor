@@ -2,6 +2,7 @@
 body{
 	background-color: #E6E6E6;
 }
+.container{}
 
 #container{
 	background-color: white;
@@ -30,6 +31,9 @@ body{
 #corpo{
 	width: auto;
 	min-height: 500px;
+}
+#corpo.container{
+
 }
 
 #rodape{
