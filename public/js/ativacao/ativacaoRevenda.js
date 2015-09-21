@@ -44,11 +44,13 @@ $(document).ready(function(){
                $("#marca").val(veiculo.marca)
                $("#modelo").val(veiculo.modelo)
                $("#cor").val(veiculo.cor)
+               $('#cod_estados').html('<option value="' + veiculo.estado_id+ '">' + veiculo.uf+ '</option>').show();
+               $('#cod_cidades').html('<option value="' + veiculo.cidade_id+ '">' + veiculo.nome+ '</option>').show();
+           
+              
             });
         } else {
           
         }
     })
 });
-
-
