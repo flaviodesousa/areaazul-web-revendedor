@@ -6,9 +6,6 @@ module.exports = function(app) {
         index: function(req, res) {
             res.render('login/index');
         },
-        home: function(req, res){
-            res.render('home');
-        },
         novaSenha: function(req, res){
             res.render('login/novaSenha');
         }, 
@@ -33,7 +30,7 @@ module.exports = function(app) {
                 req.body.senha)
             .then(function(usuarioRevendedor){
                 req.session.user_id = usuarioRevendedor.id;
-                res.render('home');
+                res.redirect('ativacao/ativacaoRevenda');
             })
             .catch(function(err){
                 console.log("Err: "+err.message);

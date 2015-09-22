@@ -20,25 +20,45 @@ function verPorRadio(elemento) {
 
 
 $(document).ready(function() {
+
+    $("#campoPlaca").mask("aaa-9999");
+    $("#campoCelular").mask("(99) 9999-9999");
+    var campoVerificado = false;
     $('#camposInvisiveis').hide();
+    
+
     $('#campoPlaca').change(function() {
-        if ($(this).val()) {
-            $.getJSON('http://localhost:18360/veiculo?placa=' + $(this).val(), null, function(veiculo) {
-                $("#placa").val(veiculo.placa)
-                $("#marca").val(veiculo.marca).prop('readonly', true);
-                $("#modelo").val(veiculo.modelo).prop('readonly', true);
-                $("#cor").val(veiculo.cor).prop('readonly', true);
 
-                $('#cod_estados').html('<option value="' +
-                    veiculo.estado_id + '">' + veiculo.uf + '</option>').show();
+    //     var tamanhoValorPlaca = $("#campoPlaca").val().length;
+    //     var valorPlaca = $("#campoPlaca").val();
 
-                $('#cod_cidades').html('<option value="' +
-                    veiculo.cidade_id + '">' + veiculo.nome + '</option>').show();
+    // alert(valorPlaca);
+         if (tamanhoValorPlaca > 6 && !valorPlaca.equals("___-____") && campoVerificado == false) {
 
-                $('#camposInvisiveis').show();
-            });
-        } else {
+            if ($(this).val()) {
+                $.getJSON('http://localhost:18360/veiculo?placa=' + $(this).val(), null, function(veiculo) {
 
+                
+
+                    $("#placa").val(veiculo.placa)
+                    $("#marca").val(veiculo.marca).prop('readonly', true);
+                    $("#modelo").val(veiculo.modelo).prop('readonly', true);
+                    $("#cor").val(veiculo.cor).prop('readonly', true);
+
+                    $('#cod_estados').html('<option value="' +
+                        veiculo.estado_id + '">' + veiculo.uf + '</option>').show();
+
+                    $('#cod_cidades').html('<option value="' +
+                        veiculo.cidade_id + '">' + veiculo.nome + '</option>').show();
+
+                    $('#camposInvisiveis').show();
+                    campoVerificado = true;
+
+                });
+            } 
+        }else {
+        campoVerificado = false;
+            $('#camposInvisiveis').hide();
         }
     })
 });
