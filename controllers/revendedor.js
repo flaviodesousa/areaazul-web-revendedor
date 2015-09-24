@@ -19,10 +19,7 @@ module.exports = function(app) {
         },
         cadastrar: function(req, res) {
             var parametros = null;
-            console.dir("object"+req.body);
             if(req.body.hiddenFormPJ === '1'){
-
-                console.log("controller pj");
                 var parametros = {
                     cnpj : req.body.cnpj,
                     login: req.body.nome_usuario_pj,
@@ -38,8 +35,6 @@ module.exports = function(app) {
                     autorizacao: 'administrador',
                 }
             }else{
-
-                console.log("controller pf");
                 var parametros = {
                     cpf: req.body.cpf,
                     login: req.body.nome_usuario_pf,
@@ -52,24 +47,25 @@ module.exports = function(app) {
                 }
             }
 
-        console.dir('message'+parametros.cpf);
+         if(req.body.termo_servico){
+             Revendedor.cadastrar(
+                parametros)
+              .then(function(revenda) {
+                req.flash('info', 'Salvo com sucesso!');
+                res.render("revendedor/cadastro", {message: req.flash('info')});
 
-         Revendedor.cadastrar(
-            parametros)
-          .then(function(revenda) {
-            req.flash('info', 'Salvo com sucesso!');
-            res.render("revendedor/cadastro", {message: req.flash('info')});
+              })
+              .catch(function(err) {
+                var tamanho = err.details.length;
+                for(var i = 0; i < tamanho; i++)
+                req.flash('info', err.details[i].problem);
 
-          })
-          .catch(function(err) {
-            console.dir("err: "+err);
-            var tamanho = err.details.length;
-            console.dir("tamanho"+tamanho);
-            for(var i = 0; i < tamanho; i++)
-            req.flash('info', err.details[i].problem);
-
-            res.render("revendedor/cadastro", {message: req.flash('info')});
-          });
+                res.render("revendedor/cadastro", {message: req.flash('info')});
+              });
+      }else{
+            req.flash('info', 'Para realizar precisa aceitar nossos termos de serviço!');
+             res.render("revendedor/cadastro", {message: req.flash('info')});
+      }
         },
 
         ativacao: function(req, res) {

@@ -33,7 +33,6 @@ module.exports = function(app) {
                 res.redirect('ativacao/ativacaoRevenda');
             })
             .catch(function(err){
-                console.log("Err: "+err.message);
                 req.flash('info', err.message);
                 res.render('login', {message: req.flash('info')});
             });

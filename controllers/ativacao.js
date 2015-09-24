@@ -35,12 +35,11 @@ module.exports = function(app) {
             var valor = 0;
             
             if(req.body.tempo !== null){
-               var tamanhoArray = Configuracao.getConfiguracaoTempo().length;
+                var tamanhoArray = Configuracao.getConfiguracaoTempo().length;
                 var configuracoes = Configuracao.getConfiguracaoTempo();
-                console.dir(configuracoes);
                 for(var i = 0; i < tamanhoArray; i++){
-                    if(req.body.tempo === configuracoes[i].atribute){
-                        valor = configuracoes[i].valor;
+                    if(req.body.tempo === configuracoes[i].quantidade_tempo){
+                        valor = configuracoes[i].preco;
                     }
                 }
             }
@@ -61,7 +60,6 @@ module.exports = function(app) {
             };
             Ativacao.ativarPelaRevenda(dadosAtivacao)
                 .then(function(revenda) {
-                    console.dir(revenda);
                     req.flash('info', 'Veiculo com a placa '+req.body.placa+'foi ativado');
                     res.redirect("/ativacao/ativacaoRevenda");
                     return revenda;
