@@ -15,7 +15,7 @@ var app = express();
 var flash = require('connect-flash');
 
 var passport = require('passport');
-require('./helpers/auth')(passport);
+require('./authentication')(passport);
 
 var expressValidator = require('express-validator');
 

@@ -1,5 +1,6 @@
 var AreaAzul = require('areaazul');
 var UsuarioRevendedor = AreaAzul.models.UsuarioRevendedor;
+var passport = require('passport');
 
 module.exports = function(app) {
     var loginController = {
@@ -25,21 +26,7 @@ module.exports = function(app) {
                 });
         }, 
         autenticar: function(req, res) {
-            UsuarioRevendedor.autorizado(
-                req.body.login,
-                req.body.senha)
-            .then(function(usuarioRevendedor){
-                req.session.user_id = usuarioRevendedor.id;
-                res.redirect('ativacao/ativacaoRevenda');
-            })
-            .catch(function(err){
-                req.flash('info', err.message);
-                res.render('login', {message: req.flash('info')});
-            });
-        },
-
-
-        /*  passport.authenticate('local', function(err, user, info) {
+          passport.authenticate('local', function(err, user, info) {
                if (err || !user) {
                     req.flash('info', 'Erro ao logar!!!');
                     res.render('login', {message: req.flash('info')});
@@ -50,18 +37,11 @@ module.exports = function(app) {
                             error: 'true'
                         });
                     }
-                    if(user.primeiro_acesso === true){
-                        console.log("req 1: "+user.pessoa_fisica_pessoa_id);
-                        req.session.user_id = user.pessoa_fisica_pessoa_id;
-                        return res.render('usuario/home', {value:user});
-                      } 
-                        console.log("req 2: "+user.pessoa_fisica_pessoa_id);
-                        req.session.user_id = user.pessoa_fisica_pessoa_id;
-                      return res.redirect('/');
+                    res.redirect('ativacao/ativacaoRevenda');
                 });
                 console.log("err"+err);
-            })(req, res, next);
-        }*/
+            })(req, res);
+        }
     };
     return loginController;
 };
