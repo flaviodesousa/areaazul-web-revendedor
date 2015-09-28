@@ -11,15 +11,13 @@ module.exports = function(app) {
                 res.render('ativacao/ativacao_revenda', {
                     lista: result.models
                 });
-                console.log("passei aq atualizarCidades:" + result);
                 return result;
             });
         },
         ativar: function(req, res) {
             EstadoCollection.listar(function(result) {
                 res.render('ativacao/ativacaoRevenda', {
-                    lista: result.models,
-                    message: req.flash('info')
+                    lista: result.models
                 });
                 return result;
             });
@@ -43,7 +41,6 @@ module.exports = function(app) {
                     }
                 }
             }
-
 
             var dadosAtivacao = {
                 valor: valor,
