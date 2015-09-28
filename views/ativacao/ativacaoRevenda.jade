@@ -5,11 +5,10 @@ block optionuser
         div#filhooptionuser
 
 block content
-    if(message)
-      .alert.alert-danger
-        button.close(type='button', data-dismiss='alert') x
-        strong #{message}
-   
+      if(message)
+        .alert.alert-danger
+          button.close(type='button', data-dismiss='alert') x
+          strong #{message}
       header.row
         .col-md-4  
         .col-md-4
