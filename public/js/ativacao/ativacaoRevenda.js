@@ -34,7 +34,8 @@ $(document).ready(function() {
          if (tamanhoValorPlaca > 7  && campoVerificado == 1) {
 
             if ($(this).val()) {
-                $.getJSON('http://localhost:18360/veiculo?placa=' + $(this).val(), null, function(veiculo) {
+               // $.getJSON('http://localhost:18360/veiculo?placa=' + $(this).val(), null, function(veiculo) {
+                $.getJSON('http://revenda.demo.areaazul.org/veiculo?placa=' + $(this).val(), null, function(veiculo) {
                     $("#placa").val(veiculo.placa)
                     $("#marca").val(veiculo.marca).prop('readonly', true);
                     $("#modelo").val(veiculo.modelo).prop('readonly', true);
