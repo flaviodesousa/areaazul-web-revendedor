@@ -37,7 +37,7 @@ module.exports = function(app) {
                             error: 'true'
                         });
                     }
-                    res.redirect('ativacao/ativacaoRevenda');
+                    res.render('home');
                 });
                 console.log("err"+err);
             })(req, res);

@@ -28,19 +28,20 @@ block content
                         label * 
                         label Placa
                         input#campoPlaca.form-control(type='text', placeholder='Placa', name='placa')
-                      .form-group.col-lg-3
-                        
-                          label * UF
-                          select#cod_estados.form-control(name='cod_estados')
-                            each valor, i in lista
-                              option(value="#{valor.attributes.id_estado}" selected="true") #{valor.attributes.uf}
-                      .form-group.col-lg-6
-                        
-                          label * Cidade
-                          select#cod_cidades.form-control(name='cod_cidades')
+                      #camposInvisiveis
+                        .form-group.col-lg-3
+                          
+                            label * UF
+                            select#cod_estados.form-control(name='cod_estados')
+                              each valor, i in lista
+                                option(value="#{valor.attributes.id_estado}" selected="true") #{valor.attributes.uf}
+                        .form-group.col-lg-6
+                          
+                            label * Cidade
+                            select#cod_cidades.form-control(name='cod_cidades')
                           
                 br
-                #camposInvisiveis
+                #camposInvisiveis2
                   .row
                     .form-group
                       .form-group.col-lg-6

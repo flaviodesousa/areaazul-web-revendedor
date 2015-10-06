@@ -3,10 +3,14 @@ extends layout
 block optionuser
 	div#corpooptionuser
 		div#filhooptionuser
-			.form-group
-				span
-					a(href='/ativacao/ativacaoRevenda') Ativar areaazul    
-				span
-					label    
-				span.pull-right
-					a(href='/revendedor/cadastro') Cadastro de usuario revenda
+
+
+block content
+	div#barraDanca
+
+		a(href='/ativacao/ativacaoRevenda')
+			img(src='./images/paginas/home/ativar.jpg', width='100', height='80')
+
+		a(href='/usuario_revendedor/cadastro')
+			img(src='./images/paginas/home/usuario.png', width='100', height='80')
+
