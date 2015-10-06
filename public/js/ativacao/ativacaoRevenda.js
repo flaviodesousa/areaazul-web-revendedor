@@ -23,19 +23,22 @@ $(document).ready(function() {
 
     $("#campoPlaca").mask("aaa-9999");
     $("#campoCelular").mask("(99) 9999-9999");
-    var campoVerificado = false;
+
     $('#camposInvisiveis').hide();
+    $('#camposInvisiveis2').hide();
 
     $('#campoPlaca').change(function() {
         var tamanhoValorPlaca = $("#campoPlaca").val().length;
         var valorPlaca = $("#campoPlaca").val();
-        var campoVerificado = 1;
 
-         if (tamanhoValorPlaca > 7  && campoVerificado == 1) {
 
+        $('#camposInvisiveis').hide();
+        $('#camposInvisiveis2').hide();
+        
+         if (tamanhoValorPlaca === 8) {
+            alert("Valor:"+valorPlaca+"Tamanho:"+tamanhoValorPlaca);
             if ($(this).val()) {
-               // $.getJSON('http://localhost:18360/veiculo?placa=' + $(this).val(), null, function(veiculo) {
-                $.getJSON('http://revenda.demo.areaazul.org/veiculo?placa=' + $(this).val(), null, function(veiculo) {
+                 $.getJSON('http://revenda.demo.areaazul.org/veiculo?placa=' + $(this).val(), null, function(veiculo) {
                     $("#placa").val(veiculo.placa)
                     $("#marca").val(veiculo.marca).prop('readonly', true);
                     $("#modelo").val(veiculo.modelo).prop('readonly', true);
@@ -46,15 +49,21 @@ $(document).ready(function() {
                         veiculo.cidade_id + '">' + veiculo.nome + '</option>').show();
                     }).done(function() {
                         $('#camposInvisiveis').show();
+                        $('#camposInvisiveis2').show();
                       })
                       .fail(function() {
                         $('#camposInvisiveis').show();
+                        $('#camposInvisiveis2').show();
                         $("#placa").val(null)
                         $("#marca").val(null).prop('readonly', false);
                         $("#modelo").val(null).prop('readonly', false);
                         $("#cor").val(null).prop('readonly', false);
                         $('#cod_cidades').html('<option value=""> </option>').show();
                       });
+            }else{
+                        alert("Valor:"+valorPlaca+"Tamanho:"+tamanhoValorPlaca);
+                        $('#camposInvisiveis').hide();
+                        $('#camposInvisiveis2').hide();
             } 
         }
     })
