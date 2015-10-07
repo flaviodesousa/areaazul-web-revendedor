@@ -1,19 +1,13 @@
 module.exports = function(app) {
     var AreaAzul = require('areaazul');
     var Usuario_Revendedor = AreaAzul.models.UsuarioRevendedor;
-   /* var Ativacao = AreaAzul.models.Ativacao;
-    var Veiculo = AreaAzul.models.Veiculo;*/
-
-
 
     var usuarioRevendedorController = {
         index: function(req, res) {
             res.render("usuario_revendedor/cadastro");
-            console.log("INDEXX.");
         },
 
         cadastrar: function(req, res) {
-        	console.log("DEUU.");
             var parametros = null;
 
             var parametros = {
@@ -25,8 +19,6 @@ module.exports = function(app) {
                 nome: req.body.nome_pf,
                 autorizacao: 'administrador',
             }
-
-
             if (req.body.termo_servico) {
                 Usuario_Revendedor.cadastrar(
                     parametros)
@@ -35,18 +27,21 @@ module.exports = function(app) {
                         res.render("usuario_revendedor/cadastro", {
                             message: req.flash('info')
                         });
-
                     })
                     .catch(function(err) {
-
-                        /*var tamanho = err.details.length;
-
-                        for (var i = 0; i < tamanho; i++)
-                            */
-                        req.flash('info', err.details[i].problem);
-                        res.render("usuario_revendedor/cadastro", {
-                        message: req.flash('info')
-                        });
+                        if (err.details) {
+                            for (var i = 0; i < err.details.length; i++) {
+                                req.flash('info', err.details[i].problem);
+                                res.render("usuario_revendedor/cadastro", {
+                                    message: req.flash('info')
+                                });
+                            }
+                        } else {
+                            req.flash('info', err);
+                            res.render("usuario_revendedor/cadastro", {
+                                message: req.flash('info')
+                            });
+                        }
                     });
             } else {
                 req.flash('info', 'Para realizar precisa aceitar nossos termos de serviço!');
@@ -60,8 +55,6 @@ module.exports = function(app) {
             var usuario = {
                 id_usuario: req.session.user_id
             };
-
-            console.log("req.session.user_id" + req.session.user_id);
 
             Revendedor.mostrarSaldo(usuario,
                 function(result) {
@@ -126,7 +119,6 @@ module.exports = function(app) {
                             console.log("err" + results);
                         });
                 });
-            console.log("req---" + req.body);
         },
 
     }
