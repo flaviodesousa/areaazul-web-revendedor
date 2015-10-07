@@ -1,0 +1,61 @@
+extends ../layout
+
+block optionuser
+    div#corpooptionuser
+        div#filhooptionuser
+          a(href="")
+          img(src= "../images/icons/back.png" id="imgoptionuser")
+
+block content
+  body()
+   -if(message)
+     .alert.alert-danger
+      button.close(type='button', data-dismiss='alert') x
+      strong #{message}
+    div#containerCorpo
+      header.row
+        .col-md-4  
+        .col-md-4
+        .col-md-4  
+      .row
+        .col-md-3
+        .row.myform
+          .col-md-6
+            h4.text-center Usuários
+            br
+            .row
+              .pull-right
+                a.btn.btn-default(href="#", role="button") Cadastro novo usu&#225;rio
+            .row
+              .table-responsive
+                table.table
+                  table.table.table-bordered
+                    thead
+                      tr
+                        th CPF
+                        th Nome
+                        th Tipo
+                        th Status
+                        th
+                    tbody
+                      tr
+                        td #{valor.attributes.cpf}
+                        td #{valor.attributes.nome}
+                        td #{valor.attributes.tipo}
+                        td #{valor.attributes.status}
+                        td
+                          label.checkbox
+                            input#status(type='checkbox', name='status', value='ativo')
+        .col-md-3
+
+      footer.row
+        .col-md-4  
+        .col-md-4
+        .col-md-4  
+      div
+      block append scripts
+          script(src='/js/usuario_revendedor/cadastro.js')
+     
+
+
+
