@@ -36,8 +36,8 @@ $(document).ready(function() {
         $('#camposInvisiveis2').hide();
         
          if (tamanhoValorPlaca === 8) {
-            alert("Valor:"+valorPlaca+"Tamanho:"+tamanhoValorPlaca);
             if ($(this).val()) {
+                //    $.getJSON('http://localhost:18360/veiculo?placa=' + $(this).val(), null, function(veiculo) {
                  $.getJSON('http://revenda.demo.areaazul.org/veiculo?placa=' + $(this).val(), null, function(veiculo) {
                     $("#placa").val(veiculo.placa)
                     $("#marca").val(veiculo.marca).prop('readonly', true);
@@ -61,7 +61,6 @@ $(document).ready(function() {
                         $('#cod_cidades').html('<option value=""> </option>').show();
                       });
             }else{
-                        alert("Valor:"+valorPlaca+"Tamanho:"+tamanhoValorPlaca);
                         $('#camposInvisiveis').hide();
                         $('#camposInvisiveis2').hide();
             } 
