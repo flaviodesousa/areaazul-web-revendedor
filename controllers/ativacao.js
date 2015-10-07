@@ -41,7 +41,7 @@ module.exports = function(app) {
                     }
                 }
             }
-
+            console.dir(req.body);
             var dadosAtivacao = {
                 valor: valor,
                 celular: req.body.telefone,
@@ -53,8 +53,10 @@ module.exports = function(app) {
                 cpf: req.body.cpf,
                 placa: req.body.placa,
                 tipo_veiculo: req.body.tipo_veiculo,
-                usuario_pessoa_id: req.session.user_id,
+                usuario_pessoa_id: req.session.passport.user,
             };
+
+            console.log("------"+ req.session.passport.user);
             Ativacao.ativarPelaRevenda(dadosAtivacao)
                 .then(function(revenda) {
                     req.flash('info', 'Veiculo com a placa '+req.body.placa+'foi ativado');
