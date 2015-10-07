@@ -14,7 +14,6 @@ module.exports = function(app) {
             var person = {
                 email : req.body.email,
             }
-            console.log("req.body.email" + req.body.email);
             Pessoa.verificaEmail(person, 
                 function(result){
                     req.flash('info', 'Foi enviado um email com a senha provisória!!!');
@@ -32,7 +31,9 @@ module.exports = function(app) {
                     res.render('login', {message: req.flash('info')});
                 }
                 req.logIn(user, function(err) {
+ 
                     if (err) {
+                    req.session.user_id = user.pessoa_fisica_pessoa_id
                     return res.render('login', {
                             error: 'true'
                         });

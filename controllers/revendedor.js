@@ -29,7 +29,7 @@ module.exports = function(app) {
                     celular: req.body.celular_pj,
                     nome_fantasia : req.body.nome_fantasia_pj,
                     razao_social : req.body.razao_social_pj,
-                    contato: req.body.telefone_pj,
+                    telefone: req.body.telefone_pj,
                     cpf: req.body.cpf_responsavel_pj,
                     nome: req.body.responsavel_nome_pj,
                     autorizacao: 'administrador',
@@ -41,7 +41,7 @@ module.exports = function(app) {
                     email: req.body.email_pf,
                     senha: req.body.senha_pf,
                     confirmar_senha: req.body.confirmar_senha_pf,
-                    celular: req.body.celular_pf,
+                    telefone: req.body.celular_pf,
                     nome: req.body.nome_pf,
                     autorizacao: 'administrador',
                 }
@@ -51,20 +51,26 @@ module.exports = function(app) {
              Revendedor.cadastrar(
                 parametros)
               .then(function(revenda) {
+                console.dir(revenda);
                 req.flash('info', 'Salvo com sucesso!');
-                res.render("revendedor/cadastro", {message: req.flash('info')});
+                res.redirect("revendedor/cadastro");
 
               })
               .catch(function(err) {
-                var tamanho = err.details.length;
-                for(var i = 0; i < tamanho; i++)
-                req.flash('info', err.details[i].problem);
-
+            if(err.details){
+                console.dir(err.details);
+                    for(var i = 0;i<err.details.length;i++){
+                        req.flash('info', err.details[i].problem);
+                        res.render("revendedor/cadastro", {message: req.flash('info')});
+                    }
+               }else{
+                req.flash('info', err);
                 res.render("revendedor/cadastro", {message: req.flash('info')});
+               }
               });
       }else{
             req.flash('info', 'Para realizar precisa aceitar nossos termos de serviço!');
-             res.render("revendedor/cadastro", {message: req.flash('info')});
+            res.render("revendedor/cadastro", {message: req.flash('info')});
       }
         },
 
@@ -98,7 +104,7 @@ module.exports = function(app) {
 
             Veiculo.procurarVeiculoPorPlaca(vehicle,
                 function(result){
-                    console.log("model"+result.id);
+        
                     var ativacao = {
                         tipoVeiculo: req.body.tipoVeiculo,
                         credito: req.body.credito,
@@ -129,10 +135,10 @@ module.exports = function(app) {
                                 });
 
                     }, function(results){
-                            console.log("err"+results);
+
                     });
                 });
-            console.log("req---" + req.body);
+
         },
 
     }
