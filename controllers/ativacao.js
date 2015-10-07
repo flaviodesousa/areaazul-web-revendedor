@@ -50,13 +50,11 @@ module.exports = function(app) {
                 marca: req.body.marca,
                 modelo: req.body.modelo,
                 cor: req.body.cor,
-                cpf: req.body.cpf,
                 placa: req.body.placa,
                 tipo_veiculo: req.body.tipo_veiculo,
                 usuario_pessoa_id: req.session.passport.user,
             };
 
-            console.log("------"+ req.session.passport.user);
             Ativacao.ativarPelaRevenda(dadosAtivacao)
                 .then(function(revenda) {
                     req.flash('info', 'Veiculo com a placa '+req.body.placa+'foi ativado');
@@ -64,7 +62,7 @@ module.exports = function(app) {
                     return revenda;
                 })
                 .catch(function(err) {
-                    req.flash('info', "Req " + err);
+                    req.flash('info', "Erro! " + err);
                     res.redirect("/ativacao/ativacaoRevenda");
                     return err;
                 });
