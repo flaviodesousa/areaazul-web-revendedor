@@ -25,7 +25,7 @@ block content
             br
             .row
               .pull-right
-                a.btn.btn-default(href="#", role="button") Cadastro novo usu&#225;rio
+                a.btn.btn-default(href="#", role="button") Cadastro novo usuário
             .row
               .table-responsive
                 table.table
@@ -37,15 +37,16 @@ block content
                         th Tipo
                         th Status
                         th
-                    tbody
-                      tr
-                        td #{valor.attributes.cpf}
-                        td #{valor.attributes.nome}
-                        td #{valor.attributes.tipo}
-                        td #{valor.attributes.status}
-                        td
-                          label.checkbox
-                            input#status(type='checkbox', name='status', value='ativo')
+                      tbody
+                      each valor, i in lista
+                        tr
+                          td #{valor.attributes.cpf}
+                          td #{valor.attributes.nome}
+                          td #{valor.attributes.autorizacao}
+                          td #{valor.attributes.ativo}
+                          td
+                            label.checkbox
+                              input#status(type='checkbox', name='status', value="#{valor.attributes.ativo}")
         .col-md-3
 
       footer.row

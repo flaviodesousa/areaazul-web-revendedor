@@ -1,6 +1,7 @@
 module.exports = function(app) {
     var AreaAzul = require('areaazul');
     var Usuario_Revendedor = AreaAzul.models.UsuarioRevendedor;
+    var UsuarioRevendedorCollection = AreaAzul.collections.UsuarioRevendedor;
 
     var usuarioRevendedorController = {
         index: function(req, res) {
@@ -49,6 +50,16 @@ module.exports = function(app) {
                     message: req.flash('info')
                 });
             }
+        }, 
+        listar: function(req, res) {
+            console.dir(req.session);
+            UsuarioRevendedorCollection.listarUsuarioRevenda(req.session.passport.user,
+                function(result) {
+                console.log("-------------------------");
+                console.dir(result.models);
+                res.render('usuario_revendedor/listar',{lista: result.models});
+                return result;
+            });
         },
 
         ativacao: function(req, res) {
