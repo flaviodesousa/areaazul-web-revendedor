@@ -55,9 +55,7 @@ module.exports = function(app) {
             console.dir(req.session);
             UsuarioRevendedorCollection.listarUsuarioRevenda(req.session.passport.user,
                 function(result) {
-                console.log("-------------------------");
-                console.dir(result.models);
-                res.render('usuario_revendedor/listar',{lista: result.models});
+                res.render('usuario_revendedor/lista',{lista: result.models});
                 return result;
             });
         },

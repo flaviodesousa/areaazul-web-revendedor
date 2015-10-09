@@ -18,14 +18,14 @@ block content
         .col-md-4
         .col-md-4  
       .row
-        .col-md-3
+        .col-md-1
         .row.myform
-          .col-md-6
+          .col-md-10
             h4.text-center Usuários
             br
             .row
               .pull-right
-                a.btn.btn-default(href="#", role="button") Cadastro novo usuário
+                a.btn.btn-default(href="/usuario_revendedor/cadastro", role="button") Cadastro novo usuário
             .row
               .table-responsive
                 table.table
@@ -46,8 +46,8 @@ block content
                           td #{valor.attributes.ativo}
                           td
                             label.checkbox
-                              input#status(type='checkbox', name='status', value="#{valor.attributes.ativo}")
-        .col-md-3
+                            input#status(type='checkbox', name='status', value="#{valor.attributes.ativo}")
+        .col-md-1
 
       footer.row
         .col-md-4  
