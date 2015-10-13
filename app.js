@@ -35,7 +35,7 @@ app.use(session({
   name: 'areaazul-web-adm',
   resave: true,
   saveUninitialized: true,
-  cookie: { maxAge: 60000 },
+  cookie: { maxAge:  900000},
 }));
 app.use(flash());
 app.use(passport.initialize());
