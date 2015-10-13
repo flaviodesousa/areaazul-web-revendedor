@@ -32,11 +32,12 @@ block content
                   table.table.table-bordered
                     thead
                       tr
-                        th CPF
-                        th Nome
-                        th Tipo
-                        th Status
-                        th
+                        th(width="120px")  CPF
+                        th(width="250px")  Nome
+                        th(width="80px")  Tipo
+                        th(width="65px")  Status
+                        th(width="65px")  &nbsp;
+                        th(width="65px")  &nbsp;
                       tbody
                       each valor, i in lista
                         tr
@@ -45,8 +46,9 @@ block content
                           td #{valor.attributes.autorizacao}
                           td #{valor.attributes.ativo}
                           td
-                            label.checkbox
                             input#status(type='checkbox', name='status', value="#{valor.attributes.ativo}")
+                          td
+                            a(href='/usuario_revendedor/alterar/#{valor.attributes.pessoa_fisica_pessoa_id}', title="Alterar") Alterar
         .col-md-1
 
       footer.row

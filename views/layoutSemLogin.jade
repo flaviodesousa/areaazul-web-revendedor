@@ -17,28 +17,21 @@ html
     div#container
       div#topo
 
-      div#corpooptionuser
-        div#filhooptionuser
-          span
-            label Usuário:
-        div#filhooptionicons
-          span
-            a(href="")
-              img(src= "../images/icons/back.png" id="imgoptionuser")   
-          span
-            a(href="")
-              img(src= "../images/icons/home.png" id="imgoptionuser") 
-          span
-            a(href="")
-              img(src= "../images/icons/config.png" id="imgoptionuser") 
-          span
-            a(href="")
-              img(src= "../images/icons/exit.png" id="imgoptionuser") 
+      block optionuser
+        div#corpooptionuser
+            .form-group
+              span
+                a(href='/ativacao/ativacaoRevenda') Ativar areaazul    
+              span
+                label    
+              span.pull-right
+                a(href='/revendedor/cadastro') Cadastro de usuario revenda
       div#corpo
 
-        div#espacotop            
-          block content
-        div#espacofooter
+          div#espacotop
+            
+            block content
+          div#espacofooter
 
       footer
         div#rodape

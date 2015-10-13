@@ -145,12 +145,16 @@ body{
 
 /* OptionUser*/
 #corpooptionuser{
-	height: 20px;
+	height: 25px;
 	background-color: #E6E8FA;
 }
 
-#filhooptionuser{
+#filhooptionicons{
 	float: right;
+	margin-top: 4px;
+}
+#filhooptionuser{
+	float: left;
 	margin-top: 4px;
 }
 

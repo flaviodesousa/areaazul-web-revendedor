@@ -35,7 +35,7 @@ module.exports = function(app) {
                     if (err) {
                     req.session.user_id = user.pessoa_fisica_pessoa_id
                     return res.render('login', {
-                            error: 'true'
+                            error: 'true', value:req.session.passport.user
                         });
                     }
                     res.render('home');

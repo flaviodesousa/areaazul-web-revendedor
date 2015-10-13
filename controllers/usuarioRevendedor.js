@@ -18,7 +18,7 @@ module.exports = function(app) {
                 senha: req.body.senha_pf,
                 confirmar_senha: req.body.confirmar_senha_pf,
                 nome: req.body.nome_pf,
-                autorizacao: 'administrador',
+                autorizacao: 'funcionario',
             }
             if (req.body.termo_servico) {
                 Usuario_Revendedor.cadastrar(
@@ -58,6 +58,19 @@ module.exports = function(app) {
                 res.render('usuario_revendedor/lista',{lista: result.models});
                 return result;
             });
+        },
+
+        alterar: function(req, res) {
+            console.log(req);
+            Usuario_Revendedor.procurar(req.params.pessoa_fisica_pessoa_id
+                ,
+                function(result) {
+                    res.render("usuario_revendedor/alterar", {
+                        value: result.attributes
+
+                    });
+                    return result;
+                })
         },
 
         ativacao: function(req, res) {
