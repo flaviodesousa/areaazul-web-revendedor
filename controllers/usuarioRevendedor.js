@@ -19,6 +19,7 @@ module.exports = function(app) {
                 confirmar_senha: req.body.confirmar_senha_pf,
                 nome: req.body.nome_pf,
                 autorizacao: 'funcionario',
+                revendedor_id: req.session.passport.user,
             }
             if (req.body.termo_servico) {
                 Usuario_Revendedor.cadastrar(
@@ -52,7 +53,6 @@ module.exports = function(app) {
             }
         }, 
         listar: function(req, res) {
-            console.dir(req.session);
             UsuarioRevendedorCollection.listarUsuarioRevenda(req.session.passport.user,
                 function(result) {
                 res.render('usuario_revendedor/lista',{lista: result.models});
@@ -65,12 +65,31 @@ module.exports = function(app) {
             Usuario_Revendedor.procurar(req.params.pessoa_fisica_pessoa_id
                 ,
                 function(result) {
-                    res.render("usuario_revendedor/alterar", {
+                    res.render('usuario_revendedor/alterar', {
                         value: result.attributes
 
                     });
                     return result;
                 })
+        },
+
+        deletar: function(req, res) {
+            console.log("ID PESSOA"+req.params.pessoa_fisica_pessoa_id);
+            Usuario_Revendedor.desativar(req.params.pessoa_fisica_pessoa_id)
+                .then(
+                    function(result) {
+                        console.log("---------------------");
+                        console.dir(result);
+                        res.redirect("/usuario_revendedor/lista");
+                        return result;
+                    }).catch(
+                    function(result) {
+                        console.log("---------------------");
+                        console.dir(result);
+                        res.redirect("/usuario_revendedor/lista");
+                        return result;
+                    })
+
         },
 
     }

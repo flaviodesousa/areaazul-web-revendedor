@@ -32,12 +32,12 @@ block content
                   table.table.table-bordered
                     thead
                       tr
-                        th(width="120px")  CPF
-                        th(width="250px")  Nome
-                        th(width="80px")  Tipo
-                        th(width="65px")  Status
-                        th(width="65px")  &nbsp;
-                        th(width="65px")  &nbsp;
+                        th  CPF
+                        th  Nome
+                        th  Tipo
+                        th  Status
+                        th  &nbsp;
+                        th  &nbsp;
                       tbody
                       each valor, i in lista
                         tr
@@ -46,7 +46,7 @@ block content
                           td #{valor.attributes.autorizacao}
                           td #{valor.attributes.ativo}
                           td
-                            input#status(type='checkbox', name='status', value="#{valor.attributes.ativo}")
+                            input#status(type='checkbox', name='status', checked=(valor.attributes.ativo), onchange="window.location.href='/usuario_revendedor/deletar/#{valor.attributes.pessoa_fisica_pessoa_id}'")
                           td
                             a(href='/usuario_revendedor/alterar/#{valor.attributes.pessoa_fisica_pessoa_id}', title="Alterar") Alterar
         .col-md-1
@@ -57,7 +57,7 @@ block content
         .col-md-4  
       div
       block append scripts
-          script(src='/js/usuario_revendedor/cadastro.js')
+          script(src='/js/usuario_revendedor/lista.js')
      
 
 
