@@ -21,9 +21,9 @@ module.exports = function(app) {
                 autorizacao: 'funcionario',
                 revendedor_id: req.session.passport.user,
             }
+            console.log("Termo:" + req.body.termo_servico);
             if (req.body.termo_servico) {
-                Usuario_Revendedor.cadastrar(
-                    parametros)
+                Usuario_Revendedor.inserir(parametros)
                     .then(function(revenda) {
                         req.flash('info', 'Salvo com sucesso!');
                         res.render("usuario_revendedor/cadastro", {
@@ -39,6 +39,7 @@ module.exports = function(app) {
                                 });
                             }
                         } else {
+                            console.dir(err);
                             req.flash('info', err);
                             res.render("usuario_revendedor/cadastro", {
                                 message: req.flash('info')
@@ -51,19 +52,19 @@ module.exports = function(app) {
                     message: req.flash('info')
                 });
             }
-        }, 
+        },
         listar: function(req, res) {
             UsuarioRevendedorCollection.listarUsuarioRevenda(req.session.passport.user,
                 function(result) {
-                res.render('usuario_revendedor/lista',{lista: result.models});
-                return result;
-            });
+                    res.render('usuario_revendedor/lista', {
+                        lista: result.models
+                    });
+                    return result;
+                });
         },
 
-        alterar: function(req, res) {
-            console.log(req);
-            Usuario_Revendedor.procurar(req.params.pessoa_fisica_pessoa_id
-                ,
+        alterarProcura: function(req, res) {
+            Usuario_Revendedor.procurar(req.params.pessoa_fisica_pessoa_id,
                 function(result) {
                     res.render('usuario_revendedor/alterar', {
                         value: result.attributes
@@ -73,8 +74,43 @@ module.exports = function(app) {
                 })
         },
 
+
+        alterarSalva: function(req, res) {
+            var parametros = null;
+
+            var parametros = {
+                cpf: req.body.cpf,
+                login: req.body.nome_usuario_pf,
+                email: req.body.email_pf,
+                senha: req.body.senha_pf,
+                confirmar_senha: req.body.confirmar_senha_pf,
+                nome: req.body.nome_pf,
+                telefone: req.body.telefone,
+                autorizacao: 'funcionario',
+                revendedor_id: req.session.passport.user,
+            }
+                console.dir(parametros);
+             Usuario_Revendedor.alterar(parametros)
+             .then(
+                function(result) {
+                    req.flash('info', 'Salvo com sucesso!');
+                    res.render('usuario_revendedor/alterar/salvar');
+                    message: req.flash('info')
+                })           
+                    .catch(function(err) {
+                        console.dir(err);
+                        if (err.details) {
+                            for (var i = 0; i < err.details.length; i++) {
+                                req.flash('info', err.details[i].problem);
+
+                                res.redirect('usuario_revendedor/alterar/procurar');
+                            }
+                        } 
+                    });
+        },
+
         deletar: function(req, res) {
-            console.log("ID PESSOA"+req.params.pessoa_fisica_pessoa_id);
+            console.log("ID PESSOA" + req.params.pessoa_fisica_pessoa_id);
             Usuario_Revendedor.desativar(req.params.pessoa_fisica_pessoa_id)
                 .then(
                     function(result) {

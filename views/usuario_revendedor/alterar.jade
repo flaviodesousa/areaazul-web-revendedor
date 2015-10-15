@@ -23,7 +23,7 @@ block content
           .col-md-6
              h4.text-center Dados de Usuario Revendedor
              br
-             form(name='form', role='form', action="/usuario_revendedor/", method="POST")
+             form(name='form', role='form', action="/usuario_revendedor/alterar/salvar", method="POST")
               .form-group
                 .row
                   .form-inline
@@ -32,7 +32,7 @@ block content
                       input#cpf_PessoaFisica.form-control(required='', type='text', name='cpf', value="#{value.cpf}")
                     .form-group.col-lg-6
                       label Celular: 
-                      input#celular_PessoaFisica.form-control(required='',type='text', name='celular_pf', value="#{value.telefone}")
+                      input#celular_PessoaFisica.form-control(required='',type='text', name='telefone', value="#{value.telefone}")
               .form-group
                 label.control-label(for='fullName') * Nome: 
                 input#nomepf.form-control(required='', type='text', name='nome_pf', value="#{value.nome}")
