@@ -63,6 +63,10 @@ module.exports = function(app) {
                 });
         },
 
+        indexAlterar: function(req, res) {
+            res.render('usuario_revendedor/alterar');
+        },
+
         alterarProcura: function(req, res) {
             Usuario_Revendedor.procurar(req.params.pessoa_fisica_pessoa_id,
                 function(result) {
@@ -77,6 +81,7 @@ module.exports = function(app) {
 
         alterarSalva: function(req, res) {
             var parametros = null;
+            var autorizacao = null;
 
             var parametros = {
                 cpf: req.body.cpf,
@@ -86,27 +91,26 @@ module.exports = function(app) {
                 confirmar_senha: req.body.confirmar_senha_pf,
                 nome: req.body.nome_pf,
                 telefone: req.body.telefone,
-                autorizacao: 'funcionario',
                 revendedor_id: req.session.passport.user,
             }
-                console.dir(parametros);
-             Usuario_Revendedor.alterar(parametros)
-             .then(
-                function(result) {
-                    req.flash('info', 'Salvo com sucesso!');
-                    res.render('usuario_revendedor/alterar/salvar');
-                    message: req.flash('info')
-                })           
-                    .catch(function(err) {
-                        console.dir(err);
-                        if (err.details) {
-                            for (var i = 0; i < err.details.length; i++) {
-                                req.flash('info', err.details[i].problem);
+            console.dir(parametros);
+            Usuario_Revendedor.alterar(parametros)
+                .then(
+                    function(result) {
+                        req.flash('info', 'Salvo com sucesso!');
+                        res.redirect("/usuario_revendedor/lista");
+                        message: req.flash('info')
+                    })
+                .catch(function(err) {
+                    console.dir(err);
+                    if (err.details) {
+                        for (var i = 0; i < err.details.length; i++) {
+                            req.flash('info', err.details[i].problem);
 
-                                res.redirect('usuario_revendedor/alterar/procurar');
-                            }
-                        } 
-                    });
+                            res.redirect('usuario_revendedor/alterar');
+                        }
+                    }
+                });
         },
 
         deletar: function(req, res) {
@@ -114,14 +118,11 @@ module.exports = function(app) {
             Usuario_Revendedor.desativar(req.params.pessoa_fisica_pessoa_id)
                 .then(
                     function(result) {
-                        console.log("---------------------");
-                        console.dir(result);
                         res.redirect("/usuario_revendedor/lista");
                         return result;
                     }).catch(
                     function(result) {
-                        console.log("---------------------");
-                        console.dir(result);
+
                         res.redirect("/usuario_revendedor/lista");
                         return result;
                     })
