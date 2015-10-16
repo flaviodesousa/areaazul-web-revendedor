@@ -41,7 +41,7 @@ module.exports = function(app) {
                     }
                 }
             }
-            console.dir(req.body);
+            
             var dadosAtivacao = {
                 valor: valor,
                 celular: req.body.telefone,

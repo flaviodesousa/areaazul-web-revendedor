@@ -40,7 +40,6 @@ module.exports = function(app) {
                     }
                     res.render('home');
                 });
-                console.log("err"+err);
             })(req, res);
         }
     };

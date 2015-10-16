@@ -25,12 +25,10 @@ module.exports = function(app) {
                 Usuario_Revendedor.alterarSenha(usuario,
                 function(result) {
                     req.flash('info','Alterado com sucesso!!!');
-                    console.log("Alterado com sucesso!!!");
                     res.redirect('/');
                 },
                 function(result) {
                     req.flash('info','Erro ao alterar!!!');
-                    console.log("Erro ao alterar!!!"+result);
                     res.render('usuario/home', {value:result.attributes, message: req.flash('info')});
                 });
              }else{

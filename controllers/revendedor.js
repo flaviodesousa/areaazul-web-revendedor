@@ -51,14 +51,14 @@ module.exports = function(app) {
                 Revendedor.cadastrar(
                     parametros)
                     .then(function(revenda) {
-                        console.dir(revenda);
+
                         req.flash('info', 'Salvo com sucesso!');
                         res.redirect("revendedor/cadastro");
 
                     })
                     .catch(function(err) {
                         if (err.details) {
-                            console.dir(err.details);
+
                             for (var i = 0; i < err.details.length; i++) {
                                 req.flash('info', err.details[i].problem);
                                 res.render("revendedor/cadastro", {
