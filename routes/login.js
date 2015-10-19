@@ -11,4 +11,5 @@ module.exports = function(app) {
     app.post("/verificaEmail", login.verificaEmail);
     app.get('/usuario/alteracao_senha/:id_recuperacao_senha', usuario.alterarSenhas);
     app.post('/usuario/recuperacao_senha/:pessoa_fisica_pessoa_id', usuario.recuperar_senha);
+    app.get('/logout', login.sair);
 }
