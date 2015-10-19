@@ -41,11 +41,11 @@ module.exports = function(app) {
                     }
                 }
             }
-            
+
             var dadosAtivacao = {
                 valor: valor,
                 celular: req.body.telefone,
-                cidade: req.body.cidade,
+                cidade: req.body.cod_cidades,
                 tempo: req.body.tempo,
                 marca: req.body.marca,
                 modelo: req.body.modelo,
@@ -62,6 +62,7 @@ module.exports = function(app) {
                     return revenda;
                 })
                 .catch(function(err) {
+                    console.log(err);
                     req.flash('info', "Erro! " + err);
                     res.redirect("/ativacao/ativacaoRevenda");
                     return err;

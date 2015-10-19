@@ -10,6 +10,12 @@ module.exports = function(app) {
         novaSenha: function(req, res){
             res.render('login/novaSenha');
         }, 
+
+        sair: function(req, res){
+          req.logout();
+          res.redirect('/');
+        },
+        
         verificaEmail: function(req, res){
             var person = {
                 email : req.body.email,
@@ -33,12 +39,11 @@ module.exports = function(app) {
                 req.logIn(user, function(err) {
  
                     if (err) {
-                    req.session.user_id = user.pessoa_fisica_pessoa_id
                     return res.render('login', {
                             error: 'true', value:req.session.passport.user
                         });
                     }
-                    res.render('home');
+                    res.render('home', {nome: req.user.attributes.login});
                 });
             })(req, res);
         }
