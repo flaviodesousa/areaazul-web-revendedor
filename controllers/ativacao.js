@@ -15,8 +15,14 @@ module.exports = function(app) {
             });
         },
         ativar: function(req, res) {
+            var link = null;
+            if (req.user.attributes.autorizacao === 'administrador') {
+                link = "ativacao/ativacaoRevendedor";
+            } else {
+                link = "ativacao/ativacaoUsuarioRevendedor";
+            }
             EstadoCollection.listar(function(result) {
-                res.render('ativacao/ativacaoRevenda', {
+                res.render(link, {
                     lista: result.models
                 });
                 return result;
@@ -31,12 +37,12 @@ module.exports = function(app) {
         },
         salvarAtivacao: function(req, res) {
             var valor = 0;
-            
-            if(req.body.tempo !== null){
+
+            if (req.body.tempo !== null) {
                 var tamanhoArray = Configuracao.getConfiguracaoTempo().length;
                 var configuracoes = Configuracao.getConfiguracaoTempo();
-                for(var i = 0; i < tamanhoArray; i++){
-                    if(req.body.tempo === configuracoes[i].quantidade_tempo){
+                for (var i = 0; i < tamanhoArray; i++) {
+                    if (req.body.tempo === configuracoes[i].quantidade_tempo) {
                         valor = configuracoes[i].preco;
                     }
                 }
@@ -57,7 +63,7 @@ module.exports = function(app) {
 
             Ativacao.ativarPelaRevenda(dadosAtivacao)
                 .then(function(revenda) {
-                    req.flash('info', 'Veiculo com a placa '+req.body.placa+'foi ativado');
+                    req.flash('info', 'Veiculo com a placa ' + req.body.placa + 'foi ativado');
                     res.redirect("/ativacao/ativacaoRevenda");
                     return revenda;
                 })
