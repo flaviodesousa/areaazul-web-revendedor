@@ -43,7 +43,7 @@ module.exports = function(app) {
                             error: 'true', value:req.session.passport.user
                         });
                     }
-                    res.render('home', {nome: req.user.attributes.login});
+                    res.redirect('ativacao/ativacaoRevenda');
                 });
             })(req, res);
         }

@@ -53,7 +53,7 @@ module.exports = function(app) {
                     .then(function(revenda) {
 
                         req.flash('info', 'Salvo com sucesso!');
-                        res.redirect("revendedor/cadastro");
+                        res.redirect("/");
 
                     })
                     .catch(function(err) {
