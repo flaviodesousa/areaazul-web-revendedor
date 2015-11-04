@@ -58,8 +58,10 @@ module.exports = function(app) {
                     res.render('usuario_revendedor/lista', {
                         lista: result.models
                     });
-                    return result;
+                ///    return result;
                 });
+
+            
         },
 
         indexAlterar: function(req, res) {
