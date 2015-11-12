@@ -2,12 +2,12 @@ module.exports = function(app) {
     var AreaAzul = require('areaazul');
     var Usuario_Revendedor = AreaAzul.models.UsuarioRevendedor;
     var UsuarioRevendedorCollection = AreaAzul.collections.UsuarioRevendedor;
+    var i = null;
 
     var usuarioRevendedorController = {
         index: function(req, res) {
-            res.render("usuario_revendedor/cadastro");
+                res.render('usuario_revendedor/cadastro',{values: req.body});
         },
-
         cadastrar: function(req, res) {
             var parametros = null;
 
@@ -25,9 +25,7 @@ module.exports = function(app) {
                 Usuario_Revendedor.inserir(parametros)
                     .then(function(revenda) {
                         req.flash('info', 'Salvo com sucesso!');
-                        res.render("usuario_revendedor/cadastro", {
-                            message: req.flash('info')
-                        });
+                        res.render("usuario_revendedor/cadastro", {message: req.flash('info'), values: req.body});
                     })
                     .catch(function(err) {
                         if (err.details) {
@@ -35,21 +33,21 @@ module.exports = function(app) {
                                 req.flash('info', err.details[i].problem);
                                 res.render("usuario_revendedor/cadastro", {
                                     message: req.flash('info')
-                                });
+                                , values: req.body});
                             }
                         } else {
                             console.dir(err);
                             req.flash('info', err);
                             res.render("usuario_revendedor/cadastro", {
                                 message: req.flash('info')
-                            });
+                            , values: req.body});
                         }
                     });
             } else {
-                req.flash('info', 'Para realizar precisa aceitar nossos termos de serviço!');
-                res.render("usuario_revendedor/cadastro", {
-                    message: req.flash('info')
-                });
+
+               req.flash('info', 'Para realizar precisa aceitar nossos termos de serviço!');            
+                res.render('usuario_revendedor/cadastro', {message: req.flash('info'), values: req.body});
+
             }
         },
         listar: function(req, res) {

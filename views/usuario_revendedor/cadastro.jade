@@ -24,41 +24,42 @@ block content
              h4.text-center Cadastro de Usuario Revendedor
              br
              form(name='form', role='form', action="/usuario_revendedor/cadastrar_usuario_revendedor", method="POST")
+              
               .form-group
                 .row
                   .form-inline
                     .form-group.col-lg-6
                       label * CPF:
-                      input#cpf_PessoaFisica.form-control(required='', type='text', name='cpf')
+                      input#cpf_PessoaFisica.form-control(required='', type='text', name='cpf', value=values.cpf)
                     .form-group.col-lg-6
                       label Celular: 
-                      input#celular_PessoaFisica.form-control(required='',type='text', name='celular_pf')
+                      input#celular_PessoaFisica.form-control(required='',type='text', name='celular_pf', value=values.celular_pf)
               .form-group
                 label.control-label(for='fullName') * Nome: 
-                input#nomepf.form-control(required='', type='text', name='nome_pf')
+                input#nomepf.form-control(required='', type='text', name='nome_pf', value=values.nome_pf)
               .form-group
                 label.control-label(for='country') * E-mail:
                 .input-group
                   span#basic-addon1.input-group-addon @
-                  input#emailpf.form-control(required='', type='text', , name='email_pf', placeholder="email@example.com", aria-describedby='basic-addon2')
+                  input#emailpf.form-control(required='', type='text', , name='email_pf', placeholder="email@example.com", aria-describedby='basic-addon2', value=values.email_pf)
               .form-group
                 label.control-label(for='country') * Nome de usuário: 
-                input#usuariopf.form-control(required='', type='text', name='nome_usuario_pf')
+                input#usuariopf.form-control(required='', type='text', name='nome_usuario_pf', value=values.nome_usuario_pf)
               .form-group
                 .row
                   .control-group
                     .form-group.col-lg-6
                       label * Senha: 
-                      input#senhapf.form-control(required='', type='password', name='senha_pf')
+                      input#senhapf.form-control(required='', type='password', name='senha_pf', value=values.senha_pf)
                     .form-group.col-lg-6
                       label * Confirmar senha: 
-                      input#confirmar_senhapf.form-control(required='', type='password', name='confirmar_senha_pf')
+                      input#confirmar_senhapf.form-control(required='', type='password', name='confirmar_senha_pf', value=values.confirmar_senha_pf)
               .form-group
                   .row
                     .form-inline
                       .form-group.col-lg-6
                         label.checkbox
-                          input#optionsRadios1(type='checkbox', name='termo_servico', value='termo_servico')
+                          input#optionsRadios1(type='checkbox', name='termo_servico')
                           |  Li e concordo com os termos de serviços
                       .form-group.col-lg-3.pull-right
                         label * Campos Obrigátorios

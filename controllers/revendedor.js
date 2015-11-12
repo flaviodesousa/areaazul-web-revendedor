@@ -7,15 +7,15 @@ module.exports = function(app) {
 
     var revendedorController = {
         index: function(req, res) {
-            res.render("revendedor/cadastro");
+            res.render("revendedor/cadastro", {values: req.body});
         },
 
         pessoafisica: function(req, res) {
-            res.render("revendedor/indexpf");
+            res.render("revendedor/indexpf", {values: req.body});
         },
 
         pessoajuridica: function(req, res) {
-            res.render("revendedor/indexpj");
+            res.render("revendedor/indexpj", {values: req.body});
         },
         cadastrar: function(req, res) {
             var parametros = null;
@@ -52,9 +52,9 @@ module.exports = function(app) {
                     parametros)
                     .then(function(revenda) {
 
+                        
                         req.flash('info', 'Salvo com sucesso!');
-                        res.redirect("/");
-
+                        res.render('login/index', {message: req.flash('info'), values: req.body});
                     })
                     .catch(function(err) {
                         if (err.details) {
@@ -63,20 +63,18 @@ module.exports = function(app) {
                                 req.flash('info', err.details[i].problem);
                                 res.render("revendedor/cadastro", {
                                     message: req.flash('info')
-                                });
+                                , values: req.body});
                             }
                         } else {
                             req.flash('info', err);
                             res.render("revendedor/cadastro", {
                                 message: req.flash('info')
-                            });
+                            , values: req.body});
                         }
                     });
             } else {
-                req.flash('info', 'Para realizar precisa aceitar nossos termos de serviço!');
-                res.render("revendedor/cadastro", {
-                    message: req.flash('info')
-                });
+                 req.flash('info', 'Para realizar precisa aceitar nossos termos de serviço!');            
+                res.render('usuario_revendedor/cadastro', {message: req.flash('info'), values: req.body});
             }
         },
     }
