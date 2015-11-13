@@ -60,7 +60,6 @@ module.exports = function(app) {
                 tipo_veiculo: req.body.tipo_veiculo,
                 usuario_pessoa_id: req.session.passport.user,
             };
-            console.log("dadosAtivacao:"+dadosAtivacao);
             Ativacao.ativarPelaRevenda(dadosAtivacao)
                 .then(function(revenda) {
                     req.flash('info', 'Veiculo com a placa ' + req.body.placa + 'foi ativado');
