@@ -25,7 +25,7 @@ module.exports = function(app) {
                 Usuario_Revendedor.inserir(parametros)
                     .then(function(revenda) {
                         req.flash('info', 'Salvo com sucesso!');
-                        res.render("usuario_revendedor/cadastro", {message: req.flash('info'), values: req.body});
+                        res.render("usuario_revendedor/cadastro", {message: req.flash('info')});
                     })
                     .catch(function(err) {
                         if (err.details) {

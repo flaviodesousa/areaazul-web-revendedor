@@ -54,7 +54,7 @@ module.exports = function(app) {
 
                         
                         req.flash('info', 'Salvo com sucesso!');
-                        res.render('login/index', {message: req.flash('info'), values: req.body});
+                        res.render('login/index', {message: req.flash('info')});
                     })
                     .catch(function(err) {
                         if (err.details) {
