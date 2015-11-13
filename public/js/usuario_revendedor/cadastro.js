@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function() {
     $("#cpf_PessoaFisica").mask("999.999.999-99");
     $("#celular_PessoaFisica").mask("(99) 9999-9999");
     $("#cnpj_PessoaJuridica").mask("99.999.999/9999-99");
