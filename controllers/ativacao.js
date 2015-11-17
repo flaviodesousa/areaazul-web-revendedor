@@ -14,6 +14,12 @@ module.exports = function(app) {
                 return result;
             });
         },
+        listarEstados: function(req, res) {
+            EstadoCollection.listar(
+                function(result) {
+                    res.send(result.toJSON());
+                });
+        },
         ativar: function(req, res) {
             var link = null;
             if (req.user.attributes.autorizacao === 'administrador') {
@@ -37,6 +43,13 @@ module.exports = function(app) {
         },
         salvarAtivacao: function(req, res) {
             var valor = 0;
+            var link = null;
+            var listaVazia = [];
+            if (req.user.attributes.autorizacao === 'administrador') {
+                link = "ativacao/ativacaoRevendedor";
+            } else {
+                link = "ativacao/ativacaoUsuarioRevendedor";
+            }
 
             if (req.body.tempo !== null) {
                 var tamanhoArray = Configuracao.getConfiguracaoTempo().length;
@@ -50,7 +63,7 @@ module.exports = function(app) {
 
             var dadosAtivacao = {
                 valor: valor,
-                celular: req.body.telefone,
+                celular: req.body.celular,
                 cidade: req.body.cod_cidades,
                 tempo: req.body.tempo,
                 marca: req.body.marca,
@@ -60,15 +73,18 @@ module.exports = function(app) {
                 tipo_veiculo: req.body.tipo_veiculo,
                 usuario_pessoa_id: req.session.passport.user,
             };
+
             Ativacao.ativarPelaRevenda(dadosAtivacao)
                 .then(function(revenda) {
                     req.flash('info', 'Veiculo com a placa ' + req.body.placa + 'foi ativado');
-                 //   res.redirect("/ativacao/ativacaoRevenda");          
-                    res.render('/ativacao/ativacaoRevenda', {message: req.flash('info')});
+                        res.render(link, {
+                            message: req.flash('info'),
+                            lista: listaVazia
+                        });
                     return revenda;
                 })
                 .catch(function(err) {
-                    console.log(err);
+
                     req.flash('info', "Erro! " + err);
                     res.redirect("/ativacao/ativacaoRevenda");
                     return err;
