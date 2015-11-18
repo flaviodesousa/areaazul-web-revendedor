@@ -76,11 +76,20 @@ module.exports = function(app) {
 
             Ativacao.ativarPelaRevenda(dadosAtivacao)
                 .then(function(revenda) {
-                    req.flash('info', 'Veiculo com a placa ' + req.body.placa + 'foi ativado');
+                    if(revenda != null){
+                        req.flash('info', 'Veiculo com a placa ' + req.body.placa + ' ativado.');
                         res.render(link, {
                             message: req.flash('info'),
                             lista: listaVazia
                         });
+                    }else{
+                        req.flash('info', 'Veiculo ' + req.body.placa + ' ativo.');
+                        res.render(link, {
+                            message: req.flash('info'),
+                            lista: listaVazia
+                        });
+                    }
+                    
                     return revenda;
                 })
                 .catch(function(err) {
