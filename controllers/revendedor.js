@@ -52,7 +52,7 @@ module.exports = function(app) {
                     parametros)
                     .then(function(revenda) {
 
-                        
+                        req.body = [];
                         req.flash('info', 'Salvo com sucesso!');
                         res.render('login/index', {message: req.flash('info')});
                     })
