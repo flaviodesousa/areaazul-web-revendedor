@@ -36,7 +36,7 @@ $(document).ready(function() {
 
         if (tamanhoValorPlaca === 8) {
             if ($(this).val()) {
-              //  $.getJSON('http://localhost:18360/veiculo?placa=' + $(this).val(), null, function(veiculo) {
+             //   $.getJSON('http://localhost:18360/veiculo?placa=' + $(this).val(), null, function(veiculo) {
                      $.getJSON('http://revenda.demo.areaazul.org/veiculo?placa=' + $(this).val(), null, function(veiculo) {
                     $("#placa").val(veiculo.placa)
                     $("#marca").val(veiculo.marca).prop('readonly', true);
@@ -70,7 +70,7 @@ $(document).ready(function() {
 
 function estados() {
     $.ajax({
-        //url: 'http://localhost:18360/ativacao/estados',
+      //  url: 'http://localhost:18360/ativacao/estados',
         url: 'http://revenda.demo.areaazul.org/ativacao/estados',
         type: 'GET',
         dataType: 'json',
