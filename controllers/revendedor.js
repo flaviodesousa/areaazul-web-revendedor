@@ -74,7 +74,7 @@ module.exports = function(app) {
                     });
             } else {
                  req.flash('info', 'Para realizar precisa aceitar nossos termos de serviço!');            
-                res.render('usuario_revendedor/cadastro', {message: req.flash('info'), values: req.body});
+                res.render('revendedor/cadastro', {message: req.flash('info'), values: req.body});
             }
         },
     }
