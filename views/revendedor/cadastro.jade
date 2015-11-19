@@ -37,14 +37,15 @@ block content
              form(name='form', role='form', action="/revendedor/cadastrar_revendedor", method="POST")
               .form-group
                 input.form-control(type='hidden', value='0', name='hiddenFormPF')
-              .form-group
-                  .control-group
-                    .form-group
-                      label * CPF:
-                      input#cpf_PessoaFisica.form-control(required='', type='text', name='cpf', value=values.cpf)
-                    .form-group.pull-right
-                      label Celular: 
-                      input#celular_PessoaFisica.form-control(required='',type='text', name='celular_pf', value=values.celular_pf)
+
+              .row
+                .control-group
+                  .form-group.col-lg-6
+                    label * CPF:
+                    input#cpf_PessoaFisica.form-control(required='', type='text', name='cpf', value=values.cpf)
+                  .form-group.col-lg-6
+                    label Celular: 
+                    input#celular_PessoaFisica.form-control(required='',type='text', name='celular_pf', value=values.celular_pf)
               .form-group
                 label.control-label(for='fullName') * Nome: 
                 input#nomepf.form-control(required='', type='text', name='nome_pf', value=values.nome_pf)
@@ -82,12 +83,12 @@ block content
               form(name='form', role='form', action="/revendedor/cadastrar_revendedor", method="POST")
                 .form-group
                    input.form-control(type='hidden', value='1', name='hiddenFormPJ')
-                .form-group
+                .row
                   .control-group
-                    .form-group
+                    .form-group.col-lg-6
                       label * CNPJ: 
                       input#cnpj_PessoaJuridica.form-control(required='', type='text', placeholder='CNPJ', name='cnpj', value=values.cnpj)
-                    .form-group.pull-right
+                    .form-group.col-lg-6
                       label * Telefone: 
                       input#telefone_PessoaJuridica.form-control(required='', type='text', placeholder='Telefone', name='telefone_pj', value=values.telefone_pj)
                 .form-group
@@ -114,16 +115,13 @@ block content
                     .form-group
                       label * Nome de usuário: 
                       input.form-control(required='', type='text', placeholder='Nome de usuário', name='nome_usuario_pj', value=values.nome_usuario_pj)
-                .form-group
-                  .row
-                    .col-md-6
-                      .form-inline
-                        .form-group
+                .row
+                  .control-group
+                    .form-group.col-lg-6
                           label * Senha: 
                           input.form-control(required='', type='password', placeholder='Senha', name='senha_pj', value=values.senha_pj)
                   
-                    .col-md-6 
-                        .form-group
+                    .form-group.col-lg-6
                           label * Confirmar Senha: 
                           input.form-control(required='', type='password', placeholder='Confirmar Senha', name='confirmar_senha_pj', value=values.confirmar_senha_pj)
                 .form-group
