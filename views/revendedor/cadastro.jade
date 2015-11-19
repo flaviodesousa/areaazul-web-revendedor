@@ -42,30 +42,30 @@ block content
                 .control-group
                   .form-group.col-lg-6
                     label * CPF:
-                    input#cpf_PessoaFisica.form-control(required='', type='text', name='cpf', value=values.cpf)
+                    input#cpf_PessoaFisica.form-control(required='', placeholder='CPF',type='text', name='cpf', value=values.cpf)
                   .form-group.col-lg-6
                     label Celular: 
-                    input#celular_PessoaFisica.form-control(required='',type='text', name='celular_pf', value=values.celular_pf)
+                    input#celular_PessoaFisica.form-control(required='',placeholder='Celular',type='text', name='celular_pf', value=values.celular_pf)
               .form-group
                 label.control-label(for='fullName') * Nome: 
-                input#nomepf.form-control(required='', type='text', name='nome_pf', value=values.nome_pf)
+                input#nomepf.form-control(required='', type='text', placeholder='Nome',name='nome_pf', value=values.nome_pf)
               .form-group
                 label.control-label(for='country') * E-mail:
                 .input-group
                   span#basic-addon1.input-group-addon @
-                  input#emailpf.form-control(required='', type='text', , name='email_pf', placeholder="email@example.com", aria-describedby='basic-addon2', value=values.email_pf)
+                  input#emailpf.form-control(required='', type='text', name='email_pf', placeholder="email@example.com", aria-describedby='basic-addon2', value=values.email_pf)
               .form-group
                 label.control-label(for='country') * Nome de usuário: 
-                input#usuariopf.form-control(required='', type='text', name='nome_usuario_pf', value=values.nome_usuario_pf)
+                input#usuariopf.form-control(required='', placeholder='Nome de usuário',type='text', name='nome_usuario_pf', value=values.nome_usuario_pf)
               .form-group
                 .row
                   .control-group
                     .form-group.col-lg-6
                       label * Senha: 
-                      input#senhapf.form-control(required='', type='password', name='senha_pf', value=values.senha_pf)
+                      input#senhapf.form-control(required='',placeholder='Senha', type='password', name='senha_pf', value=values.senha_pf)
                     .form-group.col-lg-6
                       label * Confirmar senha: 
-                      input#confirmar_senhapf.form-control(required='', type='password', name='confirmar_senha_pf', value=values.confirmar_senha_pf)
+                      input#confirmar_senhapf.form-control(required='', placeholder='Confirmar senha',type='password', name='confirmar_senha_pf', value=values.confirmar_senha_pf)
               .form-group
                   .row
                     .form-inline
