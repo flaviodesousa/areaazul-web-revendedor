@@ -6,7 +6,9 @@ module.exports = function(app) {
 
     var usuarioRevendedorController = {
         index: function(req, res) {
-                res.render('usuario_revendedor/cadastro',{values: req.body});
+            res.render('usuario_revendedor/cadastro', {
+                values: req.body
+            });
         },
         cadastrar: function(req, res) {
             var parametros = null;
@@ -17,6 +19,7 @@ module.exports = function(app) {
                 email: req.body.email_pf,
                 senha: req.body.senha_pf,
                 confirmar_senha: req.body.confirmar_senha_pf,
+                telefone: req.body.celular_pf,
                 nome: req.body.nome_pf,
                 autorizacao: 'funcionario',
                 revendedor_id: req.session.passport.user,
@@ -26,28 +29,36 @@ module.exports = function(app) {
                     .then(function(revenda) {
                         req.body = [];
                         req.flash('info', 'Salvo com sucesso!');
-                        res.render("usuario_revendedor/cadastro", {message: req.flash('info'), values: req.body});
+                        res.render("usuario_revendedor/cadastro", {
+                            message: req.flash('info'),
+                            values: req.body
+                        });
                     })
                     .catch(function(err) {
                         if (err.details) {
                             for (var i = 0; i < err.details.length; i++) {
                                 req.flash('info', err.details[i].problem);
                                 res.render("usuario_revendedor/cadastro", {
-                                    message: req.flash('info')
-                                , values: req.body});
+                                    message: req.flash('info'),
+                                    values: req.body
+                                });
                             }
                         } else {
                             console.dir(err);
                             req.flash('info', err);
                             res.render("usuario_revendedor/cadastro", {
-                                message: req.flash('info')
-                            , values: req.body});
+                                message: req.flash('info'),
+                                values: req.body
+                            });
                         }
                     });
             } else {
 
-               req.flash('info', 'Para realizar precisa aceitar nossos termos de serviço!');            
-                res.render('usuario_revendedor/cadastro', {message: req.flash('info'), values: req.body});
+                req.flash('info', 'Para realizar precisa aceitar nossos termos de serviço!');
+                res.render('usuario_revendedor/cadastro', {
+                    message: req.flash('info'),
+                    values: req.body
+                });
 
             }
         },
@@ -57,10 +68,10 @@ module.exports = function(app) {
                     res.render('usuario_revendedor/lista', {
                         lista: result.models
                     });
-                ///    return result;
+                    ///    return result;
                 });
 
-            
+
         },
 
         indexAlterar: function(req, res) {
@@ -68,11 +79,12 @@ module.exports = function(app) {
         },
 
         alterarProcura: function(req, res) {
+            var autoriz = null;
             Usuario_Revendedor.procurar(req.params.pessoa_fisica_pessoa_id,
                 function(result) {
+
                     res.render('usuario_revendedor/alterar', {
                         value: result.attributes
-
                     });
                     return result;
                 })
@@ -82,7 +94,8 @@ module.exports = function(app) {
         alterarSalva: function(req, res) {
             var parametros = null;
             var autorizacao = null;
-
+                console.dir(req.body);
+                console.log("--------------------------------------");
             var parametros = {
                 cpf: req.body.cpf,
                 login: req.body.nome_usuario_pf,
@@ -91,6 +104,7 @@ module.exports = function(app) {
                 confirmar_senha: req.body.confirmar_senha_pf,
                 nome: req.body.nome_pf,
                 telefone: req.body.telefone,
+                autorizacao: req.body.autorizacao,
                 revendedor_id: req.session.passport.user,
             }
             Usuario_Revendedor.alterar(parametros)

@@ -26,7 +26,7 @@ block content
              form(name='form', role='form', action="/usuario_revendedor/alterar/salvar", method="POST")
               .form-group
                 .row
-                  .form-inline
+                  .control-group
                     .form-group.col-lg-6
                       label * CPF:
                       input#cpf_PessoaFisica.form-control(required='', type='text', name='cpf', value="#{value.cpf}")
@@ -44,6 +44,7 @@ block content
               .form-group
                 label.control-label(for='country') * Nome de usuário: 
                 input#usuariopf.form-control(required='', type='text', name='nome_usuario_pf',value="#{value.login}")
+                input#autorizacao.form-control(required='', type='text', name='autorizacao', value="#{value.autorizacao}")
               .form-group
                 .row
                   .control-group
