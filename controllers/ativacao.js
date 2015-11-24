@@ -21,13 +21,15 @@ module.exports = function(app) {
                 });
         },
         ativar: function(req, res) {
+
             var link = null;
             if (req.user.attributes.autorizacao === 'administrador') {
-                link = "ativacao/ativacaoRevendedor";
+                link = 'ativacao/ativacaoRevendedor';
             } else {
-                link = "ativacao/ativacaoUsuarioRevendedor";
+                link = 'ativacao/ativacaoUsuarioRevendedor';
             }
             EstadoCollection.listar(function(result) {
+                console.log("TROUXE ESTADOS E DEU RENDER");
                 res.render(link, {
                     lista: result.models
                 });
@@ -76,26 +78,40 @@ module.exports = function(app) {
 
             Ativacao.ativarPelaRevenda(dadosAtivacao)
                 .then(function(revenda) {
-                    if(revenda != null){
+                    if (revenda != null) {
                         req.flash('info', 'Veiculo com a placa ' + req.body.placa + ' ativado.');
                         res.render(link, {
                             message: req.flash('info'),
                             lista: listaVazia
                         });
-                    }else{
+                    } else {
                         req.flash('info', 'Veiculo ' + req.body.placa + ' ativo.');
                         res.render(link, {
                             message: req.flash('info'),
                             lista: listaVazia
                         });
                     }
-                    
+
                     return revenda;
                 })
                 .catch(function(err) {
-
-                    req.flash('info', "Erro! " + err);
-                    res.redirect("/ativacao/ativacaoRevenda");
+                    console.log("ERRO NO CONTROLLER -------------------------");
+                    console.dir(err);
+                    if (err.details) {
+                        for (var i = 0; i < err.details.length; i++) {
+                            req.flash('info', err.details[i].problem);
+                            res.render('ativacao/ativacaoRevenda', {
+                                message: req.flash('info'),
+                                lista: listaVazia
+                            });
+                        }
+                    } else {
+                        req.flash('info', err);
+                        res.render('ativacao/ativacaoRevenda', {
+                            message: req.flash('info'),
+                            lista: listaVazia
+                        });
+                    }
                     return err;
                 });
         }
