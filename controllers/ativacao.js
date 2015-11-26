@@ -9,7 +9,7 @@ module.exports = function(app) {
         atualizarCidades: function() {
             CidadeCollection.listar(function(result) {
                 res.render('ativacao/ativacao_revenda', {
-                    lista: result.models
+                    lista: result.models , values: req.body
                 });
                 return result;
             });
@@ -30,7 +30,7 @@ module.exports = function(app) {
             }
             EstadoCollection.listar(function(result) {
                 res.render(link, {
-                    lista: result.models
+                    lista: result.models , values: req.body
                 });
                 return result;
             });
@@ -61,7 +61,6 @@ module.exports = function(app) {
                     }
                 }
             }
-
             var dadosAtivacao = {
                 valor: valor,
                 celular: req.body.celular,
@@ -80,7 +79,7 @@ module.exports = function(app) {
                         req.flash('info', 'Ativação realizada com sucesso!');
                         res.render(link, {
                             message: req.flash('info'),
-                            lista: listaVazia
+                            lista: listaVazia, values: req.body
                         });
                     return revenda;
                 })
@@ -91,14 +90,14 @@ module.exports = function(app) {
                             req.flash('info', err.details[i].problem);
                             res.render(link, {
                                 message: req.flash('info'),
-                                lista: listaVazia
+                                lista: listaVazia, values: req.body
                             });
                         }
                     } else {
                         req.flash('info', err);
                         res.render(link, {
                             message: req.flash('info'),
-                            lista: listaVazia
+                            lista: listaVazia, values: req.body
                         });
                     }
                     return err;

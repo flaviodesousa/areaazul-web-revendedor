@@ -27,12 +27,12 @@ block content
                       .form-group.col-lg-3
                         label * 
                         label Placa
-                        input#campoPlaca.form-control(type='text', placeholder='Placa', name='placa')
+                        input#campoPlaca.form-control(type='text', placeholder='Placa', name='placa', value=values.placa )
                       #camposInvisiveis
                         .form-group.col-lg-3
                           
                             label * UF
-                            select#cod_estados.form-control(name='cod_estados')
+                            select#cod_estados.form-control(name='cod_estados') 
                               each valor, i in lista
                                 option(value="#{valor.attributes.id_estado}" selected="true") #{valor.attributes.uf}
                         .form-group.col-lg-6
@@ -46,16 +46,16 @@ block content
                     .form-group
                       .form-group.col-lg-6
                         label * Marca
-                        input#marca.form-control(type='text',placeholder='Marca', name='marca')
+                        input#marca.form-control(type='text',placeholder='Marca', name='marca', value=values.marca )
                       .form-group.col-lg-6
                         label * Modelo
-                        input#modelo.form-control(type='text', placeholder='Modelo', name='modelo')
+                        input#modelo.form-control(type='text', placeholder='Modelo', name='modelo', value=values.modelo )
                   br
                   .row
                     .form-group
                       .form-group.col-lg-6
                         label * Cor
-                        input#cor.form-control(type='text', placeholder='Cor', name='cor')
+                        input#cor.form-control(type='text', placeholder='Cor', name='cor', value=values.cor )
                 .row
                   .form-group
                     
@@ -89,7 +89,7 @@ block content
                     label  Celular
                     .form-group
                       .form-group.col-lg-5
-                        input#campoCelular.form-control(type='text', placeholder='Celular', name='celular')
+                        input#campoCelular.form-control(type='text', placeholder='Celular', name='celular', value=values.celular )
               .form-group
                 .form-inline
                   .form-group.pull-right

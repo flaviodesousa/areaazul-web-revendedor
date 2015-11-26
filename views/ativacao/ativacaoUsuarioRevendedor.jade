@@ -27,7 +27,7 @@ block content
                       .form-group.col-lg-3
                         label * 
                         label Placa
-                        input#campoPlaca.form-control(type='text', placeholder='Placa', name='placa')
+                        input#campoPlaca.form-control(type='text', placeholder='Placa', name='placa', value=values.placa)
                       #camposInvisiveis
                         .form-group.col-lg-3
                           
@@ -46,16 +46,16 @@ block content
                     .form-group
                       .form-group.col-lg-6
                         label * Marca
-                        input#marca.form-control(type='text',placeholder='Marca', name='marca')
+                        input#marca.form-control(type='text',placeholder='Marca', name='marca', value=values.marca)
                       .form-group.col-lg-6
                         label * Modelo
-                        input#modelo.form-control(type='text', placeholder='Modelo', name='modelo')
+                        input#modelo.form-control(type='text', placeholder='Modelo', name='modelo', value=values.modelo)
                   br
                   .row
                     .form-group
                       .form-group.col-lg-6
                         label * Cor
-                        input#cor.form-control(type='text', placeholder='Cor', name='cor')
+                        input#cor.form-control(type='text', placeholder='Cor', name='cor', value=values.cor)
                 .row
                   .form-group
                     
@@ -79,7 +79,7 @@ block content
                       label * Tempo  
                     .form-group
                       .form-group.col-lg-5
-                      select.form-control(id="tempo" name="tempo")
+                      select.form-control(id="tempo" name="tempo", value=values.tempo)
                         option( value='60') 1 Hora
                         option( value='120') 2 Horas
                         option( value='180') 3 Horas
@@ -89,7 +89,7 @@ block content
                     label  Celular
                     .form-group
                       .form-group.col-lg-5
-                        input#campoCelular.form-control(type='text', placeholder='Celular', name='celular')
+                        input#campoCelular.form-control(type='text', placeholder='Celular', name='celular', value=values.celular)
               .form-group
                 .form-inline
                   .form-group.pull-right
