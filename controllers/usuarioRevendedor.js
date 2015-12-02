@@ -23,8 +23,9 @@ module.exports = function(app) {
                 nome: req.body.nome_pf,
                 autorizacao: 'funcionario',
                 revendedor_id: req.session.passport.user,
+                termo_servico: req.body.termo_servico,
             }
-            if (req.body.termo_servico) {
+
                 Usuario_Revendedor.inserir(parametros)
                     .then(function(revenda) {
                         req.body = [];
@@ -52,15 +53,6 @@ module.exports = function(app) {
                             });
                         }
                     });
-            } else {
-
-                req.flash('info', 'Para realizar precisa aceitar nossos termos de serviço!');
-                res.render('usuario_revendedor/cadastro', {
-                    message: req.flash('info'),
-                    values: req.body
-                });
-
-            }
         },
         listar: function(req, res) {
             UsuarioRevendedorCollection.listarUsuarioRevenda(req.session.passport.user,

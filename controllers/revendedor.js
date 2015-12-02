@@ -33,6 +33,7 @@ module.exports = function(app) {
                     cpf: req.body.cpf_responsavel_pj,
                     nome: req.body.responsavel_nome_pj,
                     autorizacao: 'administrador',
+                    termo_servico: req.body.termo_servico,
                 }
             } else {
                 var parametros = {
@@ -44,11 +45,11 @@ module.exports = function(app) {
                     telefone: req.body.celular_pf,
                     nome: req.body.nome_pf,
                     autorizacao: 'administrador',
+                    termo_servico: req.body.termo_servico,
                 }
             }
 
-            if (req.body.termo_servico) {
-                Revendedor.cadastrar(
+            Revendedor.cadastrar(
                     parametros)
                     .then(function(revenda) {
 
@@ -71,11 +72,7 @@ module.exports = function(app) {
                                 message: req.flash('info')
                             , values: req.body});
                         }
-                    });
-            } else {
-                 req.flash('info', 'Para realizar precisa aceitar nossos termos de serviço!');            
-                res.render('revendedor/cadastro', {message: req.flash('info'), values: req.body});
-            }
+            });
         },
     }
     return revendedorController;
