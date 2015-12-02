@@ -60,7 +60,7 @@ module.exports = function(app) {
                         valor = configuracoes[i].preco;
                     }
                 }
-            }
+            } 
             var dadosAtivacao = {
                 valor: valor,
                 celular: req.body.celular,
@@ -76,28 +76,30 @@ module.exports = function(app) {
 
             Ativacao.ativarPelaRevenda(dadosAtivacao)
                 .then(function(revenda) {
+                    req.body = [];
+
                         req.flash('info', 'Ativação realizada com sucesso!');
                         res.render(link, {
-                            message: req.flash('info'),
-                            lista: listaVazia, values: req.body
-                        });
+                                message: req.flash('info'),
+                                 values: req.body
+                            });
                     return revenda;
                 })
                 .catch(function(err) {
-
+                    
                     if (err.details) {
                         for (var i = 0; i < err.details.length; i++) {
                             req.flash('info', err.details[i].problem);
                             res.render(link, {
                                 message: req.flash('info'),
-                                lista: listaVazia, values: req.body
+                                 values: req.body
                             });
                         }
                     } else {
                         req.flash('info', err);
                         res.render(link, {
                             message: req.flash('info'),
-                            lista: listaVazia, values: req.body
+                             values: req.body
                         });
                     }
                     return err;

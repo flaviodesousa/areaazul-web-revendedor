@@ -5,6 +5,7 @@ module.exports = function(app) {
     var veiculoController = {
 
         procurarVeiculo: function(req, res) {
+            
             Veiculo.procurarVeiculo(
                 req.query.placa)
                 .then(function(result) {
