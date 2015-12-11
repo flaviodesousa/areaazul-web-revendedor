@@ -45,7 +45,7 @@ block content
                     input#cpf_PessoaFisica.form-control(required='', placeholder='CPF',type='text', name='cpf', value=values.cpf)
                   .form-group.col-lg-6
                     label Celular: 
-                    input#celular_PessoaFisica.form-control(required='',placeholder='Celular',type='text', name='celular_pf', value=values.celular_pf)
+                    input#celular_PessoaFisica.form-control(placeholder='Celular',type='text', name='celular_pf', value=values.celular_pf)
               .form-group
                 label.control-label(for='fullName') * Nome: 
                 input#nomepf.form-control(required='', type='text', placeholder='Nome',name='nome_pf', value=values.nome_pf)
@@ -89,8 +89,8 @@ block content
                       label * CNPJ: 
                       input#cnpj_PessoaJuridica.form-control(required='', type='text', placeholder='CNPJ', name='cnpj', value=values.cnpj)
                     .form-group.col-lg-6
-                      label * Telefone: 
-                      input#telefone_PessoaJuridica.form-control(required='', type='text', placeholder='Telefone', name='telefone_pj', value=values.telefone_pj)
+                      label Telefone: 
+                      input#telefone_PessoaJuridica.form-control(type='text', placeholder='Telefone', name='telefone_pj', value=values.telefone_pj)
                 .form-group
                   label * Razão Social: 
                   input.form-control(required='', type='text', placeholder='Razão Social', name='razao_social_pj', value=values.razao_social_pj)
@@ -106,7 +106,7 @@ block content
                   label.control-label(for='country') * E-mail:
                   .input-group
                     span#basic-addon1.input-group-addon @
-                    input#emailpj.form-control(required='', type='text', , name='email_pf', placeholder="email@example.com", aria-describedby='basic-addon2', value=values.email_pf)
+                    input#emailpj.form-control(required='', type='text', , name='email_responsavel_pj', placeholder="email@example.com", aria-describedby='basic-addon2', value=values.email_responsavel_pj)
                 .form-group
                     .form-group
                       label * CPF: 
