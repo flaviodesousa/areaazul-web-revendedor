@@ -49,6 +49,9 @@ module.exports = function(app) {
                 }
             }
 
+            console.log('parametros');
+            console.dir(parametros);
+
             Revendedor.cadastrar(
                     parametros)
                     .then(function(revenda) {
