@@ -64,7 +64,7 @@ module.exports = function(app) {
             var dadosAtivacao = {
                 valor: valor,
                 celular: req.body.celular,
-                cidade: req.body.cod_cidades,
+                cidade: 1,
                 tempo: req.body.tempo,
                 marca: req.body.marca,
                 modelo: req.body.modelo,
