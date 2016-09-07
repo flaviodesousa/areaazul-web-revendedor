@@ -1,10 +1,8 @@
 module.exports = function(app) {
 
     var AreaAzul = require('areaazul'),
-        Usuario_Revendedor = AreaAzul.models.usuario_revendedor,
-        PessoaFisica = AreaAzul.models.pessoafisica,
-        Pessoa = AreaAzul.models.pessoa;
-        Recuperacao_Senha = AreaAzul.models.recuperacao_senha;
+        UsuarioRevendedor = AreaAzul.db.model('UsuarioRevendedor'),
+        Recuperacao_Senha = AreaAzul.db.model('recuperacao_senha');
         app.locals.moment = require('moment');
 
     var usuarioController = {
@@ -20,9 +18,9 @@ module.exports = function(app) {
                 conf_senha: req.body.conf_senha
             }
 
-            var arr = Usuario_Revendedor.validarSenha(usuario);
+            var arr = UsuarioRevendedor.validarSenha(usuario);
             if(arr.length == 0){
-                Usuario_Revendedor.alterarSenha(usuario,
+                UsuarioRevendedor.alterarSenha(usuario,
                 function(result) {
                     req.flash('info','Alterado com sucesso!!!');
                     res.redirect('/');
@@ -61,9 +59,9 @@ module.exports = function(app) {
                 conf_senha : req.body.conf_senha
             }
 
-            var arr = Usuario_Revendedor.validarSenhaAlteracao(usuario);
+            var arr = UsuarioRevendedor.validarSenhaAlteracao(usuario);
             if(arr.length == 0){
-                Usuario_Revendedor.alterarSenhaRecuperacao(usuario,
+                UsuarioRevendedor.alterarSenhaRecuperacao(usuario,
                 function(result) {
                     req.flash('info','Alterado com sucesso!!!');
                     console.log("Alterado com sucesso!!!");

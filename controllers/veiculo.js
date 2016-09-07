@@ -1,11 +1,11 @@
 var AreaAzul = require('areaazul');
-var Veiculo = AreaAzul.models.Veiculo;
+var Veiculo = AreaAzul.db.model('Veiculo');
 
 module.exports = function(app) {
     var veiculoController = {
 
         procurarVeiculo: function(req, res) {
-            
+
             Veiculo.procurarVeiculo(
                 req.query.placa)
                 .then(function(result) {

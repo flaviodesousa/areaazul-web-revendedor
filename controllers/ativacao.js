@@ -1,9 +1,9 @@
 module.exports = function(app) {
     var AreaAzul = require('areaazul');
-    var Ativacao = AreaAzul.models.Ativacao;
-    var EstadoCollection = AreaAzul.collections.Estados;
-    var CidadeCollection = AreaAzul.collections.Cidades;
-    var Configuracao = AreaAzul.models.Configuracao;
+    var Ativacao = AreaAzul.db.model('Ativacao');
+    var EstadoCollection = AreaAzul.db.collection('Estados');
+    var CidadeCollection = AreaAzul.db.collection('Cidades');
+    var Configuracao = AreaAzul.db.model('Configuracao');
 
     var ativacaoController = {
         atualizarCidades: function() {
@@ -60,7 +60,7 @@ module.exports = function(app) {
                         valor = configuracoes[i].preco;
                     }
                 }
-            } 
+            }
             var dadosAtivacao = {
                 valor: valor,
                 celular: req.body.celular,
@@ -86,7 +86,7 @@ module.exports = function(app) {
                     return revenda;
                 })
                 .catch(function(err) {
-                    
+
                     if (err.details) {
                         for (var i = 0; i < err.details.length; i++) {
                             req.flash('info', err.details[i].problem);

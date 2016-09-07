@@ -1,8 +1,8 @@
 module.exports = function(app) {
     var AreaAzul = require('areaazul');
-    var Revendedor = AreaAzul.models.Revendedor;
-    var Ativacao = AreaAzul.models.Ativacao;
-    var Veiculo = AreaAzul.models.Veiculo;
+    var Revendedor = AreaAzul.db.model('Revendedor');
+    var Ativacao = AreaAzul.db.model('Ativacao');
+    var Veiculo = AreaAzul.db.model('Veiculo');
 
 
     var revendedorController = {
