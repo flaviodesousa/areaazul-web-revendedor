@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node ./bin/web-revendedor"
+    "start": "node ./bin/web-revendedor.js"
   },
   "dependencies": {
     "areaazul": "^0.5.0",
