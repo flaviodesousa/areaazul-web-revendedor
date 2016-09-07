@@ -72,7 +72,7 @@ module.exports = function(app) {
 
         alterarProcura: function(req, res) {
             var autoriz = null;
-            Usuario_Revendedor.procurar(req.params.pessoa_fisica_pessoa_id,
+            Usuario_Revendedor.procurar(req.params.id,
                 function(result) {
 
                     res.render('usuario_revendedor/alterar', {
@@ -118,7 +118,7 @@ module.exports = function(app) {
 
         deletar: function(req, res) {
 
-            Usuario_Revendedor.desativar(req.params.pessoa_fisica_pessoa_id)
+            Usuario_Revendedor.desativar(req.params.id)
                 .then(
                     function(result) {
                         res.redirect("/usuario_revendedor/lista");

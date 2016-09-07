@@ -1,7 +1,7 @@
 extends ../layout
 
-		
-		
+
+
 block optionuser
 	div#corpooptionuser
 		div#filhooptionuser
@@ -17,13 +17,13 @@ block content
 						td &nbsp;
 					tr
 						td
-						
+
 					tr
 						td &nbsp;
 
 	div
 
-	form(method="POST" action="/usuario/alteracao_senha/#{value.pessoa_fisica_pessoa_id}"  class="regform"  align="center")
+	form(method="POST" action="/usuario/alteracao_senha/#{value.id}"  class="regform"  align="center")
 
 		fieldset(id="first")
 			label#tituloPagina Alteração de senha
@@ -37,26 +37,26 @@ block content
 			table
 				tr
 					td
-						label#textoFormulario Usuario 
+						label#textoFormulario Usuario
 						label#obrigatorios *
 					td
-						input(id="pessoa_fisica_pessoa_id" name="pessoa_fisica_pessoa_id" type="hidden" maxlength="11" size="1"  value="#{value.pessoa_fisica_pessoa_id}" style="background-color:  #e2e9ee; width: 84px;")
+						input(id="id" name="id" type="hidden" maxlength="11" size="1"  value="#{value.id}" style="background-color:  #e2e9ee; width: 84px;")
 						input(id="login" name="login" type="text" maxlength="11" size="1"  value="#{value.login}" style="background-color:  #e2e9ee; width: 84px;")
 				tr
 					td
-						label#textoFormulario Senha atual 
+						label#textoFormulario Senha atual
 						label#obrigatorios *
 					td
 						input(id="senha" name="senha" type="password" maxlength="11" size="1" style="background-color:  #e2e9ee; width: 84px;")
 				tr
 					td
-						label#textoFormulario Nova senha 
+						label#textoFormulario Nova senha
 						label#obrigatorios *
 					td
 						input(id="nova_senha" name="nova_senha" type="password" maxlength="11" size="1" style="background-color:  #e2e9ee; width: 84px;")
 				tr
 					td
-						label#textoFormulario Confirmar senha 
+						label#textoFormulario Confirmar senha
 						label#obrigatorios *
 					td
 						input(id="conf_senha" name="conf_senha" type="password" maxlength="11" size="1" style="background-color:  #e2e9ee; width: 84px;")
@@ -70,5 +70,5 @@ block content
 						label#obrigatorios (*) Campos obrigatórios
 					td
 						&nbsp
-					td 
+					td
 						input(type="submit" id="buttonForm" name="buttonSave" value="salvar")

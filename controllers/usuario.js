@@ -7,7 +7,7 @@ module.exports = function(app) {
         Recuperacao_Senha = AreaAzul.models.recuperacao_senha;
         app.locals.moment = require('moment');
 
-    var usuarioController = {        
+    var usuarioController = {
         index: function(req, res) {
             res.render('usuario/index');
         },
@@ -38,16 +38,16 @@ module.exports = function(app) {
             }
     },
     alterarSenhas: function(req, res){
-    
+
         var password_recovery = {
             id_recuperacao_senha : req.params.id_recuperacao_senha
         }
 
-        Recuperacao_Senha.procurar(password_recovery, 
+        Recuperacao_Senha.procurar(password_recovery,
             function(result){
                 req.flash('info', 'Encontrado!');
                 res.render('usuario/alterarSenha', {value:result.attributes, message: req.flash('info')});
-              
+
             }, function(result){
 
                  req.flash('info', 'Erro não encontrado!');
@@ -56,8 +56,8 @@ module.exports = function(app) {
     },
     recuperar_senha: function(req, res){
          var usuario = {
-                pessoa_fisica_pessoa_id: req.params.pessoa_fisica_pessoa_id,
-                senha: req.body.senha,
+                pessoa_id: req.params.id,
+                nova_senha: req.body.nova_senha,
                 conf_senha : req.body.conf_senha
             }
 
@@ -67,17 +67,17 @@ module.exports = function(app) {
                 function(result) {
                     req.flash('info','Alterado com sucesso!!!');
                     console.log("Alterado com sucesso!!!");
-                     res.render('usuario/alterarSenha', {value:usuario.pessoa_fisica_pessoa_id, message: req.flash('info')});
+                     res.render('usuario/alterarSenha', {value:usuario.pessoa_id, message: req.flash('info')});
                 },
                 function(result) {
                     req.flash('info','Erro ao alterar!!!');
                     console.log("Erro ao alterar!!!"+result);
-                    res.render('usuario/alterarSenha', {value:usuario.pessoa_fisica_pessoa_id, message: req.flash('info')});
+                    res.render('usuario/alterarSenha', {value:usuario.pessoa_id, message: req.flash('info')});
                 });
              }else{
                 for(var i = 0; i<arr.length;i++)
                 req.flash('info',arr[i].problem);
-                res.render('usuario/alterarSenha', {value:usuario.pessoa_fisica_pessoa_id, message: req.flash('info')});
+                res.render('usuario/alterarSenha', {value:usuario.pessoa_id, message: req.flash('info')});
             }
     }
 

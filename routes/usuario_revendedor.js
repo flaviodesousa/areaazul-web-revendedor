@@ -8,9 +8,9 @@ module.exports = function(app) {
 
     app.get("/usuario_revendedor/lista",routesUtil.ensureAuthenticated, usuarioRevendedor.listar);
 
-    app.get("/usuario_revendedor/alterar/:pessoa_fisica_pessoa_id",routesUtil.ensureAuthenticated, usuarioRevendedor.alterarProcura);
+    app.get("/usuario_revendedor/alterar/:id",routesUtil.ensureAuthenticated, usuarioRevendedor.alterarProcura);
     app.post("/usuario_revendedor/alterar/salvar",routesUtil.ensureAuthenticated, usuarioRevendedor.alterarSalva);
     app.post("/usuario_revendedor/alterar",routesUtil.ensureAuthenticated, usuarioRevendedor.indexAlterar);
 
-    app.get("/usuario_revendedor/deletar/:pessoa_fisica_pessoa_id",routesUtil.ensureAuthenticated, usuarioRevendedor.deletar);
+    app.get("/usuario_revendedor/deletar/:id",routesUtil.ensureAuthenticated, usuarioRevendedor.deletar);
 }

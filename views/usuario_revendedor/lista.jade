@@ -14,9 +14,9 @@ block content
       strong #{message}
     div#containerCorpo
       header.row
-        .col-md-4  
         .col-md-4
-        .col-md-4  
+        .col-md-4
+        .col-md-4
       .row
         .col-md-1
         .row.myform
@@ -46,19 +46,19 @@ block content
                           td #{valor.attributes.autorizacao}
                           td #{valor.attributes.ativo}
                           td
-                            input#status(type='checkbox', name='status', checked=(valor.attributes.ativo), onchange="window.location.href='/usuario_revendedor/deletar/#{valor.attributes.pessoa_fisica_pessoa_id}'")
+                            input#status(type='checkbox', name='status', checked=(valor.attributes.ativo), onchange="window.location.href='/usuario_revendedor/deletar/#{valor.attributes.id}'")
                           td
-                            a(href='/usuario_revendedor/alterar/#{valor.attributes.pessoa_fisica_pessoa_id}', title="Alterar") Alterar
+                            a(href='/usuario_revendedor/alterar/#{valor.attributes.id}', title="Alterar") Alterar
         .col-md-1
 
       footer.row
-        .col-md-4  
         .col-md-4
-        .col-md-4  
+        .col-md-4
+        .col-md-4
       div
       block append scripts
           script(src='/js/usuario_revendedor/lista.js')
-     
+
 
 
 

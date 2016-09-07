@@ -1,7 +1,7 @@
 extends ../layout
 
-		
-		
+
+
 block optionuser
 	div#corpooptionuser
 		div#filhooptionuser
@@ -17,13 +17,13 @@ block content
 						td &nbsp;
 					tr
 						td
-						
+
 					tr
 						td &nbsp;
 
 	div
 
-	form(method="POST" action="/usuario/recuperacao_senha/#{value.pessoa_fisica_pessoa_id}" class="regform"  align="center")
+	form(method="POST" action="/usuario/recuperacao_senha/#{value.id}" class="regform"  align="center")
 
 		fieldset(id="first")
 			label#tituloPagina Alteração de senha
@@ -37,13 +37,13 @@ block content
 			table
 				tr
 					td
-						label#textoFormulario Nova senha 
+						label#textoFormulario Nova senha
 						label#obrigatorios *
 					td
 						input(id="senha" name="senha" type="password" maxlength="11" size="1" style="background-color:  #e2e9ee; width: 84px;")
 				tr
 					td
-						label#textoFormulario Confirmar senha 
+						label#textoFormulario Confirmar senha
 						label#obrigatorios *
 					td
 						input(id="conf_senha" name="conf_senha" type="password" maxlength="11" size="1" style="background-color:  #e2e9ee; width: 84px;")
@@ -57,5 +57,5 @@ block content
 						label#obrigatorios (*) Campos obrigatórios
 					td
 						&nbsp
-					td 
+					td
 						input(type="submit" id="buttonForm" name="buttonSave" value="salvar")
