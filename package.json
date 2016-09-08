@@ -1,29 +1,42 @@
 {
-    "name": "areaazul-web-revendedor",
-    "version": "0.0.1",
-    "private": true,
-    "scripts": {
-        "start": "node ./bin/www"
-    },
-    "dependencies": {
-        "express": "~4.2.0",
-        "express-load": "*",
-        "static-favicon": "~1.0.0",
-        "morgan": "~1.0.0",
-        "cookie-parser": "~1.0.1",
-        "body-parser": "~1.0.0",
-        "debug": "~0.7.4",
-        "jade": "~1.3.0",
-        "moment": "*",
-        "serve-favicon": "^2.3.0",
-        "connect-flash":"*",
-        "express-session":"*"                                                                                  ,
-        "passport": "latest",
-        "passport-local": "latest",
-        "express-validator": "^2.12.1",
-        "express-flash":"*",
-        "errorhandler": "*",
-        "bootstrap":"latest",
-        "areaazul": "git+ssh://git@bitbucket.org:solutions-inf-br/areaazul.git"
-    }
+  "name": "areaazul-web-revendedor",
+  "version": "0.0.1",
+  "license": "UNLICENSED",
+  "private": true,
+  "author": {
+    "name": "Flávio de Sousa",
+    "email": "fl@viodesousa.com",
+    "url": "https://flaviodesousa.com"
+  },
+  "scripts": {
+    "start": "node ./bin/areaazul-web-revendedor.js"
+  },
+  "publishConfig": {
+    "registry": "http://npm.flaviodesousa.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@bitbucket.org:solutions-inf-br/areaazul-web-revendedor.git"
+  },
+  "dependencies": {
+    "areaazul": "^0.5.0",
+    "body-parser": "~1.0.0",
+    "bootstrap": "latest",
+    "connect-flash": "*",
+    "cookie-parser": "~1.0.1",
+    "debug": "~0.7.4",
+    "errorhandler": "*",
+    "express": "~4.2.0",
+    "express-flash": "*",
+    "express-load": "*",
+    "express-session": "*",
+    "express-validator": "^2.12.1",
+    "jade": "~1.3.0",
+    "moment": "*",
+    "morgan": "~1.0.0",
+    "passport": "latest",
+    "passport-local": "latest",
+    "serve-favicon": "^2.3.0",
+    "static-favicon": "~1.0.0"
+  }
 }
