@@ -2,8 +2,8 @@ var AreaAzul = require('areaazul');
 var UsuarioRevendedor = AreaAzul.db.model('UsuarioRevendedor');
 var passport = require('passport');
 
-module.exports = function (app) {
-  var loginController = {
+module.exports = function () {
+  return {
     index: function (req, res) {
       res.render('login/index');
     },
@@ -21,11 +21,11 @@ module.exports = function (app) {
         email: req.body.email
       };
       Pessoa.verificaEmail(person,
-        function (result) {
+        function () {
           req.flash('info', 'Foi enviado um email com a senha provisória!!!');
           res.render('login/novaSenha', {message: req.flash('info')});
         },
-        function (result) {
+        function () {
           req.flash('info', 'Email não existe!!!');
           res.render('login/novaSenha', {message: req.flash('info')});
         });
@@ -35,6 +35,7 @@ module.exports = function (app) {
         if (err || !user) {
           req.flash('info', 'Erro ao logar!!!');
           res.render('login', {message: req.flash('info')});
+          return;
         }
         req.logIn(user, function (err) {
 
@@ -48,5 +49,4 @@ module.exports = function (app) {
       })(req, res);
     }
   };
-  return loginController;
 };
