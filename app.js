@@ -1,6 +1,8 @@
 
 'use strict';
 
+const AreaAzul = require('areaazul');
+
 var bodyParser = require('body-parser');
 var express = require('express');
 var load = require('express-load');
