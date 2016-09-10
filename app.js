@@ -21,7 +21,7 @@ var expressValidator = require('express-validator');
 
 // View engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'pug');
 
 var webSecret = process.env.AREAAZUL_WEB_SECRET || '4r344zu1';
 
