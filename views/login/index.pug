@@ -4,35 +4,34 @@ extends ../layoutSemLogin
 block optionuser
     div#corpooptionuser
         div#filhooptionuser
- 
-block content
-      -if(message)
-       .alert.alert-danger
-        button.close(type='button', data-dismiss='alert') x
-        strong #{message}
-      .container-center
-        header.row
-          .col-md-4  
-          .col-md-4
-          .col-md-4  
-        .row
-          .col-md-3  
-          .col-md-6
-            
-            section.login-form
-              form(action='/logar', method='POST', role='login')
-                img.img-responsive(src='http://www.solutions.inf.br/areaazul/imagens/area_azul.png', alt='')
-                input.form-control.input-lg(type='text', placeholder='usuario', name='login')
-                input.form-control.input-lg(type='password', name='senha')
-                .pwstrength_viewport_progress
-                button.btn.btn-primary.btn-lg.btn-block Entrar
-                div
-                  a(href='/revendedor/cadastro') Criar uma conta
-                  |  ou 
-                  a(href='/novaSenha') Esqueceu sua senha ?
-          .col-md-3  
 
-      div
-      block append 
+block content
+    if message
+        .alert.alert-danger
+            button.close() x
+            strong #{message}
+    .container-center
+        header.row
+            .col-md-4
+            .col-md-4
+            .col-md-4
+        .row
+            .col-md-3
+            .col-md-6
+
+                section.login-form
+                    form(action='/logar', method='POST', role='login')
+                        img.img-responsive(src='http://www.solutions.inf.br/areaazul/imagens/area_azul.png', alt='')
+                        input.form-control.input-lg(type='text', placeholder='usuario', name='login')
+                        input.form-control.input-lg(type='password', name='senha')
+                        .pwstrength_viewport_progress
+                        button.btn.btn-primary.btn-lg.btn-block Entrar
+                        div
+                            a(href='/revendedor/cadastro') Criar uma conta
+                            |  ou
+                            a(href='/novaSenha') Esqueceu sua senha ?
+            .col-md-3
+
+    div
+    block append
         link(rel='stylesheet', href='/stylesheets/index.css')
-     
