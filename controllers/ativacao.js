@@ -28,12 +28,13 @@ module.exports = function (app) {
       } else {
         link = 'ativacao/ativacaoUsuarioRevendedor';
       }
-      EstadoCollection.listar(function (result) {
-        res.render(link, {
-          lista: result.models, values: req.body
+      return EstadoCollection
+        .listar()
+        .then(function (listaDeEstados) {
+          res.render(link, {
+            lista: listaDeEstados.models, values: req.body
+          });
         });
-        return result;
-      });
     },
     listarCidades: function (req, res) {
       CidadeCollection.listar(

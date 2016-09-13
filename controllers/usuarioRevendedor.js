@@ -1,7 +1,7 @@
 module.exports = function(app) {
     var AreaAzul = require('areaazul');
     var Usuario_Revendedor = AreaAzul.db.model('UsuarioRevendedor');
-    var UsuarioRevendedorCollection = AreaAzul.db.collection('UsuarioRevendedor');
+    var UsuariosRevendedores = AreaAzul.db.collection('UsuariosRevendedores');
     var i = null;
 
     var usuarioRevendedorController = {
@@ -55,15 +55,13 @@ module.exports = function(app) {
                     });
         },
         listar: function(req, res) {
-            UsuarioRevendedorCollection.listarUsuarioRevenda(req.session.passport.user,
-                function(result) {
+            UsuariosRevendedores
+              .listarUsuarioRevenda(req.session.passport.user)
+              .then(function (listaDeUsusarios) {
                     res.render('usuario_revendedor/lista', {
-                        lista: result.models
+                        lista: listaDeUsusarios.toJSON()
                     });
-                    ///    return result;
                 });
-
-
         },
 
         indexAlterar: function(req, res) {
