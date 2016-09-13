@@ -1,9 +1,22 @@
 {
   "name": "areaazul-web-revendedor",
   "version": "0.0.1",
+  "license": "UNLICENSED",
   "private": true,
+  "author": {
+    "name": "Flávio de Sousa",
+    "email": "fl@viodesousa.com",
+    "url": "https://flaviodesousa.com"
+  },
   "scripts": {
     "start": "node ./bin/web-revendedor.js"
+  },
+  "publishConfig": {
+    "registry": "http://npm.flaviodesousa.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@bitbucket.org:solutions-inf-br/areaazul-web-revendedor.git"
   },
   "dependencies": {
     "areaazul": "^0.5.2",
