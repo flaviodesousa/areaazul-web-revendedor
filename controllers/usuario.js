@@ -1,13 +1,13 @@
 module.exports = function(app) {
 
     var AreaAzul = require('areaazul'),
-        Usuario_Revendedor = AreaAzul.models.usuario_revendedor,
-        PessoaFisica = AreaAzul.models.pessoafisica,
-        Pessoa = AreaAzul.models.pessoa;
-        Recuperacao_Senha = AreaAzul.models.recuperacao_senha;
+        Usuario_Revendedor = AreaAzul.db.model('usuario_revendedor'),
+        PessoaFisica = AreaAzul.db.model('pessoafisica'),
+        Pessoa = AreaAzul.db.model('pessoa');
+        Recuperacao_Senha = AreaAzul.db.model('recuperacao_senha');
         app.locals.moment = require('moment');
 
-    var usuarioController = {        
+    var usuarioController = {
         index: function(req, res) {
             res.render('usuario/index');
         },
@@ -38,16 +38,16 @@ module.exports = function(app) {
             }
     },
     alterarSenhas: function(req, res){
-    
+
         var password_recovery = {
             id_recuperacao_senha : req.params.id_recuperacao_senha
         }
 
-        Recuperacao_Senha.procurar(password_recovery, 
+        Recuperacao_Senha.procurar(password_recovery,
             function(result){
                 req.flash('info', 'Encontrado!');
                 res.render('usuario/alterarSenha', {value:result.attributes, message: req.flash('info')});
-              
+
             }, function(result){
 
                  req.flash('info', 'Erro não encontrado!');

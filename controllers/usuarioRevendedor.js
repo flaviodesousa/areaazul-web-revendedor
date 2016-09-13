@@ -1,7 +1,7 @@
 module.exports = function(app) {
     var AreaAzul = require('areaazul');
-    var Usuario_Revendedor = AreaAzul.models.UsuarioRevendedor;
-    var UsuarioRevendedorCollection = AreaAzul.collections.UsuarioRevendedor;
+    var Usuario_Revendedor = AreaAzul.db.model('UsuarioRevendedor');
+    var UsuarioRevendedorCollection = AreaAzul.db.collection('UsuarioRevendedor');
     var i = null;
 
     var usuarioRevendedorController = {

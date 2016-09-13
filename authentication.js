@@ -1,7 +1,7 @@
 'use strict';
 
 var AreaAzul = require('areaazul');
-var UsuarioRevendedor = AreaAzul.models.UsuarioRevendedor;
+var UsuarioRevendedor = AreaAzul.db.model('UsuarioRevendedor');
 var BusinessException = AreaAzul.BusinessException;
 var LocalStrategy = require('passport-local').Strategy;
 
