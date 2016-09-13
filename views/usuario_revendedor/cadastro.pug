@@ -4,7 +4,7 @@ block optionuser
     div#corpooptionuser
         div#filhooptionuser
           a(href="")
-          img(src= "../images/icons/back.png" id="imgoptionuser")
+          img(src= "../images/icons/back.png" class='imgoptionuser')
 
 block content
   body()
@@ -14,9 +14,9 @@ block content
       strong #{message}
     div#containerCorpo
       header.row
-        .col-md-4  
         .col-md-4
-        .col-md-4  
+        .col-md-4
+        .col-md-4
       .row
         .col-md-3
         .row.form
@@ -24,7 +24,7 @@ block content
              h4.text-center Cadastro de Usuario Revendedor
              br
              form(name='form', role='form', action="/usuario_revendedor/cadastrar_usuario_revendedor", method="POST")
-              
+
               .form-group
                 .row
                   .control-group
@@ -32,10 +32,10 @@ block content
                       label * CPF:
                       input#cpf_PessoaFisica.form-control(required='', type='text', name='cpf', value=values.cpf)
                     .form-group.col-lg-6
-                      label Celular: 
+                      label Celular:
                       input#celular_PessoaFisica.form-control(type='text', name='celular_pf', value=values.celular_pf)
               .form-group
-                label.control-label(for='fullName') * Nome: 
+                label.control-label(for='fullName') * Nome:
                 input#nomepf.form-control(required='', type='text', name='nome_pf', value=values.nome_pf)
               .form-group
                 label.control-label(for='country') * E-mail:
@@ -43,16 +43,16 @@ block content
                   span#basic-addon1.input-group-addon @
                   input#emailpf.form-control(required='', type='text', , name='email_pf', placeholder="email@example.com", aria-describedby='basic-addon2', value=values.email_pf)
               .form-group
-                label.control-label(for='country') * Nome de usuário: 
+                label.control-label(for='country') * Nome de usuário:
                 input#usuariopf.form-control(required='', type='text', name='nome_usuario_pf', value=values.nome_usuario_pf)
               .form-group
                 .row
                   .control-group
                     .form-group.col-lg-6
-                      label * Senha: 
+                      label * Senha:
                       input#senhapf.form-control(required='', type='password', name='senha_pf', value=values.senha_pf)
                     .form-group.col-lg-6
-                      label * Confirmar senha: 
+                      label * Confirmar senha:
                       input#confirmar_senhapf.form-control(required='', type='password', name='confirmar_senha_pf', value=values.confirmar_senha_pf)
               .form-group
                   .row
@@ -66,16 +66,16 @@ block content
                 .form-group
                   .controls
                     button#button1id.btn.btn-small.btn-primary(name='button1id') Salvar
-                    button#button2id.btn.btn-danger.pull-right(name='button2id', type='reset') Cancelar      
+                    button#button2id.btn.btn-danger.pull-right(name='button2id', type='reset') Cancelar
         .col-md-3
       footer.row
-        .col-md-4  
         .col-md-4
-        .col-md-4  
+        .col-md-4
+        .col-md-4
       div
       block append scripts
           script(src='/js/usuario_revendedor/cadastro.js')
-     
+
 
 
 

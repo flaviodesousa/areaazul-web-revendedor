@@ -17,22 +17,23 @@ html
     div#container
       div#topo
 
-      div#corpooptionuser
-        div#filhooptionuser
-          span
-            label Usuário:
-        div#filhooptionicons
-          span
-            a(href="/ativacao/ativacaoRevenda")
-              img(src= "../images/icons/home.png" id="imgoptionuser") 
-          span
-            a(href="/logout")
-              img(src= "../images/icons/exit.png" id="imgoptionuser") 
+      block optionuser
+        div#corpooptionuser
+          div#filhooptionuser
+            span
+              label Usuário:
+          div#filhooptionicons
+            span
+              a(href="/ativacao/ativacaoRevenda")
+                img(src= "../images/icons/home.png" class='imgoptionuser')
+            span
+              a(href="/logout")
+                img(src= "../images/icons/exit.png" class='imgoptionuser')
       div#corpo
 
         div#espacotop
           span
-            a#link(href='/usuario_revendedor/lista') Usuários de Revenda             
+            a#link(href='/usuario_revendedor/lista') Usuários de Revenda 
           block content
         div#espacofooter
 
