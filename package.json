@@ -6,7 +6,7 @@
     "start": "node ./bin/web-revendedor.js"
   },
   "dependencies": {
-    "areaazul": "^0.5.1",
+    "areaazul": "^0.5.2",
     "body-parser": "~1.0.0",
     "bootstrap": "latest",
     "connect-flash": "*",
