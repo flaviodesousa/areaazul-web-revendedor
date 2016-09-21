@@ -9,7 +9,6 @@ var load = require('express-load');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
-var bodyParser = require('body-parser');
 var errorHandler = require('errorhandler');
 var session = require('express-session');
 
@@ -37,26 +36,26 @@ app.use(session({
   name: 'areaazul-web-adm',
   resave: true,
   saveUninitialized: true,
-  cookie: { maxAge:  900000},
+  cookie: { maxAge:  900000}
 }));
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(expressValidator());
 
-// Modulos - Modelo - Controler - Rotas
+// Modulos - Modelo - Controller - Rotas
 load('controllers').then('routes').into(app);
 
 if (app.get('env') === 'development') {
   app.use(errorHandler());
 } else {
-  // Production error handler no stacktraces leaked to user
+  // Production error handler no stack traces leaked to user
   app.use(function(err, req, res, next) {
-  res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {},
-  });
+    res.status(err.status || 500);
+    res.render('error', {
+      message: err.message,
+      error: {}
+    });
   next();
 });
 }
