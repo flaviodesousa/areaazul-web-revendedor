@@ -31,6 +31,10 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use((req, res, next) => {
+  res.set('X-AreaAzul-API-Endpoint', process.env.AREAAZUL_API_SERVER);
+  next();
+});
 app.use(session({
   secret: webSecret,
   name: 'areaazul-web-adm',
