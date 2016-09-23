@@ -13,3 +13,7 @@ charset = utf-8
 [*.{js,py}]
 indent_style = space
 indent_size = 2
+
+[*.{pug,jade}]
+indent_style = space
+indent_size = 4
