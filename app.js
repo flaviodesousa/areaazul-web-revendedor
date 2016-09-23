@@ -1,4 +1,3 @@
-
 'use strict';
 
 const AreaAzul = require('areaazul');
@@ -40,7 +39,7 @@ app.use(session({
   name: 'areaazul-web-adm',
   resave: true,
   saveUninitialized: true,
-  cookie: { maxAge:  900000}
+  cookie: {maxAge: 900000}
 }));
 app.use(flash());
 app.use(passport.initialize());
@@ -60,8 +59,8 @@ if (app.get('env') === 'development') {
       message: err.message,
       error: {}
     });
-  next();
-});
+    next();
+  });
 }
 
 module.exports = app;
