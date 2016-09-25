@@ -1,64 +1,55 @@
-module.exports = function (app) {
+module.exports = function() {
   var AreaAzul = require('areaazul');
   var Ativacao = AreaAzul.db.model('Ativacao');
   var EstadoCollection = AreaAzul.db.collection('Estados');
   var CidadeCollection = AreaAzul.db.collection('Cidades');
   var Configuracao = AreaAzul.db.model('Configuracao');
 
-  var ativacaoController = {
-    atualizarCidades: function () {
-      CidadeCollection.listar(function (result) {
-        res.render('ativacao/ativacao_revenda', {
-          lista: result.models, values: req.body
-        });
-        return result;
-      });
-    },
-    listarEstados: function (req, res) {
+  return {
+    listarEstados: function(req, res) {
       EstadoCollection.listar(
-        function (result) {
+        function(result) {
           res.send(result.toJSON());
         });
     },
-    ativar: function (req, res) {
+    ativar: function(req, res) {
 
       var link = null;
       if (req.user.attributes.autorizacao === 'administrador') {
-        link = 'ativacao/ativacaoRevendedor';
+        link = 'ativacao/ativacao-por-administrador';
       } else {
-        link = 'ativacao/ativacaoUsuarioRevendedor';
+        link = 'ativacao/ativacao-por-usuario';
       }
       return EstadoCollection
         .listar()
-        .then(function (listaDeEstados) {
+        .then(function(listaDeEstados) {
           res.render(link, {
             lista: listaDeEstados.models, values: req.body
           });
         });
     },
-    listarCidades: function (req, res) {
+    listarCidades: function(req, res) {
       CidadeCollection.listar(
         req.params.id,
-        function (result) {
+        function(result) {
           res.send(result.toJSON());
         });
     },
-    salvarAtivacao: function (req, res) {
+    salvarAtivacao: function(req, res) {
       var valor = 0;
       var link = null;
-      var listaVazia = [];
       if (req.user.attributes.autorizacao === 'administrador') {
-        link = 'ativacao/ativacaoRevendedor';
+        link = 'ativacao/ativacao-por-administrador';
       } else {
-        link = 'ativacao/ativacaoUsuarioRevendedor';
+        link = 'ativacao/ativacao-por-usuario';
       }
 
       if (req.body.tempo !== null) {
         var tamanhoArray = Configuracao.getConfiguracaoTempo().length;
         var configuracoes = Configuracao.getConfiguracaoTempo();
         for (var i = 0; i < tamanhoArray; i++) {
-          if (req.body.tempo === configuracoes[i].quantidade_tempo) {
-            valor = configuracoes[i].preco;
+          if (req.body.tempo === configuracoes[ i ].quantidade_tempo) {
+            valor = configuracoes[ i ].preco;
           }
         }
       }
@@ -72,11 +63,11 @@ module.exports = function (app) {
         cor: req.body.cor,
         placa: req.body.placa,
         tipo_veiculo: req.body.tipo_veiculo,
-        usuario_pessoa_id: req.session.passport.user,
+        usuario_pessoa_id: req.session.passport.user
       };
 
       Ativacao.ativarPelaRevenda(dadosAtivacao)
-        .then(function (revenda) {
+        .then(function(revenda) {
           req.body = [];
 
           req.flash('info', 'Ativação realizada com sucesso!');
@@ -86,11 +77,11 @@ module.exports = function (app) {
           });
           return revenda;
         })
-        .catch(function (err) {
+        .catch(function(err) {
 
           if (err.details) {
             for (var i = 0; i < err.details.length; i++) {
-              req.flash('info', err.details[i].problem);
+              req.flash('info', err.details[ i ].problem);
               res.render(link, {
                 message: req.flash('info'),
                 values: req.body
@@ -107,5 +98,4 @@ module.exports = function (app) {
         });
     }
   };
-  return ativacaoController;
 };
