@@ -23,23 +23,24 @@ var expressValidator = require('express-validator');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-var webSecret = process.env.AREAAZUL_WEB_SECRET || '4r344zu1';
+const AREAAZUL_WEB_SECRET = process.env.AREAAZUL_WEB_SECRET || '4r344zu1';
+const AREAAZUL_API_ENDPOINT = process.env.AREAAZUL_API_ENDPOINT;
 
 app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use((req, res, next) => {
-  res.cookie('api-endpoint', process.env.AREAAZUL_API_ENDPOINT);
+  res.cookie('api-endpoint', AREAAZUL_API_ENDPOINT);
   next();
 });
 app.use(session({
-  secret: webSecret,
+  secret: AREAAZUL_WEB_SECRET,
   name: 'areaazul-web-adm',
   resave: true,
   saveUninitialized: true,
-  cookie: {maxAge: 900000}
+  cookie: { maxAge: 900000 }
 }));
 app.use(flash());
 app.use(passport.initialize());
