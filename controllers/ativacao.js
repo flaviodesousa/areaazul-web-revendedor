@@ -1,17 +1,9 @@
 module.exports = function() {
   var AreaAzul = require('areaazul');
   var Ativacao = AreaAzul.db.model('Ativacao');
-  var EstadoCollection = AreaAzul.db.collection('Estados');
-  var CidadeCollection = AreaAzul.db.collection('Cidades');
   var Configuracao = AreaAzul.db.model('Configuracao');
 
   return {
-    listarEstados: function(req, res) {
-      EstadoCollection.listar(
-        function(result) {
-          res.send(result.toJSON());
-        });
-    },
     ativar: function(req, res) {
 
       var link = null;
@@ -20,20 +12,9 @@ module.exports = function() {
       } else {
         link = 'ativacao/ativacao-por-usuario';
       }
-      return EstadoCollection
-        .listar()
-        .then(function(listaDeEstados) {
-          res.render(link, {
-            lista: listaDeEstados.models, values: req.body
-          });
-        });
-    },
-    listarCidades: function(req, res) {
-      CidadeCollection.listar(
-        req.params.id,
-        function(result) {
-          res.send(result.toJSON());
-        });
+      res.render(link, {
+        lista: listaDeEstados.models, values: req.body
+      });
     },
     salvarAtivacao: function(req, res) {
       var valor = 0;

@@ -1,5 +1,5 @@
 block content
-    if(message)
+    if message
         .alert.alert-danger
             button.close(type='button', data-dismiss='alert') x
             strong #{message}
@@ -102,5 +102,6 @@ block content
 
 
 block append scripts
-    script(src='/js/ativacao/ativacaoRevenda.js')
+    script(src='/js/lib/js.cookie.js')
+    script(src='/js/ativacao/ativacao.js')
     script(src='/js/ativacao/cidades.js')
