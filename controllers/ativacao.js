@@ -12,9 +12,7 @@ module.exports = function() {
       } else {
         link = 'ativacao/ativacao-por-usuario';
       }
-      res.render(link, {
-        lista: listaDeEstados.models, values: req.body
-      });
+      res.render(link, { values: req.body });
     },
     salvarAtivacao: function(req, res) {
       var valor = 0;
@@ -58,7 +56,7 @@ module.exports = function() {
           });
           return revenda;
         })
-        .catch(function(err) {
+        .catch(AreaAzul.BusinessException, function(err) {
 
           if (err.details) {
             for (var i = 0; i < err.details.length; i++) {
