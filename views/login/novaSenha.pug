@@ -4,14 +4,14 @@ extends ../layoutSemLogin
 block optionuser
     div#corpooptionuser
         div#filhooptionuser
- 
+
 
 block content
-   -if(message)
-        div(id="msg" class="alert alert-danger" role="alert" style="width:500px; heigth:25px;") 
-            button(type="button" onclick="$('#msg').alert('close')" data-dismiss="alert" class="close" aria-label="Close") &times;
+    if message
+        div.alert.alert-danger(id="msg" role="alert" style="width:500px; heigth:25px;")
+            button.close(type="button" onclick="$('#msg').alert('close')" data-dismiss="alert" class="close" aria-label="Close") &times;
             strong #{message}
-    -if(!message)
+    else
         div
     div#corpologin
         div#titulologin

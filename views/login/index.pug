@@ -24,7 +24,7 @@ block content
                         img.img-responsive(src='http://www.solutions.inf.br/areaazul/imagens/area_azul.png', alt='')
                         input.form-control.input-lg(type='text', placeholder='usuario', name='login')
                         input.form-control.input-lg(type='password', name='senha')
-                        .pwstrength_viewport_progress
+                        span.pwstrength_viewport_progress
                         button.btn.btn-primary.btn-lg.btn-block Entrar
                         div
                             a(href='/revendedor/cadastro') Criar uma conta
@@ -32,6 +32,5 @@ block content
                             a(href='/novaSenha') Esqueceu sua senha ?
             .col-md-3
 
-    div
     block append
         link(rel='stylesheet', href='/stylesheets/index.css')

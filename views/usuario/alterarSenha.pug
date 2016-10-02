@@ -17,7 +17,6 @@ block content
 						td &nbsp;
 					tr
 						td
-
 					tr
 						td &nbsp;
 
@@ -30,32 +29,32 @@ block content
 			br
 			br
 			center
-			-if(message)
+			if message
 				label#messages #{message}
 			br
 			br
 			table
 				tr
 					td
-						label#textoFormulario Nova senha
-						label#obrigatorios *
+						label.textoFormulario Nova senha
+						label.obrigatorios *
 					td
 						input(id="senha" name="senha" type="password" maxlength="11" size="1" style="background-color:  #e2e9ee; width: 84px;")
 				tr
 					td
-						label#textoFormulario Confirmar senha
-						label#obrigatorios *
+						label.textoFormulario Confirmar senha
+						label.obrigatorios *
 					td
 						input(id="conf_senha" name="conf_senha" type="password" maxlength="11" size="1" style="background-color:  #e2e9ee; width: 84px;")
 				tr
 					td
-						&nbsp
+						| &nbsp;
 					td
-						&nbsp
+						| &nbsp;
 				tr
 					td
-						label#obrigatorios (*) Campos obrigatórios
+						label.obrigatorios (*) Campos obrigatórios
 					td
-						&nbsp
+						| &nbsp;
 					td
 						input(type="submit" id="buttonForm" name="buttonSave" value="salvar")

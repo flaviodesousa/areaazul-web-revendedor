@@ -3,62 +3,58 @@ extends ../layoutUsuarioRevenda
 block optionuser
     div#corpooptionuser
         div#filhooptionuser
-          a(href="")
-          img(src= "../images/icons/back.png" class='imgoptionuser')
+            a(href="")
+            img(src= "../images/icons/back.png" class='imgoptionuser')
 
 block content
-  body()
-   -if(message)
-     .alert.alert-danger
-      button.close(type='button', data-dismiss='alert') x
-      strong #{message}
-    div#containerCorpo
-      header.row
-        .col-md-4
-        .col-md-4
-        .col-md-4
-      .row
-        .col-md-1
-        .row.myform
-          .col-md-10
-            h4.text-center Usuários
-            br
+    body()
+        if message
+            .alert.alert-danger
+                button.close(type='button', data-dismiss='alert') x
+                strong #{message}
+        div#containerCorpo
+            header.row
+                .col-md-4
+                .col-md-4
+                .col-md-4
             .row
-              .pull-right
-                a.btn.btn-default(href="/usuario_revendedor/cadastro", role="button") Cadastro novo usuário
-            .row
-              .table-responsive
-                table.table
-                  table.table.table-bordered
-                    thead
-                      tr
-                        th  CPF
-                        th  Nome
-                        th  Tipo
-                        th  Status
-                        th  &nbsp;
-                        th  &nbsp;
-                      tbody
-                      each valor, i in lista
-                        tr
-                          td #{valor.attributes.cpf}
-                          td #{valor.attributes.nome}
-                          td #{valor.attributes.autorizacao}
-                          td #{valor.attributes.ativo}
-                          td
-                            input#status(type='checkbox', name='status', checked=(valor.attributes.ativo), onchange="window.location.href='/usuario_revendedor/deletar/#{valor.attributes.id}'")
-                          td
-                            a(href='/usuario_revendedor/alterar/#{valor.attributes.id}', title="Alterar") Alterar
-        .col-md-1
+                .col-md-1
+                .row.myform
+                    .col-md-10
+                        h4.text-center Usuários
+                        br
+                        .row
+                            .pull-right
+                                a.btn.btn-default(href="/usuario_revendedor/cadastro", role="button") Cadastro novo usuário
+                        .row
+                            .table-responsive
+                                table.table
+                                    table.table.table-bordered
+                                        thead
+                                            tr
+                                                th  CPF
+                                                th  Nome
+                                                th  Tipo
+                                                th  Status
+                                                th  &nbsp;
+                                                th  &nbsp;
+                                            tbody
+                                            each valor, i in lista
+                                                tr
+                                                    td #{valor.attributes.cpf}
+                                                    td #{valor.attributes.nome}
+                                                    td #{valor.attributes.autorizacao}
+                                                    td #{valor.attributes.ativo}
+                                                    td
+                                                        input#status(type='checkbox', name='status', checked=(valor.attributes.ativo), onchange="window.location.href='/usuario_revendedor/deletar/#{valor.attributes.id}'")
+                                                    td
+                                                        a(href='/usuario_revendedor/alterar/#{valor.attributes.id}', title="Alterar") Alterar
+                .col-md-1
 
-      footer.row
-        .col-md-4
-        .col-md-4
-        .col-md-4
-      div
-      block append scripts
-          script(src='/js/usuario_revendedor/lista.js')
-
-
-
-
+            footer.row
+                .col-md-4
+                .col-md-4
+                .col-md-4
+            div
+            block append scripts
+                script(src='/js/usuario_revendedor/lista.js')

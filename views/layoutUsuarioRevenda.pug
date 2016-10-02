@@ -1,45 +1,44 @@
 doctype html
 html
-  head
-    block title
-      title Area Azul
+    head
+        block title
+            title Area Azul
 
-    block head
-      meta(charset='utf-8')
-      meta(http-equiv='X-UA-Compatible', content='IE=edge')
-      meta(name='viewport', content='width=device-width, initial-scale=1')
-      link(rel='stylesheet', media='screen', href='//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css')
-      link(rel='stylesheet', href='/stylesheets/pagina.css')
-      link(rel='stylesheet', href='/stylesheets/skinning.css')
-      link(rel='stylesheet', href='/stylesheets/menu.css')
-      link(rel='stylesheet', href='/stylesheets/home.css')
-  body
-    div#container
-      div#topo
+        block head
+            meta(charset='utf-8')
+            meta(http-equiv='X-UA-Compatible', content='IE=edge')
+            meta(name='viewport', content='width=device-width, initial-scale=1')
+            link(rel='stylesheet', media='screen', href='//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css')
+            link(rel='stylesheet', href='/stylesheets/pagina.css')
+            link(rel='stylesheet', href='/stylesheets/skinning.css')
+            link(rel='stylesheet', href='/stylesheets/menu.css')
+            link(rel='stylesheet', href='/stylesheets/home.css')
+    body
+        div#container
+            div#topo
 
-      div#corpooptionuser
-        div#filhooptionuser
-          span
-            label Usuário:
-        div#filhooptionicons
-          span
-            a(href="/ativacao/ativacaoRevenda")
-              img(src= "/images/icons/home.png" class='imgoptionuser')
-          span
-            a(href="/logout")
-              img(src= "/images/icons/exit.png" class='imgoptionuser')
-      div#corpo
+            div#corpooptionuser
+                div#filhooptionuser
+                    span
+                        label Usuário:
+                div#filhooptionicons
+                    span
+                        a(href='/ativacao/ativacaoRevenda')
+                            img(src= '/images/icons/home.png' class='imgoptionuser')
+                    span
+                        a(href='/logout')
+                            img(src= '/images/icons/exit.png' class='imgoptionuser')
+            div#corpo
 
-        div#espacotop
-          block content
-        div#espacofooter
+                div#espacotop
+                    block content
+                div#espacofooter
 
-      footer
-        div#rodape
-          span#textorodape Copyright © Solutions - 2012-2015 Área Azul
+            footer
+                div#rodape
+                    span#textorodape Copyright © Solutions - 2012-2015 Área Azul
 
-    block scripts
-      script(src="https://cdnjs.cloudflare.com/ajax/libs/lodash-compat/3.5.0/lodash.min.js")
-      script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js")
-      script(src='//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js')
-      script(src="http://digitalbush.com/wp-content/uploads/2014/10/jquery.maskedinput.js")
+        block scripts
+            script(src='/js/lib/lodash.min.js')
+            script(src='/js/lib/jquery.min.js')
+            script(src='/js/lib/bootstrap.min.js')
