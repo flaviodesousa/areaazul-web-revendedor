@@ -1,0 +1,17 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 5,
+    "sourceType": "script"
+  },
+  "extends": "eslint:recommended",
+  "env": {
+    "browser": true,
+    "node": false,
+    "jquery": true
+  },
+  "rules": {
+    "semi": 2,
+    "no-template-curly-in-string": 2,
+    "block-scoped-var": 2
+  }
+}
