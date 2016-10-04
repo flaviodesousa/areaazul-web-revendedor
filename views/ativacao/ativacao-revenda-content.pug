@@ -36,7 +36,7 @@ block content
                                 //-       select#cod_cidades.form-control(name='cod_cidades')
 
                         br
-                        #camposInvisiveis2
+                        #detalhesDoVeiculo
                             .row
                                 .form-group
                                     .form-group.col-lg-6
@@ -45,29 +45,28 @@ block content
                                     .form-group.col-lg-6
                                         label * Modelo
                                         input#modelo.form-control(type='text', placeholder='Modelo', name='modelo', value=values.modelo)
-                            br
                             .row
                                 .form-group
                                     .form-group.col-lg-6
                                         label * Cor
                                         input#cor.form-control(type='text', placeholder='Cor', name='cor', value=values.cor)
-                        .row
-                            .form-group
+                            .row
+                                .form-group
 
-                                h5.text-center * Tipo do veículo
-                        .row
-                            .form-group
-                                .form-inline(align='center')
-                                    .input-group
-                                        label.radio-inline
-                                            input#radioButtonCarro(type='radio', checked='true', value='1', onclick='verPorRadio(this.value)')
-                                            |  Carro
-                                        label.radio-inline
-                                            input#radioButtonMoto(type='radio', value='2', onclick='verPorRadio(this.value)')
-                                            |  Moto
-                                        label.radio-inline
-                                            input#radioButtonCamionete(type='radio', value='3', onclick='verPorRadio(this.value)')
-                                            |  Camionete
+                                    h5.text-center * Tipo do veículo
+                            .row
+                                .form-group
+                                    .form-inline(align='center')
+                                        .input-group
+                                            label.radio-inline
+                                                input#radioButtonCarro(type='radio', checked='true', value='1', onclick='verPorRadio(this.value)')
+                                                |  Carro
+                                            label.radio-inline
+                                                input#radioButtonMoto(type='radio', value='2', onclick='verPorRadio(this.value)')
+                                                |  Moto
+                                            label.radio-inline
+                                                input#radioButtonCamionete(type='radio', value='3', onclick='verPorRadio(this.value)')
+                                                |  Camionete
                         .form-group
                             .form-inline
                                 .form-group
@@ -102,6 +101,6 @@ block content
 
 
 block append scripts
+    script(src='/js/lib/jquery.inputmask.bundle.min.js')
     script(src='/js/lib/js.cookie.js')
-    script(src='/js/ativacao/ativacao.js')
-    script(src='/js/ativacao/cidades.js')
+    script(src='/js/ativacao.js')

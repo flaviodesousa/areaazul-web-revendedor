@@ -43,9 +43,9 @@ body{
 }
 
 
-#mesagem{
+#mensagem{
 	color:red;
-	font-family:'Tahoma', 'MS Trebuchet', 'Arial', 'Verdana';
+	font-family: 'Tahoma', 'MS Trebuchet', 'Arial', 'Verdana', sans-serif;
 
 }
 
@@ -53,7 +53,7 @@ body{
 	font-size:11px;
     color: red;
 }
-#obrigatorios{
+.obrigatorios{
   color: red;
   font-size:10px;
 }
@@ -68,7 +68,7 @@ body{
 #textorodape{
 	color: #808080;
 	font-size: 12px;
-	font-family: 'Book Antiqua';
+	font-family: 'Book Antiqua', serif;
 }
 
 #tabelatitulopagina{
@@ -78,13 +78,13 @@ body{
 #tituloPagina{
 	margin: 0 auto;
 	font-size: x-large;
-	font-family: Calibri;
+	font-family: Calibri, sans-serif;
 	color: #808080;
 	background-color: #ffffff;
 }
 
-#textoFormulario{
-	font-family: Calibri;
+.textoFormulario{
+	font-family: Calibri, sans-serif;
 	font-size: 12px;
 }
 
@@ -101,7 +101,6 @@ body{
 	border-width: 1px;
 	border-style: solid;
 	padding: 1px;
-	color: rgb(192, 192, 192);
 	position: relative;
 	top: 110px;
 }
