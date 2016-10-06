@@ -1,3 +1,6 @@
+block append head
+    link(rel='stylesheet', href='/stylesheets/ativacao.css')
+
 block content
     if message
         .alert.alert-danger
@@ -16,57 +19,50 @@ block content
                 form(name='myform', role='form', action="/ativacao/salvar_ativacao", method='POST')
                     .form-group
                         .row
-                            .form-group
-
-                                .form-group.col-lg-3
-                                    label *
-                                    label Placa
-                                    input#campoPlaca.form-control(type='text', placeholder='Placa', name='placa', value=values.placa)
-                                //- #camposInvisiveis
-                                //-   .form-group.col-lg-3
-
-                                //-       label * UF
-                                //-       select#cod_estados.form-control(name='cod_estados')
-                                //-         if(lista)
-                                //-           each valor, i in lista
-                                //-             option(selected="#{valor.attributes.id_estado}") #{valor.attributes.uf}
-                                //-   .form-group.col-lg-6
-
-                                //-       label * Cidade
-                                //-       select#cod_cidades.form-control(name='cod_cidades')
+                            .form-group.col-lg-3
+                                span.obrigatorios *
+                                label Placa
+                                input#campoPlaca.form-control(type='text', placeholder='Placa', name='placa', value=values.placa)
 
                         br
                         #detalhesDoVeiculo
                             .row
-                                .form-group
-                                    .form-group.col-lg-6
-                                        label * Marca
-                                        input#marca.form-control(type='text',placeholder='Marca', name='marca', value=values.marca)
-                                    .form-group.col-lg-6
-                                        label * Modelo
-                                        input#modelo.form-control(type='text', placeholder='Modelo', name='modelo', value=values.modelo)
+                                .form-group.col-lg-12
+                                    span.obrigatorios *
+                                    label(for='campoCidade') Cidade da placa
+                                    input#campoCidade.form-control(type='text', name='cidade', value=values.nomeCidade)
                             .row
-                                .form-group
-                                    .form-group.col-lg-6
-                                        label * Cor
-                                        input#cor.form-control(type='text', placeholder='Cor', name='cor', value=values.cor)
+                                .form-group.col-lg-6
+                                    span.obrigatorios *
+                                    label(for='marca') Marca
+                                    input#marca.form-control(type='text',placeholder='Marca', name='marca', value=values.marca)
+                                .form-group.col-lg-6
+                                    span.obrigatorios *
+                                    label(for='modelo') Modelo
+                                    input#modelo.form-control(type='text', placeholder='Modelo', name='modelo', value=values.modelo)
                             .row
-                                .form-group
+                                .form-group.col-lg-6
+                                    span.obrigatorios *
+                                    label(for='cor') Cor
+                                    input#cor.form-control(type='text', placeholder='Cor', name='cor', value=values.cor)
 
-                                    h5.text-center * Tipo do veículo
                             .row
-                                .form-group
-                                    .form-inline(align='center')
-                                        .input-group
-                                            label.radio-inline
-                                                input#radioButtonCarro(type='radio', checked='true', value='1', onclick='verPorRadio(this.value)')
-                                                |  Carro
-                                            label.radio-inline
-                                                input#radioButtonMoto(type='radio', value='2', onclick='verPorRadio(this.value)')
-                                                |  Moto
-                                            label.radio-inline
-                                                input#radioButtonCamionete(type='radio', value='3', onclick='verPorRadio(this.value)')
-                                                |  Camionete
+                                .form-group.form-inline.input-group
+                                    label.radio-inline(for='radioButtonCarro')
+                                        input#radioButtonCarro(type='radio', name='tipoVeiculo',
+                                            value='carro', checked=values.tipo_veiculo=='carro')
+                                        | Carro
+
+                                    label.radio-inline(for='radioButtonMoto')
+                                        input#radioButtonMoto(type='radio', name='tipoVeiculo',
+                                            value='moto', checked=values.tipo_veiculo=='moto')
+                                        | Moto
+
+                                    label.radio-inline(for='radioButtonCaminhonete')
+                                        input#radioButtonCaminhonete(type='radio', name='tipoVeiculo',
+                                            value='caminhonete', checked=values.tipo_veiculo=='caminhonete')
+                                        | Caminhonete
+
                         .form-group
                             .form-inline
                                 .form-group

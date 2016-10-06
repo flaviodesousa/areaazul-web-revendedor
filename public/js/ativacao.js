@@ -2,12 +2,6 @@
 
 const AREAAZUL_API_HOST = Cookies.get('api-endpoint');
 
-function verPorRadio(elemento) {
-  document.getElementById('radioButtonCarro').checked = elemento === '1';
-  document.getElementById('radioButtonMoto').checked = elemento === '2';
-  document.getElementById('radioButtonCamionete').checked = elemento === '3';
-}
-
 $(document).ready(function() {
   const $campoPlaca = $('#campoPlaca');
   const $campoCelular = $('#campoCelular');
