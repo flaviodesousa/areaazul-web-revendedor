@@ -1,4 +1,11 @@
-input, select, textarea, button, keygen, isindex, legend, a {
+legend {
+	font-weight: 700;
+	font-size: 14px;
+	border-bottom: 0;
+	margin-bottom: 5px;
+}
+
+input, select, textarea, button, keygen, a {
 	font-size: 11px;
 	font-family: Arial, Verdana, sans-serif ;
 	color: #000000;
@@ -18,13 +25,11 @@ a:hover {
 a:visited {
 	color: #0090FF;
 }
-input, select, textarea, button, keygen, isindex {
+input, select, textarea, button, keygen {
 	border-width: 1px;
 	border-color: #C0C0C0;
 	color: #000000;
 }
-
-
 
 textarea, input[type="text"], input[type="password"], select {
 	border-width: 1px;
@@ -38,29 +43,20 @@ textarea, input[type="text"], input[type="password"], select {
 	background-color: #ffffff;
 	background-image: url(../images/inputfundo.png);
 }
+
 textarea[disabled], input[type="text"][disabled], input[type="password"][disabled], select[disabled] {
 	color: #C0C0C0;
 	cursor: default;
 }
-fieldset{
- display:none;
- width: 350px;
- padding:20px;
- margin-top:50px;
- margin-left: 85px;
 
-
- }
-#first{
+#first {
     display:block;
     width: 320px;
     padding:20px;
     margin-top:10px;
-    
     margin-left: 25px;
     border:10px;
-     box-shadow: 0px 0px 1px 1px;
-
+    box-shadow: 0 0 1px 1px;
 }
 .content{
     width:960px;

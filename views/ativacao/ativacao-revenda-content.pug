@@ -4,92 +4,87 @@ block append head
 block content
     if message
         .alert.alert-danger
-            button.close(type='button', data-dismiss='alert') x
+            a.close(href='#', data-dismiss='alert') &times;
             strong #{message}
     header.row
         .col-md-4  
         .col-md-4
         .col-md-4
     .row
-        .col-md-3
-        .row.myform
-            .col-md-6
-                h4.text-center Ativação
-                br
-                form(name='myform', role='form', action="/ativacao/salvar_ativacao", method='POST')
-                    .form-group
-                        .row
-                            .form-group.col-lg-3
-                                span.obrigatorios *
-                                label Placa
-                                input#campoPlaca.form-control(type='text', placeholder='Placa', name='placa', value=values.placa)
+        .col-md-2
+        .col-md-8
+            h4.text-center Ativação
+            form(name='myform', role='form', action="/ativacao/salvar_ativacao", method='POST')
+                .row
+                    .form-group.col-lg-3
+                        span.obrigatorios *
+                        label Placa
+                        input#campoPlaca.form-control(type='text', placeholder='Placa', name='placa', value=values.placa)
 
-                        br
-                        #detalhesDoVeiculo
-                            .row
-                                .form-group.col-lg-12
-                                    span.obrigatorios *
-                                    label(for='campoCidade') Cidade da placa
-                                    input#campoCidade.form-control(type='text', name='cidade', value=values.nomeCidade)
-                            .row
-                                .form-group.col-lg-6
-                                    span.obrigatorios *
-                                    label(for='marca') Marca
-                                    input#marca.form-control(type='text',placeholder='Marca', name='marca', value=values.marca)
-                                .form-group.col-lg-6
-                                    span.obrigatorios *
-                                    label(for='modelo') Modelo
-                                    input#modelo.form-control(type='text', placeholder='Modelo', name='modelo', value=values.modelo)
-                            .row
-                                .form-group.col-lg-6
-                                    span.obrigatorios *
-                                    label(for='cor') Cor
-                                    input#cor.form-control(type='text', placeholder='Cor', name='cor', value=values.cor)
+                #detalhesDoVeiculo
+                    .row
+                        .form-group.col-lg-12
+                            span.obrigatorios *
+                            label(for='campoCidade') Cidade da placa
+                            input#campoCidade.form-control(type='text', name='cidade', value=values.nomeCidade)
+                    .row
+                        .form-group.col-lg-6
+                            span.obrigatorios *
+                            label(for='marca') Marca
+                            input#marca.form-control(type='text',placeholder='Marca', name='marca', value=values.marca)
+                        .form-group.col-lg-6
+                            span.obrigatorios *
+                            label(for='modelo') Modelo
+                            input#modelo.form-control(type='text', placeholder='Modelo', name='modelo', value=values.modelo)
+                    .row
+                        .form-group.col-lg-6
+                            span.obrigatorios *
+                            label(for='cor') Cor
+                            input#cor.form-control(type='text', placeholder='Cor', name='cor', value=values.cor)
+                        .form-group.col-lg-6
+                            fieldset.form-inline.input-group
+                                legend Tipo
+                                label.radio-inline(for='radioButtonCarro')
+                                    input#radioButtonCarro(type='radio', name='tipoVeiculo',
+                                        value='carro', checked=values.tipo_veiculo=='carro')
+                                    | Carro
 
-                            .row
-                                .form-group.form-inline.input-group
-                                    label.radio-inline(for='radioButtonCarro')
-                                        input#radioButtonCarro(type='radio', name='tipoVeiculo',
-                                            value='carro', checked=values.tipo_veiculo=='carro')
-                                        | Carro
+                                label.radio-inline(for='radioButtonMoto')
+                                    input#radioButtonMoto(type='radio', name='tipoVeiculo',
+                                        value='moto', checked=values.tipo_veiculo=='moto')
+                                    | Moto
 
-                                    label.radio-inline(for='radioButtonMoto')
-                                        input#radioButtonMoto(type='radio', name='tipoVeiculo',
-                                            value='moto', checked=values.tipo_veiculo=='moto')
-                                        | Moto
+                                label.radio-inline(for='radioButtonCaminhonete')
+                                    input#radioButtonCaminhonete(type='radio', name='tipoVeiculo',
+                                        value='caminhonete', checked=values.tipo_veiculo=='caminhonete')
+                                    | Caminhonete
 
-                                    label.radio-inline(for='radioButtonCaminhonete')
-                                        input#radioButtonCaminhonete(type='radio', name='tipoVeiculo',
-                                            value='caminhonete', checked=values.tipo_veiculo=='caminhonete')
-                                        | Caminhonete
-
+                .form-group
+                    .form-inline
                         .form-group
-                            .form-inline
-                                .form-group
-                                    label * Tempo  
-                                .form-group
-                                    .form-group.col-lg-5
-                                    select.form-control(id="tempo" name="tempo")
-                                        option( value='60' selected=(values.tempo==60)) 1 Hora
-                                        option( value='120' selected=(values.tempo==120)) 2 Horas
-                                        option( value='180' selected=(values.tempo == 180)) 3 Horas
-                                        option( value='240' selected=(values.tempo==240)) 4 Horas
-                            br
-                            .form-inline
-                                label  Celular
-                                .form-group
-                                    .form-group.col-lg-5
-                                        input#campoCelular.form-control(type='text', placeholder='Celular', name='celular', value=values.celular)
-                    .form-group
-                        .form-inline
-                            .form-group.pull-right
-                                label * Campos Obrigátorios
+                            label * Tempo  
+                        .form-group
+                            .form-group.col-lg-5
+                            select.form-control(id="tempo" name="tempo")
+                                option( value='60' selected=(values.tempo==60)) 1 Hora
+                                option( value='120' selected=(values.tempo==120)) 2 Horas
+                                option( value='180' selected=(values.tempo == 180)) 3 Horas
+                                option( value='240' selected=(values.tempo==240)) 4 Horas
                     br
-                    br
-                    .form-group
-                        .controls
-                            button#button1id.btn.btn-small.btn-primary(name='button1id') Ativar
-            .col-md-3
+                    .form-inline
+                        label  Celular
+                        .form-group
+                            .form-group.col-lg-5
+                                input#campoCelular.form-control(type='text', placeholder='Celular', name='celular', value=values.celular)
+                .form-group
+                    .form-inline
+                        .form-group.pull-right
+                            label * Campos Obrigátorios
+                br
+                br
+                .form-group
+                    .controls
+                        button#button1id.btn.btn-small.btn-primary(name='button1id') Ativar
         footer.row
             .col-md-4  
             .col-md-4
