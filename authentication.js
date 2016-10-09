@@ -2,7 +2,6 @@
 
 var AreaAzul = require('areaazul');
 var UsuarioRevendedor = AreaAzul.db.model('UsuarioRevendedor');
-var BusinessException = AreaAzul.BusinessException;
 var LocalStrategy = require('passport-local').Strategy;
 
 module.exports = function(passport) {
@@ -11,10 +10,10 @@ module.exports = function(passport) {
   });
 
   passport.deserializeUser(function(id, done) {
-   UsuarioRevendedor
+    UsuarioRevendedor
       .buscarPorId(id)
-      .then(function(ua) {
-        done(null, ua);
+      .then(function(usuarioRevendedor) {
+        done(null, usuarioRevendedor);
       })
       .catch(function(err) {
         done(err, null);
@@ -26,19 +25,18 @@ module.exports = function(passport) {
       usernameField: 'login',
       passwordField: 'senha',
       passReqToCallback: true,
-      session: true,
+      session: true
     },
     function(req, username, password, done) {
       UsuarioRevendedor
         .autorizado(username, password)
+        .catch(AreaAzul.AuthenticationError, () => {
+          return done(null, false);
+        })
         .then(function(user) {
-          if (!user) { return done(null, false); }
           return done(null, user);
         })
         .catch(function(err) {
-          if (err instanceof BusinessException) {
-            return done(null, false);
-          }
           return done(err);
         });
     }
