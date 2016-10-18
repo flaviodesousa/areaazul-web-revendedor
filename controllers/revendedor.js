@@ -1,21 +1,21 @@
-
-module.exports = function () {
-  const debug = require('debug')('areaazul-web-revendedor:controllers:revendedor');
+module.exports = function() {
+  const debug = require('debug')(
+    'areaazul-web-revendedor:controllers:revendedor');
   var AreaAzul = require('areaazul');
   var Revendedor = AreaAzul.db.model('Revendedor');
 
   function cadastrarCommon(req, res, camposRevendedor) {
     Revendedor
       .cadastrar(camposRevendedor)
-      .then(function () {
+      .then(function() {
         req.body = [];
         req.flash('info', 'Salvo com sucesso!');
-        res.render('login/index', {message: req.flash('info')});
+        res.render('login/index', { message: req.flash('info') });
       })
-      .catch(function (err) {
+      .catch(function(err) {
         if (err.details) {
           for (var i = 0; i < err.details.length; i++) {
-            req.flash('info', err.details[i].problem);
+            req.flash('info', err.details[ i ].problem);
             res.render('revendedor/cadastro', {
               message: req.flash('info')
               , values: req.body
@@ -32,11 +32,11 @@ module.exports = function () {
   }
 
   return {
-    index: function (req, res) {
-      res.render('revendedor/cadastro', {values: req.body});
+    index: function(req, res) {
+      res.render('revendedor/cadastro', { values: req.body });
     },
 
-    cadastrarPJ: function (req, res) {
+    cadastrarPJ: function(req, res) {
 
       debug('Revendedor.cadastrarPJ() parametros', req.body);
 
@@ -56,7 +56,7 @@ module.exports = function () {
       });
     },
 
-    cadastrarPF: function (req, res) {
+    cadastrarPF: function(req, res) {
 
       debug('Revendedor.cadastrarPF() parametros', req.body);
 

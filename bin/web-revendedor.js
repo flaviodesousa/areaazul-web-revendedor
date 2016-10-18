@@ -5,6 +5,6 @@ var app = require('../app');
 
 app.set('port', process.env.PORT || 18360);
 
-var server = app.listen(app.get('port'), 'localhost', function () {
+var server = app.listen(app.get('port'), 'localhost', function() {
   debug('Express server listening on port ' + server.address().port);
 });
