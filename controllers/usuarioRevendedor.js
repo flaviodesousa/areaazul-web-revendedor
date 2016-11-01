@@ -33,14 +33,12 @@ module.exports = function() {
             values: req.body
           });
         })
-        .catch(AreaAzul.BusinessException, e => {
-          for (var i = 0; i < e.details.length; i++) {
-            req.flash('info', e.details[ i ].problem);
-            res.render('usuario_revendedor/cadastro', {
-              message: req.flash('info'),
-              values: req.body
-            });
-          }
+        .catch(AreaAzul.BusinessException, function(e) {
+          req.flash('info', e.message);
+          res.render('usuario_revendedor/cadastro', {
+            message: e.details,
+            values: req.body
+          });
         })
         .catch(function(err) {
           log.err('Erro inserindo UsuarioRevendedor', err);
