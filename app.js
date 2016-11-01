@@ -26,6 +26,11 @@ app.set('view engine', 'pug');
 const AREAAZUL_WEB_SECRET = process.env.AREAAZUL_WEB_SECRET || '4r344zu1';
 const AREAAZUL_API_ENDPOINT = process.env.AREAAZUL_API_ENDPOINT;
 
+app.get('/robots.txt', function (req, res) {
+  res.type('text/plain');
+  res.send('User-agent: *\nDisallow: /');
+});
+
 app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
