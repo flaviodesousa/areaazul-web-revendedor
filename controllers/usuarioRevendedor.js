@@ -1,8 +1,7 @@
 module.exports = function() {
   const AreaAzul = require('areaazul');
   const log = AreaAzul.log;
-  const UsuarioRevendedor = AreaAzul.db.model('UsuarioRevendedor');
-  const UsuariosRevendedores = AreaAzul.db.collection('UsuariosRevendedores');
+  const UsuarioRevendedor = AreaAzul.facade.UsuarioRevendedor;
 
   return {
     index: function(req, res) {

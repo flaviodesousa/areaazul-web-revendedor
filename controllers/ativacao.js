@@ -1,7 +1,7 @@
 module.exports = function() {
   var AreaAzul = require('areaazul');
-  var Ativacao = AreaAzul.db.model('Ativacao');
-  var Configuracao = AreaAzul.db.model('Configuracao');
+  var Ativacao = AreaAzul.facade.Ativacao;
+  var Configuracao = AreaAzul.facade.Configuracao;
 
   return {
     ativar: function(req, res) {

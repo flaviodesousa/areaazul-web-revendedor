@@ -2,7 +2,7 @@ module.exports = function() {
   const debug = require('debug')(
     'areaazul-web-revendedor:controllers:revendedor');
   var AreaAzul = require('areaazul');
-  var Revendedor = AreaAzul.db.model('Revendedor');
+  var Revendedor = AreaAzul.facade.Revendedor;
 
   function cadastrarCommon(req, res, camposRevendedor) {
     Revendedor

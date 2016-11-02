@@ -1,7 +1,7 @@
 'use strict';
 
 var AreaAzul = require('areaazul');
-var UsuarioRevendedor = AreaAzul.db.model('UsuarioRevendedor');
+var UsuarioRevendedor = AreaAzul.facade.UsuarioRevendedor;
 var LocalStrategy = require('passport-local').Strategy;
 
 module.exports = function(passport) {
@@ -29,7 +29,7 @@ module.exports = function(passport) {
     },
     function(req, username, password, done) {
       UsuarioRevendedor
-        .autorizado(username, password)
+        .autentico(username, password)
         .catch(AreaAzul.AuthenticationError, () => {
           return done(null, false);
         })

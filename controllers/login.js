@@ -1,5 +1,6 @@
-var AreaAzul = require('areaazul');
-var UsuarioRevendedor = AreaAzul.db.model('UsuarioRevendedor');
+const AreaAzul = require('areaazul');
+const UsuarioRevendedor = AreaAzul.facade.UsuarioRevendedor;
+const Pessoa = AreaAzul.facade.Pessoa;
 var passport = require('passport');
 
 module.exports = function() {
@@ -31,7 +32,7 @@ module.exports = function() {
         });
     },
     autenticar: function(req, res) {
-      passport.authenticate('local', function(err, user, info) {
+      passport.authenticate('local', function(err, user) {
         if (err || !user) {
           req.flash('info', 'Erro ao logar!!!');
           res.render('login', { message: req.flash('info') });

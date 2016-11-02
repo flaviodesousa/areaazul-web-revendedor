@@ -19,7 +19,7 @@
     "url": "git@bitbucket.org:solutions-inf-br/areaazul-web-revendedor.git"
   },
   "dependencies": {
-    "areaazul": "^0.5.7",
+    "areaazul": "^0.6.2",
     "body-parser": "^1.15.2",
     "bootstrap": "^3.3.7",
     "connect-flash": "^0.1.1",
@@ -29,9 +29,9 @@
     "express": "^4.14.0",
     "express-flash": "0.0.2",
     "express-load": "^1.1.15",
-    "express-session": "^1.14.1",
-    "express-validator": "^2.20.10",
-    "moment": "^2.15.1",
+    "express-session": "^1.14.2",
+    "express-validator": "^2.21.0",
+    "moment": "^2.15.2",
     "morgan": "^1.7.0",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",

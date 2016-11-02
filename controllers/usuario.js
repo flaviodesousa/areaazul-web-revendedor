@@ -1,8 +1,8 @@
 module.exports = function() {
 
   const AreaAzul = require('areaazul');
-  const UsuarioRevendedor = AreaAzul.db.model('UsuarioRevendedor');
-  const RecuperacaoSenha = AreaAzul.db.model('recuperacao_senha');
+  const UsuarioRevendedor = AreaAzul.facade.UsuarioRevendedor;
+  const RecuperacaoSenha = AreaAzul.facade.RecuperacaoSenha;
 
   return {
     index: function(req, res) {
@@ -70,14 +70,12 @@ module.exports = function() {
         UsuarioRevendedor.alterarSenhaRecuperacao(usuario,
           function() {
             req.flash('info', 'Alterado com sucesso!!!');
-            console.log('Alterado com sucesso!!!');
             res.render('usuario/alterarSenha', {
               value: usuario.pessoa_id,
               message: req.flash('info') });
           },
-          function(result) {
+          function() {
             req.flash('info', 'Erro ao alterar!!!');
-            console.log('Erro ao alterar!!!' + result);
             res.render('usuario/alterarSenha', {
               value: usuario.pessoa_id,
               message: req.flash('info') });
