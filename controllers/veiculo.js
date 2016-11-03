@@ -1,11 +1,10 @@
 const AreaAzul = require('areaazul');
-const Veiculo = AreaAzul.db.model('Veiculo');
+const Veiculo = AreaAzul.facade.Veiculo;
 
 module.exports = function() {
   return {
     procurarVeiculo: function(req, res) {
-      Veiculo.procurarVeiculo(
-        req.query.placa)
+      Veiculo.buscarPorPlaca(req.query.placa)
         .then(function(result) {
           if (result) {
             res.send(result.toJSON())
