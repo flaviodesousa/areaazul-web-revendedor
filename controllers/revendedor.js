@@ -1,6 +1,7 @@
 module.exports = function() {
   const debug = require('debug')(
     'areaazul-web-revendedor:controllers:revendedor');
+  const AreaazulUtils = require('areaazul-utils');
   var AreaAzul = require('areaazul');
   var Revendedor = AreaAzul.facade.Revendedor;
 
@@ -38,7 +39,7 @@ module.exports = function() {
 
     cadastrarPJ: function(req, res) {
 
-      debug('Revendedor.cadastrarPJ() parametros', req.body);
+      debug('Revendedor.cadastrarPJ() parametros', AreaazulUtils.semSenhas(req.body));
 
       cadastrarCommon(req, res, {
         cnpj: req.body.cnpj,
@@ -58,7 +59,7 @@ module.exports = function() {
 
     cadastrarPF: function(req, res) {
 
-      debug('Revendedor.cadastrarPF() parametros', req.body);
+      debug('Revendedor.cadastrarPF() parametros', AreaazulUtils.semSenhas(req.body));
 
       cadastrarCommon(req, res, {
         cpf: req.body.cpf,

@@ -50,8 +50,7 @@ module.exports = function() {
     },
     listar: function(req, res) {
       UsuariosRevendedores
-        .listarUsuarioRevenda(
-          req.user.get('revendedor_id'))
+        .listarPorRevenda(req.user.revendedor_id)
         .then(function(listaDeUsusarios) {
           res.render('usuario_revendedor/lista', {
             lista: listaDeUsusarios.toJSON()
@@ -64,7 +63,7 @@ module.exports = function() {
     },
 
     alterarProcura: function(req, res) {
-      UsuarioRevendedor.procurar(req.params.id,
+      UsuarioRevendedor.buscarPorId(req.params.id,
         function(result) {
           res.render('usuario_revendedor/alterar', {
             value: result.attributes
