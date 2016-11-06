@@ -7,7 +7,7 @@ module.exports = function() {
     ativar: function(req, res) {
 
       var link = null;
-      if (req.user.get('autorizacao') === 'administrador') {
+      if (req.user.autorizacao === 'administrador') {
         link = 'ativacao/ativacao-por-administrador';
       } else {
         link = 'ativacao/ativacao-por-usuario';
@@ -17,7 +17,7 @@ module.exports = function() {
     salvarAtivacao: function(req, res) {
       var valor = 0;
       var link = null;
-      if (req.user.get('autorizacao') === 'administrador') {
+      if (req.user.autorizacao === 'administrador') {
         link = 'ativacao/ativacao-por-administrador';
       } else {
         link = 'ativacao/ativacao-por-usuario';

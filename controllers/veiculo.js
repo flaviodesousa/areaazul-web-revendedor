@@ -7,7 +7,7 @@ module.exports = function() {
       Veiculo.buscarPorPlaca(req.query.placa)
         .then(function(result) {
           if (result) {
-            res.send(result.toJSON())
+            res.send(result);
           } else {
             res.status(404)
               .end();

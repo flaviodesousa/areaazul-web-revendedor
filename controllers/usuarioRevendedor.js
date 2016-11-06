@@ -23,7 +23,8 @@ module.exports = function() {
         termo_servico: req.body.termo_servico
       };
 
-      UsuarioRevendedor.inserir(parametros)
+      UsuarioRevendedor
+        .inserir(parametros)
         .then(function() {
           req.body = [];
           req.flash('info', 'Salvo com sucesso!');
@@ -49,11 +50,11 @@ module.exports = function() {
         });
     },
     listar: function(req, res) {
-      UsuariosRevendedores
+      UsuarioRevendedor
         .listarPorRevenda(req.user.revendedor_id)
         .then(function(listaDeUsusarios) {
           res.render('usuario_revendedor/lista', {
-            lista: listaDeUsusarios.toJSON()
+            lista: listaDeUsusarios
           });
         });
     },
@@ -63,12 +64,11 @@ module.exports = function() {
     },
 
     alterarProcura: function(req, res) {
-      UsuarioRevendedor.buscarPorId(req.params.id,
-        function(result) {
+      UsuarioRevendedor.buscarPorId(req.params.id)
+        .then(usuarioRevendedor => {
           res.render('usuario_revendedor/alterar', {
-            value: result.attributes
+            value: usuarioRevendedor
           });
-          return result;
         });
     },
 
