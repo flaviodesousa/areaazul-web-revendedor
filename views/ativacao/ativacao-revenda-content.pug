@@ -1,5 +1,7 @@
 block append head
     link(rel='stylesheet', href='/stylesheets/ativacao.css')
+    link(rel='stylesheet', href='/stylesheets/lib/select2.min.css')
+    link(rel='stylesheet', href='/stylesheets/lib/select2.bootstrap.min.css')
 
 block content
     if message
@@ -26,7 +28,7 @@ block content
                         .form-group.col-lg-12
                             span.obrigatorios *
                             label(for='campoCidade') Cidade da placa
-                            input#campoCidade.form-control(type='text', name='cidade', value=values.nomeCidade)
+                            input#campoCidade.form-control(type='select', name='cidade')
                     .row
                         .form-group.col-lg-6
                             span.obrigatorios *
@@ -93,5 +95,6 @@ block content
 
 block append scripts
     script(src='/js/lib/jquery.inputmask.bundle.min.js')
+    script(src='/js/lib/select2.full.min.js')
     script(src='/js/lib/js.cookie.js')
     script(src='/js/ativacao.js')
