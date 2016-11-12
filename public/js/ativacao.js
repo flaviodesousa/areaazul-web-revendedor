@@ -22,13 +22,15 @@ $(document).ready(function() {
   $campoCelular.inputmask('(99) 99999-9999');
   $campoCidade.select2({
     theme: 'bootstrap',
+    placeHolder: 'Selecione a cidade do veículo',
+    width: '100%',
     ajax: {
       url: `${AREAAZUL_API_HOST}/cidade`,
       dataType: 'json',
       delay: 250,
       data: function(params) {
         return {
-          terms: params.term
+          termos: params.term
         };
       },
       processResults: function(data, params) {
@@ -37,7 +39,10 @@ $(document).ready(function() {
         // alter the remote JSON data, except to indicate that infinite
         // scrolling can be used
         return {
-          results: data.items
+          results: data.map(cidade => ({
+            id: cidade.id,
+            text: cidade.nome + '/' + cidade.estado.uf
+          }))
         };
       },
       cache: true
