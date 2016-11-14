@@ -38,6 +38,9 @@ $(document).ready(function() {
         // since we are using custom formatting functions we do not need to
         // alter the remote JSON data, except to indicate that infinite
         // scrolling can be used
+        if (!data) {
+          return { results: [] };
+        }
         return {
           results: data.map(cidade => ({
             id: cidade.id,
@@ -53,7 +56,7 @@ $(document).ready(function() {
   $campoPlaca.change(function() {
     var placa = $campoPlaca.inputmask('unmaskedvalue');
 
-    if (placa.length < 7) {
+    if (placa.length != 7) {
       $('#detalhesDoVeiculo').hide();
       return;
     }
@@ -69,6 +72,7 @@ $(document).ready(function() {
         $('#modelo').val(null);
         $('#cor').val(null);
         $('#detalhesDoVeiculo').show();
+        $campoCidade.select2('open');
       });
   })
   $campoPlaca.focus();
