@@ -71,4 +71,5 @@ $(document).ready(function() {
         $('#detalhesDoVeiculo').show();
       });
   })
+  $campoPlaca.focus();
 });
