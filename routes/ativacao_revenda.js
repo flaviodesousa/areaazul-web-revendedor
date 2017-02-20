@@ -5,7 +5,7 @@ module.exports = function(app) {
   app.get('/ativacao',
     routesUtil.ensureAuthenticated,
     ativacao.ativar);
-  app.post('/ativacao/salvar_ativacao',
+  app.post('/ativacao',
     routesUtil.ensureAuthenticated,
     ativacao.salvarAtivacao);
 };

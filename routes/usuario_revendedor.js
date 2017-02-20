@@ -1,16 +1,18 @@
 module.exports = function(app) {
-    var usuarioRevendedor = app.controllers.usuarioRevendedor;
-    var routesUtil = require('../routes/utils');
+  var usuario = app.controllers.usuario;
+  var usuarioRevendedor = app.controllers.usuarioRevendedor;
+  var routesUtil = require('../routes/utils');
 
 
-    app.get("/usuario_revendedor/cadastro",routesUtil.ensureAuthenticated, usuarioRevendedor.index);
-    app.post("/usuario_revendedor/cadastrar_usuario_revendedor",routesUtil.ensureAuthenticated, usuarioRevendedor.cadastrar);
+  app.get("/usuario/cadastro",routesUtil.ensureAuthenticated, usuarioRevendedor.index);
+  app.post("/usuario/cadastrar_usuario",routesUtil.ensureAuthenticated, usuarioRevendedor.cadastrar);
 
-    app.get("/usuario_revendedor/lista",routesUtil.ensureAuthenticated, usuarioRevendedor.listar);
+  app.get("/usuario/lista",routesUtil.ensureAuthenticated, usuarioRevendedor.listar);
 
-    app.get("/usuario_revendedor/alterar/:id",routesUtil.ensureAuthenticated, usuarioRevendedor.alterarProcura);
-    app.post("/usuario_revendedor/alterar/salvar",routesUtil.ensureAuthenticated, usuarioRevendedor.alterarSalva);
-    app.post("/usuario_revendedor/alterar",routesUtil.ensureAuthenticated, usuarioRevendedor.indexAlterar);
+  app.get("/usuario/:id/alterar",routesUtil.ensureAuthenticated, usuarioRevendedor.alterarProcura);
+  app.post("/usuario/alterar/salvar",routesUtil.ensureAuthenticated, usuarioRevendedor.alterarSalva);
+  app.post("/usuario/alterar",routesUtil.ensureAuthenticated, usuarioRevendedor.indexAlterar);
+  app.post('/usuario/:id/senha', routesUtil.ensureAuthenticated, usuario.alterarSenha);
 
-    app.get("/usuario_revendedor/deletar/:id",routesUtil.ensureAuthenticated, usuarioRevendedor.deletar);
-}
+  app.get("/usuario/deletar/:id",routesUtil.ensureAuthenticated, usuarioRevendedor.deletar);
+};
