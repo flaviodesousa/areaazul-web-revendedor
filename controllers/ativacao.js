@@ -5,13 +5,13 @@ module.exports = function() {
     AreaAzul.facade.Configuracao
       .buscar()
       .then(configuracao => {
-        var view = null;
+        let view = null;
         if (req.user.autorizacao === 'administrador') {
           view = 'ativacao/ativacao-por-administrador';
         } else {
           view = 'ativacao/ativacao-por-usuario';
         }
-        var values = req.body;
+        let values = req.body;
         values.cidade_id = configuracao.cidade_id;
         res.render(view, {
           values: req.body,
@@ -39,27 +39,19 @@ module.exports = function() {
 
       AreaAzul.facade.Ativacao
         .ativarPorRevenda(dadosAtivacao)
-        .then(function(revenda) {
+        .then(function() {
           req.body = [];
 
-          req.flash('info', 'Ativação realizada com sucesso!');
+          req.flash('success', 'Ativação realizada com sucesso!');
           renderAtivacao(req, res);
         })
-        .catch(AreaAzul.BusinessException, function(err) {
-
-          if (err.details) {
-            for (var i = 0; i < err.details.length; i++) {
-              req.flash('info', err.details[ i ].problem);
-              renderAtivacao(req, res);
-            }
-          } else {
-            req.flash('info', err);
-            res.render(view, {
-              message: req.flash('info'),
-              values: req.body
-            });
-          }
-          return err;
+        .catch(AreaAzul.BusinessException, function() {
+          req.flash('warning', 'Dados inválidos');
+          renderAtivacao(req, res);
+        })
+        .catch(() => {
+          req.flash('danger', 'Falha no sistema durante ativação');
+          renderAtivacao(req, res);
         });
     }
   };
