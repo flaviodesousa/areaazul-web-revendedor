@@ -30,30 +30,30 @@ block content
                                     .control-group
                                         .form-group.col-lg-6
                                             label * CPF:
-                                            input#cpf_PessoaFisica.form-control(required='' placeholder='CPF' type='text' name='cpf' value=values.cpf)
+                                            input#cpf_PessoaFisica.form-control(required=true placeholder='CPF' type='text' name='cpf' value=values.cpf)
                                         .form-group.col-lg-6
                                             label Celular:
                                             input#celular_PessoaFisica.form-control(placeholder='Celular' type='text' name='celular_pf' value=values.celular_pf)
                                 .form-group
                                     label.control-label(for='nomepf') * Nome:
-                                    input#nomepf.form-control(required='' type='text' placeholder='Nome' name='nome_pf' value=values.nome_pf)
+                                    input#nomepf.form-control(required=true type='text' placeholder='Nome' name='nome_pf' value=values.nome_pf)
                                 .form-group
                                     label.control-label(for='emailpf') * E-mail:
                                     .input-group
                                         span.input-group-addon @
-                                        input#emailpf.form-control(required='' type='text' name='email_pf' placeholder="email@example.com" aria-describedby='basic-addon2' value=values.email_pf)
+                                        input#emailpf.form-control(required=true type='text' name='email_pf' placeholder="email@example.com" aria-describedby='basic-addon2' value=values.email_pf)
                                 .form-group
                                     label.control-label(for='usuariopf') * Nome de usuário:
-                                    input#usuariopf.form-control(required='' placeholder='Nome de usuário' type='text' name='nome_usuario_pf' value=values.nome_usuario_pf)
+                                    input#usuariopf.form-control(required=true placeholder='Nome de usuário' type='text' name='nome_usuario_pf' value=values.nome_usuario_pf)
                                 .form-group
                                     .row
                                         .control-group
                                             .form-group.col-lg-6
                                                 label * Senha:
-                                                input#senhapf.form-control(required='' placeholder='Senha' type='password' name='senha_pf' value=values.senha_pf)
+                                                input#senhapf.form-control(required=true placeholder='Senha' type='password' name='senha_pf' value=values.senha_pf)
                                             .form-group.col-lg-6
                                                 label * Confirmar senha:
-                                                input#confirmar_senhapf.form-control(required='' placeholder='Confirmar senha' type='password' name='confirmar_senha_pf' value=values.confirmar_senha_pf)
+                                                input#confirmar_senhapf.form-control(required=true placeholder='Confirmar senha' type='password' name='confirmar_senha_pf' value=values.confirmar_senha_pf)
                                 .form-group
                                     .row
                                         .form-inline
@@ -73,43 +73,46 @@ block content
                                     .control-group
                                         .form-group.col-lg-6
                                             label * CNPJ:
-                                            input#cnpj_PessoaJuridica.form-control(required='' type='text' placeholder='CNPJ' name='cnpj' value=values.cnpj)
+                                            input#cnpj_PessoaJuridica.form-control(required=true type='text' placeholder='CNPJ' name='cnpj' value=values.cnpj)
                                         .form-group.col-lg-6
                                             label Telefone:
                                             input#telefone_PessoaJuridica.form-control(type='text' placeholder='Telefone' name='telefone_pj' value=values.telefone_pj)
                                 .form-group
                                     label * Razão Social:
-                                    input.form-control(required='' type='text' placeholder='Razão Social' name='razao_social_pj' value=values.razao_social_pj)
+                                    input.form-control(required=true type='text' placeholder='Razão Social' name='razao_social_pj' value=values.razao_social_pj)
                                 .form-group
                                     label * Nome Fantasia:
-                                    input.form-control(required='' type='text' placeholder='Nome Fantasia' name='nome_fantasia_pj' value=values.nome_fantasia_pj)
+                                    input.form-control(required=true type='text' placeholder='Nome Fantasia' name='nome_fantasia_pj' value=values.nome_fantasia_pj)
+                                .form-group
+                                    label Contato
+                                    input.form-control(type='text' placeholder='Contato' name='contato' value=values.contato)
                                 .form-group
                                     h4.text-center Dados Responsável
                                 .form-group
                                     label * Nome:
-                                    input.form-control(required='' type='text' placeholder='Nome' name='responsavel_nome_pj' value=values.responsavel_nome_pj)
+                                    input.form-control(required=true type='text' placeholder='Nome' name='responsavel_nome_pj' value=values.responsavel_nome_pj)
                                 .form-group
                                     label.control-label(for='emailpj') * E-mail:
                                     .input-group
                                         span#basic-addon1.input-group-addon @
-                                        input#emailpj.form-control(required='' type='text'  name='email_responsavel_pj' placeholder="email@example.com" aria-describedby='basic-addon2' value=values.email_responsavel_pj)
+                                        input#emailpj.form-control(required=true type='text'  name='email_responsavel_pj' placeholder="email@example.com" aria-describedby='basic-addon2' value=values.email_responsavel_pj)
                                 .form-group
                                     .form-group
                                         label * CPF:
-                                        input#cpf_PessoaJuridica.form-control(required='' type='text' placeholder='CPF' name='cpf_responsavel_pj' onKeyUp="maskIt(this event '###.###.###-##')" value=values.cpf_responsavel_pj)
+                                        input#cpf_PessoaJuridica.form-control(required=true type='text' placeholder='CPF' name='cpf_responsavel_pj' onKeyUp="maskIt(this event '###.###.###-##')" value=values.cpf_responsavel_pj)
                                 .form-group
                                     .form-group
                                         label * Nome de usuário:
-                                        input.form-control(required='' type='text' placeholder='Nome de usuário' name='nome_usuario_pj' value=values.nome_usuario_pj)
+                                        input.form-control(required=true type='text' placeholder='Nome de usuário' name='nome_usuario_pj' value=values.nome_usuario_pj)
                                 .row
                                     .control-group
                                         .form-group.col-lg-6
                                             label * Senha:
-                                            input.form-control(required='' type='password' placeholder='Senha' name='senha_pj' value=values.senha_pj)
+                                            input.form-control(required=true type='password' placeholder='Senha' name='nova_senha_pj' value=values.senha_pj)
 
                                         .form-group.col-lg-6
                                             label * Confirmar Senha:
-                                            input.form-control(required='' type='password' placeholder='Confirmar Senha' name='confirmar_senha_pj' value=values.confirmar_senha_pj)
+                                            input.form-control(required=true type='password' placeholder='Confirmar Senha' name='conf_senha_pj' value=values.confirmar_senha_pj)
                                 .form-group
                                     .row
                                         .form-inline

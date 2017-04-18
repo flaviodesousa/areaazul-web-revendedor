@@ -2,8 +2,8 @@ module.exports = function() {
   const debug = require('debug')(
     'areaazul-web-revendedor:controllers:revendedor');
   const AreaazulUtils = require('areaazul-utils');
-  var AreaAzul = require('areaazul');
-  var Revendedor = AreaAzul.facade.Revendedor;
+  const AreaAzul = require('areaazul');
+  const Revendedor = AreaAzul.facade.Revendedor;
 
   function cadastrarCommon(req, res, camposRevendedor) {
     Revendedor
@@ -15,7 +15,7 @@ module.exports = function() {
       })
       .catch(function(err) {
         if (err.details) {
-          for (var i = 0; i < err.details.length; i++) {
+          for (let i = 0; i < err.details.length; i++) {
             req.flash('info', err.details[ i ].problem);
             res.render('revendedor/cadastro', {
               message: req.flash('info')
@@ -50,6 +50,7 @@ module.exports = function() {
         telefone: req.body.celular_pj,
         nome_fantasia: req.body.nome_fantasia_pj,
         razao_social: req.body.razao_social_pj,
+        contato: req.body.contato,
         cpf: req.body.cpf_responsavel_pj,
         nome: req.body.responsavel_nome_pj,
         autorizacao: 'administrador',
