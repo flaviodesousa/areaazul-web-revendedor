@@ -1,13 +1,10 @@
 block append head
-    link(rel='stylesheet', href='/stylesheets/ativacao.css')
-    link(rel='stylesheet', href='/stylesheets/lib/select2.min.css')
-    link(rel='stylesheet', href='/stylesheets/lib/select2-bootstrap.min.css')
+    link(rel='stylesheet' href='/stylesheets/ativacao.css')
+    link(rel='stylesheet' href='/stylesheets/lib/select2.min.css')
+    link(rel='stylesheet' href='/stylesheets/lib/select2-bootstrap.min.css')
 
 block content
-    if message
-        .alert.alert-danger
-            a.close(href='#', data-dismiss='alert') &times;
-            strong #{message}
+    include ../alerts
     header.row
         .col-md-4  
         .col-md-4
@@ -16,12 +13,12 @@ block content
         .col-md-2
         .col-md-8
             h4.text-center Ativação
-            form(name='myform', role='form', action="/ativacao/salvar_ativacao", method='POST')
+            form(name='ativacao' role='form' action='/ativacao' method='POST')
                 .row
                     .form-group.col-lg-3
                         span.obrigatorios *
                         label Placa
-                        input#campoPlaca.form-control(type='text', placeholder='Placa', name='placa', value=values.placa)
+                        input#campoPlaca.form-control(type='text' placeholder='Placa' name='placa' value=values.placa)
 
                 #detalhesDoVeiculo
                     .row
@@ -36,32 +33,29 @@ block content
                         .form-group.col-lg-6
                             span.obrigatorios *
                             label(for='marca') Marca
-                            input#marca.form-control(type='text',placeholder='Marca', name='marca', value=values.marca)
+                            input#marca.form-control(type='text' placeholder='Marca' name='marca' value=values.marca)
                         .form-group.col-lg-6
                             span.obrigatorios *
                             label(for='modelo') Modelo
-                            input#modelo.form-control(type='text', placeholder='Modelo', name='modelo', value=values.modelo)
+                            input#modelo.form-control(type='text' placeholder='Modelo' name='modelo' value=values.modelo)
                     .row
                         .form-group.col-lg-6
                             span.obrigatorios *
                             label(for='cor') Cor
-                            input#cor.form-control(type='text', placeholder='Cor', name='cor', value=values.cor)
+                            input#cor.form-control(type='text' placeholder='Cor' name='cor' value=values.cor)
                         .form-group.col-lg-6
                             fieldset.form-inline.input-group
                                 legend Tipo
                                 label.radio-inline(for='radioButtonCarro')
-                                    input#radioButtonCarro(type='radio', name='tipo_veiculo',
-                                        value='carro', checked=values.tipo_veiculo=='carro')
+                                    input#radioButtonCarro(type='radio' name='tipo_veiculo' value='carro' checked=values.tipo_veiculo=='carro')
                                     | Carro
 
                                 label.radio-inline(for='radioButtonMoto')
-                                    input#radioButtonMoto(type='radio', name='tipo_veiculo',
-                                        value='moto', checked=values.tipo_veiculo=='moto')
+                                    input#radioButtonMoto(type='radio' name='tipo_veiculo' value='moto' checked=values.tipo_veiculo=='moto')
                                     | Moto
 
                                 label.radio-inline(for='radioButtonCamionete')
-                                    input#radioButtonCamionete(type='radio', name='tipo_veiculo',
-                                        value='camionete', checked=values.tipo_veiculo=='camionete')
+                                    input#radioButtonCamionete(type='radio' name='tipo_veiculo' value='camionete' checked=values.tipo_veiculo=='camionete')
                                     | Camionete
 
                 .form-group
@@ -70,7 +64,7 @@ block content
                             label * Tempo  
                         .form-group
                             .form-group.col-lg-5
-                            select.form-control(id="tempo" name="tempo")
+                            select.form-control(id='tempo' name='tempo')
                                 for preco in configuracao.parametros.matriz_precos
                                     option(
                                         value=preco.permanencia_maxima_minutos
@@ -81,7 +75,7 @@ block content
                         label  Celular
                         .form-group
                             .form-group.col-lg-5
-                                input#campoCelular.form-control(type='text', placeholder='Celular', name='celular', value=values.celular)
+                                input#campoCelular.form-control(type='text' placeholder='Celular' name='celular' value=values.celular)
                 .form-group
                     .form-inline
                         .form-group.pull-right
@@ -95,7 +89,6 @@ block content
             .col-md-4  
             .col-md-4
             .col-md-4  
-
 
 block append scripts
     script(src='/js/lib/jquery.inputmask.bundle.min.js')

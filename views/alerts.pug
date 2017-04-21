@@ -1,0 +1,25 @@
+if messages
+    each message in messages.danger
+        .alert.alert-danger.alert-dismissible
+            button.close(type='button' data-dismiss='alert' aria-label='Close')
+                span(aria-hidden='true') &times;
+            span.glyphicon.glyphicon-remove-sign
+            strong= message
+    each message in messages.warning
+        .alert.alert-warning.alert-dismissible
+            button.close(type='button' data-dismiss='alert' aria-label='Close')
+                span(aria-hidden='true') &times;
+            span.glyphicon.glyphicon-question-sign
+            strong= message
+    each message in messages.info
+        .alert.alert-info.alert-dismissible
+            button.close(type='button' data-dismiss='alert' aria-label='Close')
+                span(aria-hidden='true') &times;
+            span.glyphicon.glyphicon-info-sign
+            strong= message
+    each message in messages.success
+        .alert.alert-success.alert-dismissible
+            button.close(type='button' data-dismiss='alert' aria-label='Close')
+                span(aria-hidden='true') &times;
+            span.glyphicon.glyphicon-ok-sign
+            strong= message

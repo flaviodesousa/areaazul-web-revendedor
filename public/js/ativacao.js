@@ -1,25 +1,48 @@
 'use strict';
 
-const AREAAZUL_API_HOST = Cookies.get('api-endpoint');
-
 $(document).ready(function() {
+  const AREAAZUL_API_HOST = Cookies.get('api-endpoint');
   const $campoPlaca = $('#campoPlaca');
   const $campoCelular = $('#campoCelular');
   const $campoCidade = $('#campoCidade');
+  const detalhesDoVeiculo = function detalhesDoVeiculoHandler() {
+    let placa = $campoPlaca.inputmask('unmaskedvalue');
+
+    if (placa.length !== 7) {
+      $('#detalhesDoVeiculo').hide();
+      return;
+    }
+
+    $.getJSON(`${AREAAZUL_API_HOST}/veiculo?placa=${placa}`, null)
+      .then(function(veiculo) {
+        $('#placa').val(veiculo.placa);
+        $('#marca').val(veiculo.marca).prop('readonly', true);
+        $('#modelo').val(veiculo.modelo).prop('readonly', true);
+        $('#cor').val(veiculo.cor).prop('readonly', true);
+      })
+      .catch(function() {
+        $('#marca').val(null);
+        $('#modelo').val(null);
+        $('#cor').val(null);
+        $('#detalhesDoVeiculo').show();
+        $campoCidade.select2('open');
+      });
+  };
+  detalhesDoVeiculo();
 
   // ------------MASCARAS------------------
   $campoPlaca.inputmask({
-    mask: 'AAA-9999',
+    mask: 'AAAAAAA',
     greedy: false,
     definitions: {
       A: {
-        validator: '[A-Za-z]',
+        validator: '[A-Za-z0-9]',
         cardinality: 1,
         casing: 'upper'
       }
     }
   });
-  $campoCelular.inputmask('(99) 99999-9999');
+  $campoCelular.inputmask('99999999999');
   $campoCidade.select2({
     theme: 'bootstrap',
     placeHolder: 'Selecione a cidade do veículo',
@@ -33,7 +56,7 @@ $(document).ready(function() {
           termos: params.term
         };
       },
-      processResults: function(data, params) {
+      processResults: function(data/*, params*/) {
         // Parse the results into the format expected by Select2
         // since we are using custom formatting functions we do not need to
         // alter the remote JSON data, except to indicate that infinite
@@ -53,27 +76,6 @@ $(document).ready(function() {
   });
 
   // ------------QUANDO OCORRER MUDANÇA NO CAMPO PLACA----------------
-  $campoPlaca.change(function() {
-    var placa = $campoPlaca.inputmask('unmaskedvalue');
-
-    if (placa.length != 7) {
-      $('#detalhesDoVeiculo').hide();
-      return;
-    }
-    $.getJSON(`${AREAAZUL_API_HOST}/veiculo?placa=${placa}`, null)
-      .done(function(veiculo) {
-        $('#placa').val(veiculo.placa);
-        $('#marca').val(veiculo.marca).prop('readonly', true);
-        $('#modelo').val(veiculo.modelo).prop('readonly', true);
-        $('#cor').val(veiculo.cor).prop('readonly', true);
-      })
-      .fail(function(err) {
-        $('#marca').val(null);
-        $('#modelo').val(null);
-        $('#cor').val(null);
-        $('#detalhesDoVeiculo').show();
-        $campoCidade.select2('open');
-      });
-  })
+  $campoPlaca.change(detalhesDoVeiculo);
   $campoPlaca.focus();
 });
