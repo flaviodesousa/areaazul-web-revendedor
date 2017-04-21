@@ -1,6 +1,6 @@
 {
   "parserOptions": {
-    "ecmaVersion": 5,
+    "ecmaVersion": 6,
     "sourceType": "script"
   },
   "extends": "eslint:recommended",
@@ -13,5 +13,8 @@
     "semi": 2,
     "no-template-curly-in-string": 2,
     "block-scoped-var": 2
+  },
+  "globals": {
+    "Cookies": false
   }
 }
