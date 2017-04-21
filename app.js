@@ -2,22 +2,24 @@
 
 const AreaAzul = require('areaazul');
 
-var bodyParser = require('body-parser');
-var express = require('express');
-var load = require('express-load');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var errorHandler = require('errorhandler');
-var session = require('express-session');
+const bodyParser = require('body-parser');
+const express = require('express');
+const load = require('express-load');
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
+const errorHandler = require('errorhandler');
+const session = require('express-session');
+const KnexSessionStore = require('connect-session-knex')(session);
+const store = new KnexSessionStore({ knex: AreaAzul._internals.Bookshelf.knex });
 
-var app = express();
-var flash = require('connect-flash');
+const app = express();
+const flash = require('connect-flash');
 
-var passport = require('passport');
+const passport = require('passport');
 require('./authentication')(passport);
 
-var expressValidator = require('express-validator');
+const expressValidator = require('express-validator');
 
 // View engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -26,7 +28,7 @@ app.set('view engine', 'pug');
 const AREAAZUL_WEB_SECRET = process.env.AREAAZUL_WEB_SECRET || '4r344zu1';
 const AREAAZUL_API_ENDPOINT = process.env.AREAAZUL_API_ENDPOINT;
 
-app.get('/robots.txt', function (req, res) {
+app.get('/robots.txt', (req, res) => {
   res.type('text/plain');
   res.send('User-agent: *\nDisallow: /');
 });
@@ -42,10 +44,11 @@ app.use((req, res, next) => {
 });
 app.use(session({
   secret: AREAAZUL_WEB_SECRET,
-  name: 'areaazul-web-adm',
+  name: 'areaazul-web-revenda',
   resave: true,
   saveUninitialized: true,
-  cookie: { maxAge: 900000 }
+  cookie: { maxAge: 900000 },
+  store: store
 }));
 app.use(flash());
 app.use(passport.initialize());
