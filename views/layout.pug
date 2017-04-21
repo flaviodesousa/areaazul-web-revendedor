@@ -30,28 +30,13 @@ html
                     li(class='#{menuSair}'): a(href="/logout") Sair
 
     div#container
-            div#topo
+        div#topo
 
-            div#corpooptionuser
-                div#filhooptionuser
-                    span
-                        label Usuário:
-                div#filhooptionicons
-                    a(href="/ativacao/ativacaoRevenda") Ativação
-                    | &nbsp;|&nbsp;
-                    a(href='/usuario_revendedor/lista') Usuários
-                    | &nbsp;|&nbsp;
-                    a(href="/logout") Sair
+        div#corpo
 
-            div#corpo
-
-                div#espacotop
-                    block content
-                div#espacofooter
-
-            footer
-                div#rodape
-                    span#textorodape Copyright © Solutions - 2012-2015 Área Azul
+            div#espacotop
+            block content
+            div#espacofooter
 
         block scripts
             script(src='/js/lib/lodash.min.js')
