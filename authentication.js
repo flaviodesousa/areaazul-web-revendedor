@@ -1,8 +1,8 @@
 'use strict';
 
-var AreaAzul = require('areaazul');
-var UsuarioRevendedor = AreaAzul.facade.UsuarioRevendedor;
-var LocalStrategy = require('passport-local').Strategy;
+const AreaAzul = require('areaazul');
+const UsuarioRevendedor = AreaAzul.facade.UsuarioRevendedor;
+const LocalStrategy = require('passport-local').Strategy;
 
 module.exports = function(passport) {
   passport.serializeUser(function(user, done) {
@@ -24,10 +24,9 @@ module.exports = function(passport) {
     {
       usernameField: 'login',
       passwordField: 'senha',
-      passReqToCallback: true,
       session: true
     },
-    function(req, username, password, done) {
+    function(username, password, done) {
       UsuarioRevendedor
         .autentico(username, password)
         .catch(AreaAzul.AuthenticationError, () => {
