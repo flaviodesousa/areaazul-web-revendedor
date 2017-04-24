@@ -33,7 +33,7 @@ module.exports = function() {
     },
     salvarAtivacao: function(req, res) {
       const dadosAtivacao = {
-        celular: req.body.celular,
+        telefone: req.body.celular,
         cidade_id: req.body.cidade_id,
         tempo: req.body.tempo,
         marca: req.body.marca,

@@ -39,27 +39,33 @@ block content
                 .row
                     .form-group.col-lg-6
                         label(for='marca') Marca
-                        input#marca.form-control(type='text' placeholder='Marca' name='marca' value=ativacao.marca readonly=true)
+                        input#marca.form-control(type='text' placeholder='Marca' name='marca'
+                            value=ativacao.marca readonly=true)
                     .form-group.col-lg-6
                         label(for='modelo') Modelo
-                        input#modelo.form-control(type='text' placeholder='Modelo' name='modelo' value=ativacao.modelo readonly=true)
+                        input#modelo.form-control(type='text' placeholder='Modelo' name='modelo'
+                            value=ativacao.modelo readonly=true)
                 .row
                     .form-group.col-lg-6
                         label(for='cor') Cor
-                        input#cor.form-control(type='text' placeholder='Cor' name='cor' value=ativacao.cor readonly=true)
+                        input#cor.form-control(type='text' placeholder='Cor' name='cor'
+                            value=ativacao.cor readonly=true)
                     .form-group.col-lg-6
                         fieldset.form-inline.input-group
                             legend Tipo
                             label.radio-inline(for='radioButtonCarro')
-                                input#radioButtonCarro(type='radio' name='tipo_veiculo' value='carro' checked=ativacao.tipo_veiculo=='carro' readonly=true)
+                                input#radioButtonCarro(type='radio' name='tipo_veiculo' value='carro'
+                                    checked=ativacao.tipo_veiculo==='carro' readonly=true)
                                 | Carro
 
                             label.radio-inline(for='radioButtonMoto')
-                                input#radioButtonMoto(type='radio' name='tipo_veiculo' value='moto' checked=ativacao.tipo_veiculo=='moto' readonly=true)
+                                input#radioButtonMoto(type='radio' name='tipo_veiculo' value='moto'
+                                    checked=ativacao.tipo_veiculo==='moto' readonly=true)
                                 | Moto
 
                             label.radio-inline(for='radioButtonCamionete')
-                                input#radioButtonCamionete(type='radio' name='tipo_veiculo' value='camionete' checked=ativacao.tipo_veiculo=='camionete' readonly=true)
+                                input#radioButtonCamionete(type='radio' name='tipo_veiculo' value='camionete'
+                                    checked=ativacao.tipo_veiculo==='camionete' readonly=true)
                                 | Camionete
                 .row
                     .form-group.col-lg-12
