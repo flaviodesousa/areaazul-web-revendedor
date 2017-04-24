@@ -9,6 +9,7 @@ const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
 const errorHandler = require('errorhandler');
+
 const session = require('express-session');
 const KnexSessionStore = require('connect-session-knex')(session);
 const store = new KnexSessionStore({ knex: AreaAzul._internals.Bookshelf.knex });
@@ -47,7 +48,9 @@ app.use(session({
   name: 'areaazul-web-revenda',
   resave: true,
   saveUninitialized: true,
-  cookie: { maxAge: 900000 },
+  cookie: {
+    maxAge: 10 * 60 * 60 * 1000 // 10 horas
+  },
   store: store
 }));
 app.use(flash());
