@@ -9,7 +9,6 @@ $(document).ready(function() {
     let placa = $campoPlaca.inputmask('unmaskedvalue');
 
     if (placa.length !== 7) {
-      $('#detalhesDoVeiculo').hide();
       return;
     }
 
@@ -19,13 +18,20 @@ $(document).ready(function() {
         $('#marca').val(veiculo.marca).prop('readonly', true);
         $('#modelo').val(veiculo.modelo).prop('readonly', true);
         $('#cor').val(veiculo.cor).prop('readonly', true);
+        $('#radioButtonCarro').val(veiculo.tipo === 'carro').prop('readonly', true);
+        $('#radioButtonMoto').val(veiculo.tipo === 'moto').prop('readonly', true);
+        $('#radioButtonCamionete').val(veiculo.tipo === 'camionete').prop('readonly', true);
+        $campoCidade.val(`$(veiculo.cidade.nome)/$(veiculo.cidade.estado.uf)`).prop('readonly', true);
       })
       .catch(function() {
-        $('#marca').val(null);
-        $('#modelo').val(null);
-        $('#cor').val(null);
-        $('#detalhesDoVeiculo').show();
-        $campoCidade.select2('open');
+        $('#marca').val(null).prop('readonly', false).focus();
+        $('#modelo').val(null).prop('readonly', false);
+        $('#cor').val(null).prop('readonly', false);
+        $('#radioButtonCarro').val(false).prop('readonly', false);
+        $('#radioButtonMoto').val(false).prop('readonly', false);
+        $('#radioButtonCamionete').val(false).prop('readonly', false);
+        $campoCidade.prop('readonly', false);
+        // $campoCidade.select2('open');
       });
   };
   detalhesDoVeiculo();
@@ -76,6 +82,6 @@ $(document).ready(function() {
   });
 
   // ------------QUANDO OCORRER MUDANÇA NO CAMPO PLACA----------------
-  $campoPlaca.change(detalhesDoVeiculo);
+  $campoPlaca.change(detalhesDoVeiculo).blur(detalhesDoVeiculo);
   $campoPlaca.focus();
 });

@@ -11,11 +11,18 @@ module.exports = function() {
         } else {
           view = 'ativacao/ativacao-por-usuario';
         }
-        let values = req.body;
-        values.cidade_id = configuracao.cidade_id;
+        let ativacao = req.body;
+        ativacao.cidade_id = configuracao.cidade_id;
+        ativacao.cidade = configuracao.cidade;
         res.render(view, {
-          values: req.body,
-          configuracao: configuracao
+          ativacao: ativacao,
+          configuracao: configuracao,
+          messages: {
+            info: req.flash('info'),
+            danger: req.flash('danger'),
+            warning: req.flash('warning'),
+            success: req.flash('success')
+          }
         });
       });
   }
@@ -45,8 +52,11 @@ module.exports = function() {
           req.flash('success', 'Ativação realizada com sucesso!');
           renderAtivacao(req, res);
         })
-        .catch(AreaAzul.BusinessException, function() {
+        .catch(AreaAzul.BusinessException, function(ex) {
           req.flash('warning', 'Dados inválidos');
+          if (ex.details) {
+            ex.details.forEach(p => req.flash('warning', p.problem));
+          }
           renderAtivacao(req, res);
         })
         .catch(() => {
