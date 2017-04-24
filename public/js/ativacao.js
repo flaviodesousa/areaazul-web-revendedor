@@ -18,18 +18,18 @@ $(document).ready(function() {
         $('#marca').val(veiculo.marca).prop('readonly', true);
         $('#modelo').val(veiculo.modelo).prop('readonly', true);
         $('#cor').val(veiculo.cor).prop('readonly', true);
-        $('#radioButtonCarro').val(veiculo.tipo === 'carro').prop('readonly', true);
-        $('#radioButtonMoto').val(veiculo.tipo === 'moto').prop('readonly', true);
-        $('#radioButtonCamionete').val(veiculo.tipo === 'camionete').prop('readonly', true);
+        $('#radioButtonCarro').prop('checked', veiculo.tipo === 'carro').prop('readonly', true);
+        $('#radioButtonMoto').prop('checked', veiculo.tipo === 'moto').prop('readonly', true);
+        $('#radioButtonCamionete').prop('checked', veiculo.tipo === 'camionete').prop('readonly', true);
         $campoCidade.val(`$(veiculo.cidade.nome)/$(veiculo.cidade.estado.uf)`).prop('readonly', true);
       })
       .catch(function() {
         $('#marca').val(null).prop('readonly', false).focus();
         $('#modelo').val(null).prop('readonly', false);
         $('#cor').val(null).prop('readonly', false);
-        $('#radioButtonCarro').val(false).prop('readonly', false);
-        $('#radioButtonMoto').val(false).prop('readonly', false);
-        $('#radioButtonCamionete').val(false).prop('readonly', false);
+        $('#radioButtonCarro').prop('checked', true).prop('readonly', false);
+        $('#radioButtonMoto').prop('checked', false).prop('readonly', false);
+        $('#radioButtonCamionete').prop('checked', false).prop('readonly', false);
         $campoCidade.prop('readonly', false);
         // $campoCidade.select2('open');
       });
