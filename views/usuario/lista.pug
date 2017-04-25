@@ -1,7 +1,7 @@
 extends ../layoutUsuarioRevenda
 
 block content
-    body()
+    body
         if message
             .alert.alert-danger
                 button.close(type='button', data-dismiss='alert') x
@@ -35,6 +35,3 @@ block content
                                         td
                                             a(href='/usuario/alterar/' + usuario.id) Alterar
                 .col-md-1
-
-block append scripts
-    script(src='/js/usuario/lista.js')
