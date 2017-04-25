@@ -8,11 +8,10 @@ html
             meta(charset='utf-8')
             meta(http-equiv='X-UA-Compatible', content='IE=edge')
             meta(name='viewport', content='width=device-width, initial-scale=1')
-            link(rel='stylesheet', media='screen', href='//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css')
-            link(rel='stylesheet', href='/stylesheets/pagina.css')
-            link(rel='stylesheet', href='/stylesheets/skinning.css')
-            link(rel='stylesheet', href='/stylesheets/menu.css')
-            link(rel='stylesheet', href='/stylesheets/home.css')
+            link(rel='stylesheet' media='screen' href='/css/lib/bootstrap.min.css')
+            link(rel='stylesheet' href='/css/lib/bootstrap-theme.min.css')
+            link(rel='stylesheet', href='/css/pagina.css')
+            link(rel='stylesheet', href='/css/menu.css')
     body
         div#container
             div#topo
@@ -22,8 +21,8 @@ html
                         a.navbar-brand(href="/") Revendedor
                     div(class="collapse navbar-collapse")
                         ul(class="nav navbar-nav")
-                            li: a(href="/ativacao/ativacaoRevenda") Ativação
-                            li: a(href="/usuario_revendedor/lista") Usuários
+                            li: a(href="/ativacao") Ativação
+                            li: a(href="/usuario/lista") Usuários
                             li: a(href="/logout") Sair
 
             div#corpo

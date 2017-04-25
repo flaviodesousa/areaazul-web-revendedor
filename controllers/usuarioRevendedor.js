@@ -5,7 +5,7 @@ module.exports = function() {
 
   return {
     index: function(req, res) {
-      res.render('usuario_revendedor/cadastro', {
+      res.render('usuario/cadastro', {
         values: req.body
       });
     },
@@ -28,14 +28,14 @@ module.exports = function() {
         .then(function() {
           req.body = [];
           req.flash('info', 'Salvo com sucesso!');
-          res.render('usuario_revendedor/cadastro', {
+          res.render('usuario/cadastro', {
             message: req.flash('info'),
             values: req.body
           });
         })
         .catch(AreaAzul.BusinessException, function(e) {
           req.flash('info', e.message);
-          res.render('usuario_revendedor/cadastro', {
+          res.render('usuario/cadastro', {
             message: e.details,
             values: req.body
           });
@@ -43,7 +43,7 @@ module.exports = function() {
         .catch(function(err) {
           log.err('Erro inserindo UsuarioRevendedor', err);
           req.flash('info', err);
-          res.render('usuario_revendedor/cadastro', {
+          res.render('usuario/cadastro', {
             message: req.flash('info'),
             values: req.body
           });
@@ -53,20 +53,20 @@ module.exports = function() {
       UsuarioRevendedor
         .listarPorRevenda(req.user.revendedor_id)
         .then(function(listaDeUsusarios) {
-          res.render('usuario_revendedor/lista', {
+          res.render('usuario/lista', {
             lista: listaDeUsusarios
           });
         });
     },
 
     indexAlterar: function(req, res) {
-      res.render('usuario_revendedor/alterar');
+      res.render('usuario/alterar');
     },
 
     alterarProcura: function(req, res) {
       UsuarioRevendedor.buscarPorId(req.params.id)
         .then(usuarioRevendedor => {
-          res.render('usuario_revendedor/alterar', {
+          res.render('usuario/alterar', {
             value: usuarioRevendedor
           });
         });
@@ -88,13 +88,13 @@ module.exports = function() {
       UsuarioRevendedor.alterar(parametros)
         .then(function() {
           req.flash('info', 'Salvo com sucesso!');
-          res.redirect('/usuario_revendedor/lista');
+          res.redirect('/usuario/lista');
         })
         .catch(function(err) {
           if (err.details) {
             for (var i = 0; i < err.details.length; i++) {
               req.flash('info', err.details[ i ].problem);
-              res.redirect('usuario_revendedor/alterar');
+              res.redirect('usuario/alterar');
             }
           }
         });
@@ -106,13 +106,13 @@ module.exports = function() {
         .desativar(req.params.id)
         .then(
           function(result) {
-            res.redirect('/usuario_revendedor/lista');
+            res.redirect('/usuario/lista');
             return result;
           })
         .catch(
           function(result) {
 
-            res.redirect('/usuario_revendedor/lista');
+            res.redirect('/usuario/lista');
             return result;
           });
 

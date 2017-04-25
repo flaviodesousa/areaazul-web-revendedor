@@ -8,11 +8,10 @@ html
             meta(charset='utf-8')
             meta(http-equiv='X-UA-Compatible', content='IE=edge')
             meta(name='viewport', content='width=device-width, initial-scale=1')
-            link(rel='stylesheet', media='screen', href='//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css')
-            link(rel='stylesheet', href='/stylesheets/pagina.css')
-            link(rel='stylesheet', href='/stylesheets/skinning.css')
-            link(rel='stylesheet', href='/stylesheets/menu.css')
-            link(rel='stylesheet', href='/stylesheets/home.css')
+            link(rel='stylesheet' media='screen' href='/css/lib/bootstrap.min.css')
+            link(rel='stylesheet' href='/css/lib/bootstrap-theme.min.css')
+            link(rel='stylesheet', href='/css/pagina.css')
+            link(rel='stylesheet', href='/css/menu.css')
     body
         nav(class='navbar navbar-inverse navbar-fixed-top' role='navigation')
             div.navbar-header
@@ -26,7 +25,7 @@ html
                 ul.nav.navbar-nav
                     li(class='#{menuAtivacao}'): a(href="/ativacao") Ativação
                     if acesso === 'admin'
-                        li(class='#{menuUsuarios}'): a(href="/usuarios") Usuários
+                        li(class='#{menuUsuarios}'): a(href="/usuario/lista") Usuários
                     li(class='#{menuSair}'): a(href="/logout") Sair
 
     div#container

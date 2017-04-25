@@ -1,7 +1,7 @@
 block append head
-    link(rel='stylesheet' href='/stylesheets/ativacao.css')
-    link(rel='stylesheet' href='/stylesheets/lib/select2.min.css')
-    link(rel='stylesheet' href='/stylesheets/lib/select2-bootstrap.min.css')
+    link(rel='stylesheet' href='/css/ativacao.css')
+    link(rel='stylesheet' href='/css/lib/select2.min.css')
+    link(rel='stylesheet' href='/css/lib/select2-bootstrap.min.css')
 
 block content
     include ../alerts
@@ -13,62 +13,41 @@ block content
         .col-md-8.col-md-offset-2.col-sm-12
             h4.text-center Ativação
             form(name='ativacao' role='form' action='/ativacao' method='POST')
-                .form-group
-                    .form-inline
-                        .form-group
-                            label(for='campoTempo') Tempo  
-                        .form-group
-                            .form-group.col-lg-5
-                            select#campoTempo.form-control(name='tempo')
-                                for preco in configuracao.parametros.matriz_precos
-                                    option(
-                                    value=preco.permanencia_maxima_minutos
-                                    selected=(ativacao.tempo == preco.permanencia_maxima_minutos))
-                                        = preco.label
-                    .form-inline
-                        label(for='campoCelular') Celular
-                        .form-group
-                            .form-group.col-lg-5
-                                input#campoCelular.form-control(type='text' placeholder='Celular' name='celular' value=ativacao.celular)
-
                 .row
-                    .form-group.col-lg-3
+                    .form-group.col-lg-3.col-md-3.col-sm-6
                         label(for='campoPlaca') Placa
                         input#campoPlaca.form-control(type='text' placeholder='Placa' name='placa' value=ativacao.placa)
-
-                .row
-                    .form-group.col-lg-6
-                        label(for='marca') Marca
-                        input#marca.form-control(type='text' placeholder='Marca' name='marca'
-                            value=ativacao.marca readonly=true)
-                    .form-group.col-lg-6
-                        label(for='modelo') Modelo
-                        input#modelo.form-control(type='text' placeholder='Modelo' name='modelo'
-                            value=ativacao.modelo readonly=true)
-                .row
-                    .form-group.col-lg-6
-                        label(for='cor') Cor
-                        input#cor.form-control(type='text' placeholder='Cor' name='cor'
-                            value=ativacao.cor readonly=true)
-                    .form-group.col-lg-6
-                        fieldset.form-inline.input-group
-                            legend Tipo
+                    .form-group.col-lg-6.col-md-6.col-sm-12
+                        label(for='tipoVeiculo') Tipo
+                        fieldset#tipoVeiculo.form-inline.input-group
                             label.radio-inline(for='radioButtonCarro')
                                 input#radioButtonCarro(type='radio' name='tipo_veiculo' value='carro'
-                                    checked=ativacao.tipo_veiculo==='carro' readonly=true)
+                                checked=ativacao.tipo_veiculo === 'carro' readonly=true)
                                 | Carro
 
                             label.radio-inline(for='radioButtonMoto')
                                 input#radioButtonMoto(type='radio' name='tipo_veiculo' value='moto'
-                                    checked=ativacao.tipo_veiculo==='moto' readonly=true)
+                                checked=ativacao.tipo_veiculo === 'moto' readonly=true)
                                 | Moto
 
                             label.radio-inline(for='radioButtonCamionete')
                                 input#radioButtonCamionete(type='radio' name='tipo_veiculo' value='camionete'
-                                    checked=ativacao.tipo_veiculo==='camionete' readonly=true)
+                                checked=ativacao.tipo_veiculo === 'camionete' readonly=true)
                                 | Camionete
                 .row
-                    .form-group.col-lg-12
+                    .form-group.col-lg-3.col-md-6
+                        label(for='marca') Marca
+                        input#marca.form-control(type='text' placeholder='Marca' name='marca'
+                        value=ativacao.marca readonly=true)
+                    .form-group.col-lg-3.col-md-6
+                        label(for='modelo') Modelo
+                        input#modelo.form-control(type='text' placeholder='Modelo' name='modelo'
+                        value=ativacao.modelo readonly=true)
+                    .form-group.col-lg-3.col-md-6
+                        label(for='cor') Cor
+                        input#cor.form-control(type='text' placeholder='Cor' name='cor'
+                        value=ativacao.cor readonly=true)
+                    .form-group.col-lg-3.col-md-6
                         label(for='campoCidade') Cidade da placa
                         select#campoCidade.form-control(name='cidade_id')
                             option
@@ -76,15 +55,23 @@ block content
                                 option(value=ativacao.cidade_id selected=true)
                                     = ativacao.cidade.nome + '/' + ativacao.cidade.estado.uf
 
-                .form-group
-                    .form-inline
-                        .form-group.pull-right
-                            label * Campos Obrigátorios
-                br
-                br
-                .form-group
-                    .controls
-                        button#button1id.btn.btn-small.btn-primary(type='Submit') Ativar
+                .row
+                    .form-group.col-lg-3.col-md-6
+                        label(for='campoTempo') Tempo  
+                        select#campoTempo.form-control(name='tempo')
+                            for preco in configuracao.parametros.matriz_precos
+                                option(
+                                value=preco.permanencia_maxima_minutos
+                                selected=(ativacao.tempo == preco.permanencia_maxima_minutos))
+                                    = preco.label
+                    .form-group.col-lg-3.col-md-6
+                        label(for='campoCelular') Celular
+                        input#campoCelular.form-control(type='text' placeholder='Celular' name='celular' value=ativacao.celular)
+                .row
+                    .form-group.text-center
+                        button#buttonAtivar.btn.btn-success.btn-lg(type='Submit')
+                            span.glyphicon.glyphicon-ok
+                            | Ativar
         footer.row
             .col-md-4  
             .col-md-4

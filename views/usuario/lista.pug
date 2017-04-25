@@ -1,7 +1,7 @@
 extends ../layoutUsuarioRevenda
 
 block content
-    body()
+    body
         if message
             .alert.alert-danger
                 button.close(type='button', data-dismiss='alert') x
@@ -13,7 +13,7 @@ block content
                     h4.text-center Usuários
                     .row
                         .pull-right
-                            a.btn.btn-default(href="/usuario_revendedor/cadastro", role="button") Cadastro novo usuário
+                            a.btn.btn-default(href="/usuario/cadastro", role="button") Cadastro novo usuário
                     .row
                         .table-responsive
                             table.table.table-bordered
@@ -31,10 +31,7 @@ block content
                                         td #{usuario.pessoaFisica.pessoa.nome}
                                         td #{usuario.autorizacao}
                                         td
-                                            input.status(type='checkbox', name='status', checked=(usuario.ativo), onchange="window.location.href='/usuario_revendedor/deletar/#{usuario.id}'")
+                                            input.status(type='checkbox', name='status', checked=(usuario.ativo), onchange="window.location.href='/usuario/deletar/#{usuario.id}'")
                                         td
-                                            a(href='/usuario_revendedor/alterar/' + usuario.id) Alterar
+                                            a(href='/usuario/alterar/' + usuario.id) Alterar
                 .col-md-1
-
-block append scripts
-    script(src='/js/usuario_revendedor/lista.js')

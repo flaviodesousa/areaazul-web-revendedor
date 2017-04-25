@@ -4,7 +4,11 @@ $(document).ready(function() {
   const AREAAZUL_API_HOST = Cookies.get('api-endpoint');
   const $campoPlaca = $('#campoPlaca');
   const $campoCelular = $('#campoCelular');
-  const $campoCidade = $('#campoCidade');
+  const $campoCidade = $('#campoCidade').select2();
+  const $radioButtonCarro = $('#radioButtonCarro');
+  const $radioButtonMoto = $('#radioButtonMoto');
+  const $radioButtonCamionete = $('#radioButtonCamionete');
+
   const detalhesDoVeiculo = function detalhesDoVeiculoHandler() {
     let placa = $campoPlaca.inputmask('unmaskedvalue');
 
@@ -18,20 +22,20 @@ $(document).ready(function() {
         $('#marca').val(veiculo.marca).prop('readonly', true);
         $('#modelo').val(veiculo.modelo).prop('readonly', true);
         $('#cor').val(veiculo.cor).prop('readonly', true);
-        $('#radioButtonCarro').prop('checked', veiculo.tipo === 'carro').prop('readonly', true);
-        $('#radioButtonMoto').prop('checked', veiculo.tipo === 'moto').prop('readonly', true);
-        $('#radioButtonCamionete').prop('checked', veiculo.tipo === 'camionete').prop('readonly', true);
-        $campoCidade.val(`$(veiculo.cidade.nome)/$(veiculo.cidade.estado.uf)`).prop('readonly', true);
+        $radioButtonCarro.prop('checked', veiculo.tipo === 'carro');
+        $radioButtonMoto.prop('checked', veiculo.tipo === 'moto');
+        $radioButtonCamionete.prop('checked', veiculo.tipo === 'camionete');
+        $campoCidade.val($(veiculo.cidade.id)).trigger('change');
+        $campoCidade.prop('readonly', true);
       })
       .catch(function() {
         $('#marca').val(null).prop('readonly', false).focus();
         $('#modelo').val(null).prop('readonly', false);
         $('#cor').val(null).prop('readonly', false);
-        $('#radioButtonCarro').prop('checked', true).prop('readonly', false);
-        $('#radioButtonMoto').prop('checked', false).prop('readonly', false);
-        $('#radioButtonCamionete').prop('checked', false).prop('readonly', false);
+        $radioButtonCarro.prop('checked', true);
+        $radioButtonMoto.prop('checked', false);
+        $radioButtonCamionete.prop('checked', false);
         $campoCidade.prop('readonly', false);
-        // $campoCidade.select2('open');
       });
   };
   detalhesDoVeiculo();
