@@ -88,13 +88,13 @@ module.exports = function() {
       UsuarioRevendedor.alterar(parametros)
         .then(function() {
           req.flash('info', 'Salvo com sucesso!');
-          res.redirect('/usuario_revendedor/lista');
+          res.redirect('/usuario/lista');
         })
         .catch(function(err) {
           if (err.details) {
             for (var i = 0; i < err.details.length; i++) {
               req.flash('info', err.details[ i ].problem);
-              res.redirect('usuario_revendedor/alterar');
+              res.redirect('usuario/alterar');
             }
           }
         });
@@ -106,13 +106,13 @@ module.exports = function() {
         .desativar(req.params.id)
         .then(
           function(result) {
-            res.redirect('/usuario_revendedor/lista');
+            res.redirect('/usuario/lista');
             return result;
           })
         .catch(
           function(result) {
 
-            res.redirect('/usuario_revendedor/lista');
+            res.redirect('/usuario/lista');
             return result;
           });
 
