@@ -35,7 +35,7 @@ module.exports = function() {
       const dadosAtivacao = {
         telefone: req.body.celular,
         cidade_id: req.body.cidade_id,
-        tempo: req.body.tempo,
+        tempo_minutos: req.body.tempo_minutos,
         marca: req.body.marca,
         modelo: req.body.modelo,
         cor: req.body.cor,

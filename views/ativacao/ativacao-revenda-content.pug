@@ -58,11 +58,11 @@ block content
                 .row
                     .form-group.col-lg-3.col-md-6
                         label(for='campoTempo') Tempo  
-                        select#campoTempo.form-control(name='tempo')
+                        select#campoTempo.form-control(name='tempo_minutos')
                             for preco in configuracao.parametros.matriz_precos
                                 option(
                                 value=preco.permanencia_maxima_minutos
-                                selected=(ativacao.tempo == preco.permanencia_maxima_minutos))
+                                selected=(ativacao.tempo_minutos == preco.permanencia_maxima_minutos))
                                     = preco.label
                     .form-group.col-lg-3.col-md-6
                         label(for='campoCelular') Celular
