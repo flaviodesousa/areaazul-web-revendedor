@@ -24,7 +24,7 @@ $(document).ready(function() {
         $('#cor').val(veiculo.cor).prop('readonly', true);
         $radioButtonCarro.prop('checked', veiculo.tipo === 'carro');
         $radioButtonMoto.prop('checked', veiculo.tipo === 'moto');
-        $radioButtonCamionete.prop('checked', veiculo.tipo === 'camionete');
+        $radioButtonCamionete.prop('checked', veiculo.tipo === 'utilitário');
         $campoCidade.val($(veiculo.cidade.id)).trigger('change');
         $campoCidade.prop('readonly', true);
       })
