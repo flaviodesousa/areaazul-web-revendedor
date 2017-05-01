@@ -59,7 +59,7 @@ block content
                     .form-group.col-lg-3.col-md-6
                         label(for='campoTempo') Tempo  
                         select#campoTempo.form-control(name='tempo_minutos')
-                            for preco in configuracao.parametros.matriz_precos
+                            for preco in configuracao.parametros.matriz_precos_revenda[ativacao.tipo_veiculo]
                                 option(
                                 value=preco.permanencia_maxima_minutos
                                 selected=(ativacao.tempo_minutos == preco.permanencia_maxima_minutos))
