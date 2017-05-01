@@ -2,18 +2,33 @@ module.exports = function() {
   const AreaAzul = require('areaazul');
 
   function renderAtivacao(req, res) {
+    let configuracao;
+    let ativacao = req.body;
     AreaAzul.facade.Configuracao
       .buscar()
-      .then(configuracao => {
+      .then(c => {
+        configuracao = c;
+        if (!ativacao.tipo_veiculo) {
+          ativacao.tipo_veiculo = 'carro';
+        }
+        if (ativacao.cidade_id) {
+          return AreaAzul.facade.Cidade
+            .buscarPorId(ativacao.cidade_id)
+            .then(cidade => {
+              ativacao.cidade_id = cidade.id;
+              ativacao.cidade = cidade;
+            });
+        }
+        ativacao.cidade_id = configuracao.cidade_id;
+        ativacao.cidade = configuracao.cidade;
+      })
+      .then(() => {
         let view = null;
         if (req.user.autorizacao === 'administrador') {
           view = 'ativacao/ativacao-por-administrador';
         } else {
           view = 'ativacao/ativacao-por-usuario';
         }
-        let ativacao = req.body;
-        ativacao.cidade_id = configuracao.cidade_id;
-        ativacao.cidade = configuracao.cidade;
         res.render(view, {
           ativacao: ativacao,
           configuracao: configuracao,
