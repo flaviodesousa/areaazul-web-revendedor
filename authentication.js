@@ -15,6 +15,10 @@ module.exports = function(passport) {
       .then(function(usuarioRevendedor) {
         done(null, usuarioRevendedor);
       })
+      .catch(AreaAzul.BusinessException, err => {
+        AreaAzul.log.warn('Usuário da sessão não recuperável. Encerrando.', { err: err });
+        done(null, false);
+      })
       .catch(function(err) {
         done(err, null);
       });
