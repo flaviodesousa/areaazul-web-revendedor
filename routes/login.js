@@ -6,33 +6,34 @@ module.exports = function(app) {
   const usuario = app.controllers.usuario;
 
 
-
   app.get('/', function(req, res) {
-    res.render('login/index');
+    res.render('login/index', {
+      messages: {
+        info: req.flash('info'),
+        danger: req.flash('danger'),
+        warning: req.flash('warning'),
+        success: req.flash('success')
+      }
+    });
   });
 
 
-
   app.post('/', function(req, res) {
+    function report(req, res, err, user) {
+      AreaAzul.log.warn('Acesso negado', { error: err, user: user });
+      req.flash('warning', 'Acesso negado! Senha ou usuário inválidos.');
+      res.redirect('/');
+    }
+
     passport.authenticate('local', function(err, user) {
       if (err || !user) {
-        req.flash('warning', 'Senha ou usuário inválidos!');
-        res.render('login', {
-          messages: {
-            info: req.flash('info'),
-            danger: req.flash('danger'),
-            warning: req.flash('warning'),
-            success: req.flash('success')
-          }
-        });
+        report(req, res, err, user);
         return;
       }
       req.logIn(user, function(err) {
-
         if (err) {
-          return res.render('login', {
-            error: 'true', value: req.session.passport.user
-          });
+          report(req, res, err, user);
+          return;
         }
         res.redirect('ativacao');
       });
@@ -40,17 +41,15 @@ module.exports = function(app) {
   });
 
 
-
   app.get('/novaSenha', function(req, res) {
     res.render('login/novaSenha');
   });
 
 
-
   app.post('/verificaEmail', function(req, res) {
     Pessoa.verificaEmail({
-      email: req.body.email
-    },
+        email: req.body.email
+      },
       function() {
         req.flash('info', 'Foi enviado um email com a senha provisória!!!');
         res.render('login/novaSenha', { message: req.flash('info') });
@@ -62,7 +61,6 @@ module.exports = function(app) {
   });
   app.get('/usuario/alteracao_senha/:id_recuperacao_senha', usuario.alterarSenhas);
   app.post('/usuario/recuperacao_senha/:id', usuario.recuperar_senha);
-
 
 
   app.get('/logout', function(req, res) {
