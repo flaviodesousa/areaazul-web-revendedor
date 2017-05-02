@@ -66,6 +66,7 @@ module.exports = function(app) {
 
 
   app.get('/logout', function(req, res) {
+    req.flash('success', `Sessão com usuário ${req.user.login} encerrada com sucesso.`);
     req.logout();
     res.redirect('/');
   });
