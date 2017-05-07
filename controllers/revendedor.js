@@ -14,27 +14,35 @@ module.exports = function() {
         res.render('login/index', { message: req.flash('info') });
       })
       .catch(function(err) {
+        req.flash('warning', 'Dados inválidos');
         if (err.details) {
-          for (let i = 0; i < err.details.length; i++) {
-            req.flash('info', err.details[ i ].problem);
-            res.render('revendedor/cadastro', {
-              message: req.flash('info')
-              , values: req.body
-            });
-          }
-        } else {
-          req.flash('info', err);
-          res.render('revendedor/cadastro', {
-            message: req.flash('info')
-            , values: req.body
-          });
+          err.details.forEach(p => req.flash('warning', p.problem));
         }
+        res.render('revendedor/cadastro',
+          {
+            values: req.body,
+            messages: {
+              info: req.flash('info'),
+              danger: req.flash('danger'),
+              warning: req.flash('warning'),
+              success: req.flash('success')
+            }
+          });
       });
   }
 
   return {
     index: function(req, res) {
-      res.render('revendedor/cadastro', { values: req.body });
+      res.render('revendedor/cadastro',
+        {
+          values: req.body,
+          messages: {
+            info: req.flash('info'),
+            danger: req.flash('danger'),
+            warning: req.flash('warning'),
+            success: req.flash('success')
+          }
+        });
     },
 
     cadastrarPJ: function(req, res) {

@@ -10,34 +10,36 @@ html
             meta(name='viewport', content='width=device-width, initial-scale=1')
             link(rel='stylesheet' media='screen' href='/css/lib/bootstrap.min.css')
             link(rel='stylesheet' href='/css/lib/bootstrap-theme.min.css')
-            link(rel='stylesheet', href='/css/pagina.css')
-            link(rel='stylesheet', href='/css/menu.css')
+            link(rel='stylesheet', href='/css/layout.css')
     body
-        nav(class='navbar navbar-inverse navbar-fixed-top' role='navigation')
-            div.navbar-header
-                button(type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse')
-                    span.sr-only Ativar navegação
-                    span.icon-bar
-                    span.icon-bar
-                    span.icon-bar
-                a(class='navbar-brand' href='/') areaazul.org REVENDAS
-            div.navbar-collapse.collapse
-                ul.nav.navbar-nav
-                    li(class='#{menuAtivacao}'): a(href="/ativacao") Ativação
-                    if acesso === 'admin'
-                        li(class='#{menuUsuarios}'): a(href="/usuario/lista") Usuários
-                    li(class='#{menuSair}'): a(href="/logout") Sair
-
-    div#container
         div#topo
 
-        div#corpo
+        .container-fluid
+            nav.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
+                div.navbar-header
+                    button.navbar-toggle(type='button' data-toggle='collapse' data-target='.navbar-collapse')
+                        span.sr-only Ativar navegação
+                        span.icon-bar
+                        span.icon-bar
+                        span.icon-bar
+                    a(class='navbar-brand' href='/') areaazul.org REVENDAS
+                div.navbar-collapse.collapse
+                    ul.nav.navbar-nav
+                        li: a(href="/ativacao") Ativação
+                        if user.autorizacao === 'administrador'
+                            li: a(href="/usuario/lista") Usuários
+                        li: a(href="/logout") Sair
+            div#espacoNavBar
 
-            div#espacotop
-            block content
-            div#espacofooter
+        div#container
 
-        block scripts
-            script(src='/js/lib/lodash.min.js')
-            script(src='/js/lib/jquery-3.1.1.min.js')
-            script(src='/js/lib/bootstrap.min.js')
+            div#corpo
+
+                div#espacotop
+                block content
+                div#espacofooter
+
+            block scripts
+                script(src='/js/lib/lodash.min.js')
+                script(src='/js/lib/jquery-3.1.1.min.js')
+                script(src='/js/lib/bootstrap.min.js')
