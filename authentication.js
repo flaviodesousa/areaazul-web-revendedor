@@ -6,12 +6,13 @@ const LocalStrategy = require('passport-local').Strategy;
 
 module.exports = function(passport) {
   passport.serializeUser(function(user, done) {
-    done(null, user.id);
+    done(null, JSON.stringify(user));
   });
 
-  passport.deserializeUser(function(id, done) {
+  passport.deserializeUser(function(userJSON, done) {
+    const user = JSON.parse(userJSON);
     UsuarioRevendedor
-      .buscarPorId(id)
+      .buscarPorId(user.id)
       .then(function(usuarioRevendedor) {
         done(null, usuarioRevendedor);
       })

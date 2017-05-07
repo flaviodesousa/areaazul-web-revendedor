@@ -39,10 +39,6 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use((req, res, next) => {
-  res.cookie('api-endpoint', AREAAZUL_API_ENDPOINT);
-  next();
-});
 app.use(session({
   secret: AREAAZUL_WEB_SECRET,
   name: 'areaazul-web-revenda',
@@ -57,6 +53,11 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(expressValidator());
+app.use((req, res, next) => {
+  res.cookie('api-endpoint', AREAAZUL_API_ENDPOINT);
+  res.locals.user = req.session && req.session.passport.user && JSON.parse(req.session.passport.user);
+  next();
+});
 
 // Modulos - Modelo - Controller - Rotas
 load('controllers').then('routes').into(app);
