@@ -1,6 +1,6 @@
 {
   "name": "areaazul-web-revendedor",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "license": "UNLICENSED",
   "private": true,
   "author": {
@@ -19,7 +19,7 @@
     "url": "git@bitbucket.org:solutions-inf-br/areaazul-web-revendedor.git"
   },
   "dependencies": {
-    "areaazul": "^2.1.19",
+    "areaazul": "^2.3.0",
     "areaazul-utils": "^1.1.3",
     "body-parser": "^1.15.2",
     "bootstrap": "^3.3.7",
