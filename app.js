@@ -55,7 +55,10 @@ app.use(passport.session());
 app.use(expressValidator());
 app.use((req, res, next) => {
   res.cookie('api-endpoint', AREAAZUL_API_ENDPOINT);
-  res.locals.user = req.session && req.session.passport.user && JSON.parse(req.session.passport.user);
+  res.locals.user = req.session &&
+    req.session.passport &&
+    req.session.passport.user &&
+    JSON.parse(req.session.passport.user);
   next();
 });
 
