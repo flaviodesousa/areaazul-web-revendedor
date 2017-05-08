@@ -13,9 +13,17 @@ block content
                 section.login-form
                     form(action='/' method='POST' role='login')
                         img.img-responsive(src='/images/areaazul.png' alt='')
-                        input.form-control.input-lg(type='text' placeholder='usuario' name='login')
-                        input.form-control.input-lg(type='password' placeholder='senha' name='senha')
-                        button.btn.btn-primary.btn-lg.btn-block Entrar
+                        .input-group.input-group-lg
+                            span.input-group-addon
+                                span.glyphicon.glyphicon-user
+                            input.form-control.input-lg(type='text' placeholder='usuario' name='login')
+                        .input-group.input-group-lg
+                            span.input-group-addon
+                                span.glyphicon.glyphicon-lock
+                            input.form-control.input-lg(type='password' placeholder='senha' name='senha')
+                        button.btn.btn-primary.btn-lg.btn-block
+                            span.glyphicon.glyphicon-log-in
+                            | &nbsp;Entrar
                         div
                             a(href='/revendedor/cadastro') Criar uma conta
                             |  ou&nbsp;
