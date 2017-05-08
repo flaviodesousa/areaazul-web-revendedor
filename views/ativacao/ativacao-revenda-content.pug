@@ -16,7 +16,7 @@ block content
                     .panel.panel-primary
                         .panel-heading Veículo
                         .panel-body
-                            .form-group.col-sm-3
+                            .form-group.form-group-lg.col-sm-3
                                 label(for='campoPlaca') Placa
                                 input#campoPlaca.form-control(type='text' placeholder='Placa' name='placa' value=ativacao.placa)
                             .form-group.col-sm-9
@@ -79,7 +79,7 @@ block content
                 .form-group.text-center
                     button#buttonAtivar.btn.btn-success.btn-lg(type='Submit')
                         span.glyphicon.glyphicon-ok
-                        | Ativar
+                        | &nbsp;Ativar
 
 block append scripts
     script(src='/js/lib/jquery.inputmask.bundle.min.js')
