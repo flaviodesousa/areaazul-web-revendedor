@@ -44,16 +44,25 @@ block content
                                         input#emailpf.form-control(required=true type='text' name='email_pf' placeholder="email@example.com" aria-describedby='basic-addon2' value=values.email_pf)
                                 .form-group
                                     label.control-label(for='usuariopf') * Nome de usuário:
-                                    input#usuariopf.form-control(required=true placeholder='Nome de usuário' type='text' name='nome_usuario_pf' value=values.nome_usuario_pf)
+                                    .input-group
+                                        span.input-group-addon
+                                            span.glyphicon.glyphicon-user
+                                        input#usuariopf.form-control(required=true placeholder='Nome de usuário' type='text' name='nome_usuario_pf' value=values.nome_usuario_pf)
                                 .form-group
                                     .row
                                         .control-group
                                             .form-group.col-lg-6
-                                                label * Senha:
-                                                input#senhapf.form-control(required=true placeholder='Senha' type='password' name='senha_pf' value=values.senha_pf)
+                                                label(for='senhapf') * Senha:
+                                                .input-group
+                                                    span.input-group-addon
+                                                        span.glyphicon.glyphicon-lock
+                                                    input#senhapf.form-control(required=true placeholder='Senha' type='password' name='senha_pf' value=values.senha_pf)
                                             .form-group.col-lg-6
-                                                label * Confirmar senha:
-                                                input#confirmar_senhapf.form-control(required=true placeholder='Confirmar senha' type='password' name='confirmar_senha_pf' value=values.confirmar_senha_pf)
+                                                label(for='confirmar_senhapf') * Confirmar senha:
+                                                .input-group
+                                                    span.input-group-addon
+                                                        span.glyphicon.glyphicon-lock
+                                                    input#confirmar_senhapf.form-control(required=true placeholder='Confirmar senha' type='password' name='confirmar_senha_pf' value=values.confirmar_senha_pf)
                                 .form-group
                                     .row
                                         .form-inline
@@ -65,8 +74,9 @@ block content
                                                 label * Campos Obrigátorios
                                 .form-group
                                     .controls
-                                        button#buttonSalvarPF.btn.btn-small.btn-primary(name='buttonSalvarPF') Salvar
-                                        button#buttonCancelarPF.btn.btn-danger.pull-right(name='buttonCancelarPF' type='reset') Cancelar
+                                        button#buttonSalvarPF.btn.btn-lg.btn-primary(name='buttonSalvarPF')
+                                            span.glyphicon.glyphicon-ok
+                                            | &nbsp;Salvar
                         #formularioPessoaJuridica
                             form(name='form' role='form' action="/revendedor/cadastrar_revendedor_pessoa_juridica" method="POST")
                                 .row
@@ -124,8 +134,9 @@ block content
                                                 label * Campos Obrigátorios
                                 .form-group
                                     .controls
-                                        button#buttonSalvarPJ.btn.btn-small.btn-primary(name='buttonSalvarPJ') Salvar
-                                        button#buttonCancelarPJ.btn.btn-danger.pull-right(name='buttonCancelarPJ' type='reset') Cancelar
+                                        button#buttonSalvarPJ.btn.btn-lg.btn-primary(name='buttonSalvarPJ')
+                                            span.glyphicon.glyphicon-ok
+                                            | &nbsp;Salvar
                 .col-md-3
             footer.row
                 .col-md-4

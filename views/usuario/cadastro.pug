@@ -34,27 +34,36 @@ block content
                             .form-group
                                 label.control-label(for='emailpf') * E-mail:
                                 .input-group
-                                    span#basic-addon1.input-group-addon @
+                                    span.input-group-addon @
                                     input#emailpf.form-control(required='', type='text', , name='email_pf', placeholder="email@example.com", aria-describedby='basic-addon2', value=values.email_pf)
                             .form-group
                                 label.control-label(for='usuariopf') * Nome de usuário:
-                                input#usuariopf.form-control(required='', type='text', name='nome_usuario_pf', value=values.nome_usuario_pf)
+                                .input-group
+                                    span.input-group-addon
+                                        span.glyphicon.glyphicon-user
+                                    input#usuariopf.form-control(required='', type='text', name='nome_usuario_pf', value=values.nome_usuario_pf)
                             .form-group
                                 .row
                                     .control-group
                                         .form-group.col-lg-6
-                                            label * Senha:
-                                            input#senhapf.form-control(required='', type='password', name='senha_pf', value=values.senha_pf)
+                                            label(for='senhapf') * Senha:
+                                            .input-group
+                                                span.input-group-addon
+                                                    span.glyphicon.glyphicon-lock
+                                                input#senhapf.form-control(required='', type='password', name='senha_pf', value=values.senha_pf)
                                         .form-group.col-lg-6
                                             label * Confirmar senha:
-                                            input#confirmar_senhapf.form-control(required='', type='password', name='confirmar_senha_pf', value=values.confirmar_senha_pf)
+                                            .input-group
+                                                span.input-group-addon
+                                                    span.glyphicon.glyphicon-lock
+                                                input#confirmar_senhapf.form-control(required='', type='password', name='confirmar_senha_pf', value=values.confirmar_senha_pf)
                             .form-group
                                 .row
                                     .form-inline
                                         .form-group.col-lg-6
                                             label.checkbox
                                                 input#optionsRadios1(type='checkbox', name='termo_servico')
-                                                |  Li e concordo com os termos de serviços
+                                                |  Li e concordo com os termos de serviço
                                         .form-group.col-lg-3.pull-right
                                             label * Campos Obrigatórios
                             .form-group
