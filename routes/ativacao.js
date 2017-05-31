@@ -55,7 +55,7 @@ module.exports = function(app) {
         cor: req.body.cor,
         placa: req.body.placa,
         tipo: req.body.tipo_veiculo,
-        usuario_revendedor_id: req.session.passport.user
+        usuario_revendedor_id: JSON.parse(req.session.passport.user).id
       };
 
       AreaAzul.facade.Ativacao
