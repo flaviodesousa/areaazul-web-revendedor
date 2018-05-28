@@ -1,4 +1,4 @@
-const AreaAzul = require('areaazul');
+const AreaAzul = require('@areaazul/api');
 const Veiculo = AreaAzul.facade.Veiculo;
 
 module.exports = function() {

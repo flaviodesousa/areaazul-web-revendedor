@@ -2,7 +2,7 @@
 
 module.exports = function(app) {
   const routesUtil = require('../routes/utils');
-  const AreaAzul = require('areaazul');
+  const AreaAzul = require('@areaazul/api');
 
 
   app.get('/ativacao',

@@ -1,6 +1,6 @@
 module.exports = function(app) {
   const passport = require('passport');
-  const AreaAzul = require('areaazul');
+  const AreaAzul = require('@areaazul/api');
   const Pessoa = AreaAzul.facade.Pessoa;
 
   const usuario = app.controllers.usuario;

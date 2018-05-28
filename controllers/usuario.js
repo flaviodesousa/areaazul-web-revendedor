@@ -1,6 +1,6 @@
 module.exports = function() {
 
-  const AreaAzul = require('areaazul');
+  const AreaAzul = require('@areaazul/api');
   const UsuarioRevendedor = AreaAzul.facade.UsuarioRevendedor;
   const RecuperacaoSenha = AreaAzul.facade.RecuperacaoSenha;
 

@@ -1,10 +1,10 @@
 'use strict';
 
-const AreaAzul = require('areaazul');
+const AreaAzul = require('@areaazul/api');
 
 const bodyParser = require('body-parser');
 const express = require('express');
-const load = require('express-load');
+const consign = require('consign');
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
@@ -63,7 +63,10 @@ app.use((req, res, next) => {
 });
 
 // Modulos - Modelo - Controller - Rotas
-load('controllers').then('routes').into(app);
+consign()
+  .include('controllers')
+  .then('routes')
+  .into(app);
 
 if (app.get('env') === 'development') {
   app.use(errorHandler());

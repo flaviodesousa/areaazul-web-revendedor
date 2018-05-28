@@ -1,8 +1,8 @@
 module.exports = function() {
   const debug = require('debug')(
     'areaazul-web-revendedor:controllers:revendedor');
-  const AreaazulUtils = require('areaazul-utils');
-  const AreaAzul = require('areaazul');
+  const AreaazulUtils = require('@areaazul/utils');
+  const AreaAzul = require('@areaazul/api');
   const Revendedor = AreaAzul.facade.Revendedor;
 
   function cadastrarCommon(req, res, camposRevendedor) {
